@@ -5,8 +5,9 @@ body {
 nav{
     background-color: #47475b;
     width: 99%;
-    height: 60px;
+    height: 50px;
     position:fixed;
+    float: left;
 }
 
 a{
@@ -18,8 +19,7 @@ a{
     color:#D9D9E9;
     border-style: hidden;
     display: inline-block;
-   
-    /*Hintergrund Boxen vergrößern*/
+    
 }
 
 a:hover{
@@ -27,30 +27,13 @@ a:hover{
     color:#5F5F73 ;
 }
 
+li {
+	list-style: none;
+    float: left;
+}
+
 h1{
     text-align: center;
     color: #D9D9E9;
-
-    font-size: 40px;
-}
-
-li {
-	list-style: none;
-    /* float: left; */
-    position: absolute;
-    padding-top: 1%;
-    padding-left: 1%;
-}
-
-li1 {
-    position: absolute;
-    padding-top: 1%;
-    padding-left: 92%;
-}
-
-li2 {
-    position: absolute;
-    padding-top: 1%;
-    padding-left: 97%;
 }
 

@@ -1,0 +1,92 @@
+main{
+    background-color:#47475b;
+    margin:auto;
+    position: fixed;
+    width: 99%;
+    height: 550px;
+    margin-top: 8%;
+}
+
+aside{
+    float: right;
+    background-color: #D9D9E9;
+    color: #2d2d3b;
+    text-align: center;
+    width: 35%;
+    font-size: 25px;
+    height: 100%;
+}
+
+#Mitglider{
+    margin:2%;
+}
+
+#Benutzernameboxen{
+    text-align: left;
+    background-color: #47475B;
+    opacity: 0.5;
+    height: 13.5%;
+    border-radius: 10px;
+}
+
+#Benutzername{
+    opacity: 1;
+    color: #D9D9E9;
+    font-size:18px;
+    padding: 1%;
+    
+}
+
+#Events{
+    margin-top: 2%;
+    margin-left:5%;
+    color: #D9D9E9;
+    font-size: 25px;
+}
+
+section{
+    float:left;
+    background-color: #D9D9E9;
+    margin-top:1.5%;
+    margin-left: 4%;
+    height: 30%;
+    width: 50%;
+    border-radius: 50px;
+}
+
+#Eventname{
+    font-size: 25px;
+    padding-top:0.5%;
+    padding-left:5%;
+}
+
+#Hinzufügen{
+    float:left;
+    background-color: #e48013;
+    color: #D9D9E9;
+    border-radius: 100%;
+    margin-left: 25%;
+    margin-top: 4%;
+    padding:3.5%;
+}
+
+#Hinzufügen:hover{
+    background-color:#c76e0e;
+}
+
+#Auswahl{
+    accent-color: #e48013;
+    margin-top: 6%;
+    margin-left: 25%;
+}
+
+#Auto{
+    background-color: #FFFFFF;
+    float:right;
+    margin-right: 4%;
+    margin-top: 2%;
+    height: 60%;
+    width: 15%;
+    border-radius: 8px;
+}
+
