@@ -4,7 +4,7 @@ main{
     position: fixed;
     width: 99%;
     height: 550px;
-    margin-top: 8%;
+    margin-top: 9%;
 }
 
 aside{
@@ -27,13 +27,14 @@ aside{
     opacity: 0.5;
     height: 13.5%;
     border-radius: 10px;
+    margin:2%;
 }
 
 #Benutzername{
     opacity: 1;
     color: #D9D9E9;
-    font-size:18px;
-    padding: 1%;
+    font-size:20px;
+    padding: 1.5%;
     
 }
 
@@ -41,7 +42,7 @@ aside{
     margin-top: 2%;
     margin-left:5%;
     color: #D9D9E9;
-    font-size: 25px;
+    font-size: 40px;
 }
 
 section{
@@ -56,7 +57,7 @@ section{
 
 #Eventname{
     font-size: 25px;
-    padding-top:0.5%;
+    padding-top:1.2%;
     padding-left:5%;
 }
 
@@ -64,20 +65,22 @@ section{
     float:left;
     background-color: #e48013;
     color: #D9D9E9;
-    border-radius: 100%;
+    border-radius: 50%;
     margin-left: 25%;
     margin-top: 4%;
-    padding:3.5%;
+    padding:1.5%;
 }
 
 #Hinzufügen:hover{
     background-color:#c76e0e;
+    cursor: pointer;
 }
 
 #Auswahl{
     accent-color: #e48013;
     margin-top: 6%;
     margin-left: 25%;
+    transform: scale(2);
 }
 
 #Auto{
@@ -85,8 +88,14 @@ section{
     float:right;
     margin-right: 4%;
     margin-top: 2%;
-    height: 60%;
-    width: 15%;
     border-radius: 8px;
+    padding:2%;
 }
 
+#Gruppenname{
+    float: left;
+    margin-top:5%;
+    margin-left: 44%;
+    color: #D9D9E9;
+    font-size: 30px;
+}

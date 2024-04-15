@@ -5,9 +5,9 @@ body {
 nav{
     background-color: #47475b;
     width: 99%;
-    height: 50px;
+    height: 55px;
     position:fixed;
-    float: left;
+    float:left;
 }
 
 a{
@@ -19,7 +19,8 @@ a{
     color:#D9D9E9;
     border-style: hidden;
     display: inline-block;
-    
+   
+    /*Hintergrund Boxen vergrößern*/
 }
 
 a:hover{
@@ -27,13 +28,34 @@ a:hover{
     color:#5F5F73 ;
 }
 
-li {
-	list-style: none;
-    float: left;
-}
-
 h1{
     text-align: center;
     color: #D9D9E9;
+    font-size: 40px;
+    margin-top: 0.2%;
+}
+
+li {
+	list-style: none;
+    /* float: left; */
+}
+
+#home {
+    position: fixed;
+    /*margin-top: 1.2%;*/
+    padding:18.2px;
+}
+#gruppen {
+    position: fixed;
+    margin-left: 88.5%;
+    /*margin-top: 1.2%;*/
+    padding:18.2px;
+}
+
+#profil {
+    position: fixed;
+    margin-left: 94.5%;
+    /*margin-top: 1.2%;*/
+    padding:18.2px;
 }
 

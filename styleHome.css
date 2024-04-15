@@ -22,4 +22,5 @@ main{
 
 #buttons:hover{
     background-color:#c76e0e;
+    cursor: pointer;
 }
