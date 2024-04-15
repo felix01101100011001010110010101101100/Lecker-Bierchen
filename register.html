@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
+    <title>Lecker Bierchen</title>
+    <!--<link rel="stylesheet" href="styleAllgemein.css"> -->
+    <link rel="stylesheet" href="styleRegister.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
+
+</head>
+    <header>
+        <nav>
+            <h1>Lecker Bierchen</h1>
+        </nav>
+    </header>
+
+    <form action="/action_page.php">
+        <div class="container">
+          <h2>Registrierung</h2>
+          <p>Account erstellen:</p>
+          <hr>
+      
+          <label for="vn"><b>Vorname:</b></label>
+          <input type="text" placeholder="Vorname eingeben" name="vn" id="vn" required>
+      
+          <label for="nn"><b>Nachname:</b></label>
+          <input type="text" placeholder="Nachname eingeben" name="nn" id="nn" required>
+      
+          <label for="bn"><b>Benutzername:</b></label>
+          <input type="text" placeholder="Benutzername" name="bn" id="bn" required>
+
+          <label for="age"><b>Alter:</b></label><br>
+          <input type="number" placeholder="Alter" name="age" id="age" required><br><br>
+
+          <label for="bn"><b>Benutzername:</b></label>
+          <input type="text" placeholder="Benutzername" name="bn" id="bn" required>
+
+          <label for="psw"><b>Passwort:</b></label>
+          <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
+
+          <label for="psw-wdh"><b>Passwort wiederholen:</b></label>
+          <input type="password" placeholder="Hier nochmal das Passwort bestätigen..." name="psw-wdh" id="psw-wdh" required>
+
+          <label for="lk"><b>Landkreis:</b></label><br>
+          <select size="1" style="width:305px" required>
+            <option>Zollernalbkreis</option>
+            <option>Detroitlingen</option>
+            <option>Bayern</option>
+          </select>
+
+          <p>Hast du einen gültigen Führerschein?</p>
+          <input type="radio" id="ja" name="führerschein" value="ja">
+          <label for="ja">ja</label>
+
+          <input type="radio" id="nein" name="führerschein" value="nein" checked>
+          <label for="nein">nein</label><br><br>
+
+          <hr>
+      
+          <button type="submit" class="registerbtn">Registrieren</button>
+        </div>
+        
+        <div class="container signin">
+          <p>Du hast schon einen Account? <a href="#">Anmelden</a></p>
+        </div>
+      </form>
+
+</body>
+</html>
