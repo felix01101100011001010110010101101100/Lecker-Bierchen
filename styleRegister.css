@@ -4,6 +4,13 @@ body {
     font-weight: 100;
     color: #2d2d3b;
 }
+
+form{
+    float:left;
+    margin-top: 5%;
+    width: 80%;
+    margin-left:10%;
+}
   
   * {
     box-sizing: border-box;
@@ -12,6 +19,7 @@ body {
   .container {
     padding: 16px;
     background-color: #D9D9E9;
+    
   }
   
   input[type=text], input[type=password] {
@@ -50,8 +58,12 @@ body {
   }
   
   
-  /* Set a grey background color and center the text of the "sign in" section */
   .signin {
     background-color: #D9D9E9;
     text-align: center;
+  }
+
+  #anmelden{
+    background-color: #D9D9E9;
+    color: #2d2d3b;
   }
