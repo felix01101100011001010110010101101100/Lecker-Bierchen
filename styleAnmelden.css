@@ -1,0 +1,34 @@
+#profil, #home, #gruppen{
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+#anmeldeAbfrageBox{
+    text-align: center;
+    position: absolute;
+    opacity: 1.0;
+    background-color: #47475b;
+    width: 30%;
+    height: 55%;
+    margin-top: 10%;
+    margin-left: 28%;
+    float: left;
+    border-radius: 50px;
+}
+
+#anmeldeAbfrage{
+    background-color: #D9D9E9;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    height:87.5%;
+    border-radius: 50px;
+}
+
+main, nav{
+    opacity: 0.5;
+}
+
+
+
