@@ -1,0 +1,70 @@
+body {
+    background-color: #2d2d3b;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    color: #2d2d3b;
+}
+
+form{
+    float:left;
+    margin-top: 5%;
+    margin-bottom: 1.5%;
+    width: 80%;
+    margin-left:10%;
+}
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .container {
+    padding: 16px;
+    background-color: #D9D9E9;
+    
+  }
+  
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #B2B2C7;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #8F8FA1;
+    outline: none;
+  }
+  
+
+  hr {
+    border: 1px solid #B2B2C7;
+    margin-bottom: 25px;
+  }
+  
+  .registerbtn {
+    background-color: #E48013;
+    color: #2d2d3b;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    background-color:#c76e0e;
+  }
+  
+  
+  .signin {
+    background-color: #D9D9E9;
+    text-align: center;
+  }
+
+  #anmelden{
+    background-color: #D9D9E9;
+    color: #2d2d3b;
+  }
