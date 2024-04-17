@@ -10,7 +10,7 @@ nav{
     float:left;
 }
 
-a{
+#profil,#gruppen,#home{
     text-decoration: none;
 	font-weight: bold;
     border: solid;
@@ -19,11 +19,13 @@ a{
     color:#D9D9E9;
     border-style: hidden;
     display: inline-block;
+    position: fixed;
+    padding:18.2px;
    
     /*Hintergrund Boxen vergrößern*/
 }
 
-a:hover{
+#profil:hover,#gruppen:hover,#home:hover{
     background-color: #D9D9E9;
     color:#5F5F73 ;
 }
@@ -40,22 +42,10 @@ li {
     /* float: left; */
 }
 
-#home {
-    position: fixed;
-    /*margin-top: 1.2%;*/
-    padding:18.2px;
-}
 #gruppen {
-    position: fixed;
     margin-left: 88.5%;
-    /*margin-top: 1.2%;*/
-    padding:18.2px;
 }
 
 #profil {
-    position: fixed;
     margin-left: 94.5%;
-    /*margin-top: 1.2%;*/
-    padding:18.2px;
 }
-

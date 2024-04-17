@@ -1,4 +1,4 @@
-main{
+#eventseiteMain{
     background-color:#47475b;
     margin:auto;
     position: fixed;
@@ -17,11 +17,11 @@ aside{
     height: 100%;
 }
 
-#Mitglider{
+#mitglider{
     margin:2%;
 }
 
-#Benutzernameboxen{
+#benutzernameboxen{
     text-align: left;
     background-color: #47475B;
     opacity: 0.5;
@@ -30,7 +30,7 @@ aside{
     margin:2%;
 }
 
-#Benutzername{
+#benutzername{
     opacity: 1;
     color: #D9D9E9;
     font-size:20px;
@@ -38,7 +38,7 @@ aside{
     
 }
 
-#Events{
+#events{
     margin-top: 2%;
     margin-left:5%;
     color: #D9D9E9;
@@ -55,13 +55,13 @@ section{
     border-radius: 50px;
 }
 
-#Eventname{
+#eventname{
     font-size: 25px;
     padding-top:1.2%;
     padding-left:5%;
 }
 
-#Hinzufügen{
+#hinzufügen{
     float:left;
     background-color: #e48013;
     color: #D9D9E9;
@@ -71,19 +71,19 @@ section{
     padding:1.5%;
 }
 
-#Hinzufügen:hover{
+#hinzufügen:hover{
     background-color:#c76e0e;
     cursor: pointer;
 }
 
-#Auswahl{
+#auswahl{
     accent-color: #e48013;
     margin-top: 6%;
     margin-left: 25%;
     transform: scale(2);
 }
 
-#Auto{
+#auto{
     background-color: #FFFFFF;
     float:right;
     margin-right: 4%;
@@ -92,7 +92,7 @@ section{
     padding:2%;
 }
 
-#Gruppenname{
+#gruppenname{
     float: left;
     margin-top:5%;
     margin-left: 44%;

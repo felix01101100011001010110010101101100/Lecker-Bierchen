@@ -1,0 +1,257 @@
+/*Allgemein*/
+body {
+    background-color: #2d2d3b;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+}
+
+nav{
+    background-color: #47475b;
+    width: 99%;
+    height: 55px;
+    position:fixed;
+    float:left;
+}
+
+/*-------------------------------------------------------------------------*/
+
+/*Home*/
+#startseiteMain{
+    background-color:#47475b;
+    margin:auto;
+    position: fixed;
+    width: 60%;
+    height: 67%;
+    margin:8% 20%;
+    border-radius: 100px;
+}
+
+#buttons{
+    background-color: #e48013;
+    color: #D9D9E9;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 50px;
+    margin-top: 8%;
+    margin-left:5%;
+    margin-right: 5%;
+    padding:2.5%;
+}
+
+#buttons:hover{
+    background-color:#c76e0e;
+    cursor: pointer;
+}
+
+#profil,#gruppen,#home{
+    text-decoration: none;
+	font-weight: bold;
+    border: solid;
+    border-radius: 15%;
+    background-color:#5F5F73;
+    color:#D9D9E9;
+    border-style: hidden;
+    display: inline-block;
+    position: fixed;
+    padding:18.2px;
+    /*Hintergrund Boxen vergrößern*/
+}
+
+#profil:hover,#gruppen:hover,#home:hover{
+    background-color: #D9D9E9;
+    color:#5F5F73 ;
+}
+
+h1{
+    text-align: center;
+    color: #D9D9E9;
+    font-size: 40px;
+    margin-top: 0.2%;
+}
+
+li {
+	list-style: none;
+}
+
+#gruppen {
+    margin-left: 88.5%;
+}
+
+#profil {
+    margin-left: 94.5%;
+}
+
+/*---------------------------------------*/
+
+/*Gruppen*/
+#eventseiteMain{
+    background-color:#47475b;
+    margin:auto;
+    position: fixed;
+    width: 99%;
+    height: 550px;
+    margin-top: 9%;
+}
+
+aside{
+    float: right;
+    background-color: #D9D9E9;
+    color: #2d2d3b;
+    text-align: center;
+    width: 35%;
+    font-size: 25px;
+    height: 100%;
+}
+
+#mitglider{
+    margin:2%;
+}
+
+#benutzernameboxen{
+    text-align: left;
+    background-color: #47475B;
+    opacity: 0.5;
+    height: 13.5%;
+    border-radius: 10px;
+    margin:2%;
+}
+
+#benutzername{
+    opacity: 1;
+    color: #D9D9E9;
+    font-size:20px;
+    padding: 1.5%;
+    
+}
+
+#events{
+    margin-top: 2%;
+    margin-left:5%;
+    color: #D9D9E9;
+    font-size: 40px;
+}
+
+section{
+    float:left;
+    background-color: #D9D9E9;
+    margin-top:1.5%;
+    margin-left: 4%;
+    height: 30%;
+    width: 50%;
+    border-radius: 50px;
+}
+
+#eventname{
+    font-size: 25px;
+    padding-top:1.2%;
+    padding-left:5%;
+}
+
+#hinzufügen{
+    float:left;
+    background-color: #e48013;
+    color: #D9D9E9;
+    border-radius: 50%;
+    margin-left: 25%;
+    margin-top: 4%;
+    padding:1.5%;
+}
+
+#hinzufügen:hover{
+    background-color:#c76e0e;
+    cursor: pointer;
+}
+
+#auswahl{
+    accent-color: #e48013;
+    margin-top: 6%;
+    margin-left: 25%;
+    transform: scale(2);
+}
+
+#auto{
+    background-color: #FFFFFF;
+    float:right;
+    margin-right: 4%;
+    margin-top: 2%;
+    border-radius: 8px;
+    padding:2%;
+}
+
+#gruppenname{
+    float: left;
+    margin-top:5%;
+    margin-left: 44%;
+    color: #D9D9E9;
+    font-size: 30px;
+}
+
+/*------------------------------------------------------------*/
+/*Registrieren und Profil*/
+#formProfil{
+    margin-top:5%;
+}
+
+form{
+    float:left;
+    margin-top: 1%;
+    margin-bottom: 1.5%;
+    width: 80%;
+    margin-left:10%;
+}
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .container {
+    padding: 16px;
+    background-color: #D9D9E9;
+    
+  }
+  
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #B2B2C7;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #8F8FA1;
+    outline: none;
+  }
+  
+
+  hr {
+    border: 1px solid #B2B2C7;
+    margin-bottom: 25px;
+  }
+  
+  .registerbtn {
+    background-color: #E48013;
+    color: #2d2d3b;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .registerbtn:hover {
+    background-color:#c76e0e;
+  }
+  
+  
+  .signin {
+    background-color: #D9D9E9;
+    text-align: center;
+  }
+
+  #anmelden{
+    background-color: #D9D9E9;
+    color: #2d2d3b;
+  }
