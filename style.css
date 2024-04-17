@@ -11,6 +11,7 @@ nav{
     height: 55px;
     position:fixed;
     float:left;
+    margin-top: -0.6%;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -187,7 +188,7 @@ section{
 }
 
 /*------------------------------------------------------------*/
-/*Registrieren und Profil*/
+/*Registrieren und Profil und Anmeldung*/
 #formProfil{
     margin-top:5%;
 }
@@ -254,4 +255,8 @@ form{
   #anmelden{
     background-color: #D9D9E9;
     color: #2d2d3b;
+  }
+
+  #vnProfil,#nnProfil{
+    cursor: not-allowed;
   }
