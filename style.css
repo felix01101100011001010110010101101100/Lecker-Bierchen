@@ -85,7 +85,7 @@ li {
 /*---------------------------------------*/
 
 /*Gruppen*/
-#eventseiteMain{
+#gruppenseiteMain{
     background-color:#47475b;
     margin:auto;
     position: fixed;
@@ -148,6 +148,11 @@ section{
     padding-left:5%;
 }
 
+#fahrername{
+    font-size:15px;
+    margin-left: 81%;
+}
+
 #hinzufügen{
     float:left;
     background-color: #e48013;
@@ -165,7 +170,7 @@ section{
 
 #auswahl{
     accent-color: #e48013;
-    margin-top: 6%;
+    margin-top: 2%;
     margin-left: 25%;
     transform: scale(2);
 }
@@ -180,11 +185,7 @@ section{
 }
 
 #gruppenname{
-    float: left;
-    margin-top:5%;
     margin-left: 44%;
-    color: #D9D9E9;
-    font-size: 30px;
 }
 
 /*------------------------------------------------------------*/
@@ -211,7 +212,7 @@ form{
     
   }
   
-  input[type=text], input[type=password] {
+  input[type=text], input[type=password], textarea,input[type=time] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -220,7 +221,7 @@ form{
     background: #B2B2C7;
   }
   
-  input[type=text]:focus, input[type=password]:focus {
+  input[type=text]:focus, input[type=password]:focus,textarea:focus,input[type=time]:focus{
     background-color: #8F8FA1;
     outline: none;
   }
@@ -260,3 +261,35 @@ form{
   #vnProfil,#nnProfil{
     cursor: not-allowed;
   }
+
+/*-----------------------------------------------------------
+Eventseite*/
+
+#eventMain{
+    width: 40%;
+    margin-left: 30%;
+    background-color: #47475B;
+    float: left;
+    text-align: center;
+    padding: 1.7%;
+    position: static;
+}
+
+#eventErstellen, #gruppenname{
+    float: left;
+    margin-top:5%;
+    color: #D9D9E9;
+    font-size: 30px;
+}
+
+#eventErstellen{
+    margin-left: 43%;
+}
+
+.erstellen{
+    background-color: #E48013;
+    color: #2d2d3b;
+    border: none;
+    cursor: pointer;
+    padding:2%;
+}
