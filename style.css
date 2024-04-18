@@ -30,14 +30,14 @@ nav{
 
 #buttons{
     background-color: #e48013;
-    color: #D9D9E9;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
     margin-top: 8%;
     margin-left:5%;
-    margin-right: 5%;
+    /*margin-right: 5%;*/
     padding:2.5%;
+    width:90%;
 }
 
 #buttons:hover{
