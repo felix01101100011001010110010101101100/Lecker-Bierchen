@@ -33,7 +33,7 @@ nav{
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
-    margin-top: 7%;
+    margin-top: 8%;
     margin-left:5%;
     /*margin-right: 5%;*/
     padding:2.5%;
@@ -93,6 +93,8 @@ li {
     width: 99%;
     height: 550px;
     margin-top: 9%;
+    border-width: 0cap;
+    border-radius: 20px;
 }
 
 aside{
@@ -103,6 +105,8 @@ aside{
     width: 35%;
     font-size: 25px;
     height: 100%;
+    border-width: 0cap;
+    border-radius: 20px;
 }
 
 #mitglider{
@@ -141,6 +145,8 @@ section{
     height: 30%;
     width: 50%;
     border-radius: 50px;
+    padding-bottom: 9%;
+    margin-bottom: -1.5%;
 }
 
 #eventname{
@@ -151,7 +157,7 @@ section{
 
 #fahrername{
     font-size:15px;
-    margin-left: 81%;
+    margin-left: 83.4%;
 }
 
 #hinzufügen{
@@ -317,10 +323,6 @@ Eventseite*/
     cursor: pointer;
     padding:2%;
     border-radius: 20px;
-}
-
-#labelEv{
-    color: #D9D9E9;
 }
 
 
