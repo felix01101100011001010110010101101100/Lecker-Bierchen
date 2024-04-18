@@ -7,11 +7,12 @@ body {
 
 nav{
     background-color: #47475b;
-    width: 99%;
+    width: 100%;
     height: 55px;
     position:fixed;
     float:left;
     margin-top: -0.6%;
+    margin-left: -0.6%;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -75,11 +76,11 @@ li {
 }
 
 #gruppen {
-    margin-left: 88.5%;
+    margin-left: 90%;
 }
 
 #profil {
-    margin-left: 94.5%;
+    margin-left: 95.5%;
 }
 
 /*---------------------------------------*/
@@ -163,7 +164,7 @@ section{
     padding:1.5%;
 }
 
-#hinzufügen:hover{
+#hinzufügen:hover, .erstellen:hover{
     background-color:#c76e0e;
     cursor: pointer;
 }
@@ -206,7 +207,7 @@ form{
     box-sizing: border-box;
   }
   
-  .container {
+  .container, #eventMain {
     padding: 16px;
     background-color: #D9D9E9;
     border-width: 0cap;
@@ -253,7 +254,7 @@ form{
   }
   
   
-  .signin {
+  .signin{
     background-color: #D9D9E9;
     text-align: center;
     border-top-left-radius: 0px;
@@ -271,7 +272,7 @@ form{
     cursor: not-allowed;
   }
 
-  .profil{
+  .profil, #eventMain{
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
@@ -290,6 +291,7 @@ Eventseite*/
 #eventMain{
     width: 40%;
     margin-left: 30%;
+    margin-top: 6%;
     background-color: #47475B;
     float: left;
     text-align: center;
@@ -314,6 +316,7 @@ Eventseite*/
     border: none;
     cursor: pointer;
     padding:2%;
+    border-radius: 20px;
 }
 
 
