@@ -35,10 +35,13 @@ nav{
     border-radius: 50px;
     margin-top: 8%;
     margin-left:5%;
-    /*margin-right: 5%;*/
     padding:2.5%;
     width:90%;
 }
+
+#buttons::placeholder {
+    color: #D9D9E9;
+  }
 
 #buttons:hover{
     background-color:#c76e0e;
@@ -157,7 +160,7 @@ section{
 
 #fahrername{
     font-size:15px;
-    margin-left: 83.4%;
+    margin-left: 81%;
 }
 
 #hinzufügen{
@@ -222,7 +225,7 @@ form{
     
   }
   
-  input[type=text], input[type=password], textarea,input[type=time] {
+  input[type=text], input[type=password], textarea,input[type=time], #lk , #age {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -233,7 +236,7 @@ form{
     background: #B2B2C7;
   }
   
-  input[type=text]:focus, input[type=password]:focus,textarea:focus,input[type=time]:focus{
+  input[type=text]:focus, input[type=password]:focus,textarea:focus,input[type=time]:focus, #age:focus{
     background-color: #8F8FA1;
     outline: none;
   }
