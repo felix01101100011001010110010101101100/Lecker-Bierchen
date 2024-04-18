@@ -30,15 +30,18 @@ nav{
 
 #buttons,#gruppe_erstellen{
     background-color: #e48013;
-    color: #D9D9E9;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
     margin-top: 8%;
     margin-left:5%;
-    margin-right: 5%;
     padding:2.5%;
+    width:90%;
 }
+
+#buttons::placeholder {
+    color: #D9D9E9;
+  }
 
 #buttons:hover{
     background-color:#c76e0e;
@@ -49,13 +52,15 @@ nav{
     text-decoration: none;
 	font-weight: bold;
     border: solid;
-    border-radius: 15%;
+    border-radius: 8px;
     background-color:#5F5F73;
     color:#D9D9E9;
     border-style: hidden;
     display: inline-block;
     position: fixed;
-    padding:18.2px;
+    margin-top: 0.3%;
+    margin-left: 0.3%;
+    padding:15px;
     /*Hintergrund Boxen vergrößern*/
 }
 
@@ -158,7 +163,7 @@ section{
 
 #fahrername{
     font-size:15px;
-    margin-left: 83.4%;
+    margin-left: 81%;
 }
 
 #hinzufügen{
@@ -223,7 +228,7 @@ form{
     
   }
   
-  input[type=text], input[type=password], textarea,input[type=time] {
+  input[type=text], input[type=password], textarea,input[type=time], #lk , #age {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -234,7 +239,7 @@ form{
     background: #B2B2C7;
   }
   
-  input[type=text]:focus, input[type=password]:focus,textarea:focus,input[type=time]:focus{
+  input[type=text]:focus, input[type=password]:focus,textarea:focus,input[type=time]:focus, #age:focus{
     background-color: #8F8FA1;
     outline: none;
   }
@@ -245,7 +250,7 @@ form{
     margin-bottom: 25px;
   }
   
-  .registerbtn {
+  /*.registerbtn {
     background-color: #E48013;
     color: #2d2d3b;
     padding: 16px 20px;
@@ -254,7 +259,22 @@ form{
     cursor: pointer;
     width: 100%;
     opacity: 0.9;
-  }
+  }*/
+
+  .registerbtn{
+    text-decoration: none;
+    border: solid;
+    border-radius: 8px;
+    background-color:#e48013;
+    color:#47475b;
+    border-style: hidden;
+    display: inline-block;  
+    margin-left:10%;
+    width: 80%;
+    padding: 16px 20px;
+    text-align: center;
+
+    }
   
   .registerbtn:hover {
     background-color:#c76e0e;
@@ -324,6 +344,10 @@ Eventseite*/
     cursor: pointer;
     padding:2%;
     border-radius: 20px;
+}
+
+#labelEv{
+    color:#D9D9E9;
 }
 
 
