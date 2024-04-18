@@ -209,6 +209,9 @@ form{
   .container {
     padding: 16px;
     background-color: #D9D9E9;
+    border-width: 0cap;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     
   }
   
@@ -217,7 +220,9 @@ form{
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
-    border: none;
+    border: solid;
+    border-width: 0cap;
+    border-radius: 8px;
     background: #B2B2C7;
   }
   
@@ -251,6 +256,10 @@ form{
   .signin {
     background-color: #D9D9E9;
     text-align: center;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   #anmelden{
@@ -261,6 +270,19 @@ form{
   #vnProfil,#nnProfil{
     cursor: not-allowed;
   }
+
+  .profil{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  
+  /*---Anmelden---*/
+
+  #formAnmelden{
+    width: 40%;
+    margin-left:30%;
+    margin-top: 10%;
+}
 
 /*-----------------------------------------------------------
 Eventseite*/
@@ -293,3 +315,7 @@ Eventseite*/
     cursor: pointer;
     padding:2%;
 }
+
+
+
+  
