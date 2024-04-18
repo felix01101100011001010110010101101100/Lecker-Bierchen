@@ -28,18 +28,18 @@ nav{
     border-radius: 100px;
 }
 
-#buttons{
+#buttons,#gruppe_erstellen{
     background-color: #e48013;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
-    margin-top: 8%;
+    margin-top: 7%;
     margin-left:5%;
     padding:2.5%;
     width:90%;
 }
 
-#buttons::placeholder {
+#buttons::placeholder,#gruppe_erstellen::placeholder {
     color: #D9D9E9;
   }
 
@@ -58,10 +58,17 @@ nav{
     border-style: hidden;
     display: inline-block;
     position: fixed;
-    margin-top: 0.3%;
+    margin-top: 0.1%;
     margin-left: 0.3%;
-    padding:15px;
+    padding:17.5px;
     /*Hintergrund Boxen vergrößern*/
+}
+
+#asideGruppen{
+    margin-top: 4%;
+    width:18%;
+    font-size: 18px;
+    text-align: center;
 }
 
 #profil:hover,#gruppen:hover,#home:hover{
@@ -87,6 +94,7 @@ li {
 #profil {
     margin-left: 95.5%;
 }
+
 
 /*---------------------------------------*/
 
