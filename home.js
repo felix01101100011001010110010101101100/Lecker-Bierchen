@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function() {
       
         function addgruppennametoalle_Gruppen(gruppenname) {
           var listItem = document.createElement("li");
-          listItem.textContent =gruppenname ;
+          var link = document.createElement("a");
+          link.textContent = gruppenname;
+          link.href = "gruppen.html";
+          listItem.appendChild(link);
           alle_Gruppen.appendChild(listItem);
         }
       });
