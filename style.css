@@ -28,7 +28,7 @@ nav{
     border-radius: 100px;
 }
 
-#buttons{
+#buttons,#gruppe_erstellen{
     background-color: #e48013;
     color: #D9D9E9;
     text-align: center;
@@ -82,6 +82,7 @@ li {
 #profil {
     margin-left: 95.5%;
 }
+
 
 /*---------------------------------------*/
 
