@@ -1,15 +1,15 @@
 CREATE TABLE Landkreis (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL
-)
+);
 
-INSERT INTO Landkreis VALUES (1, "Rottweil")
-INSERT INTO Landkreis VALUES (2, "Zollernalbkreis")
-INSERT INTO Landkreis VALUES (3, "Tuttlingen")
-INSERT INTO Landkreis VALUES (4, "Schwarzwald-Baar-Kreis")
-INSERT INTO Landkreis VALUES (5, "Konstanz")
-INSERT INTO Landkreis VALUES (6, "Stuttgart")
-INSERT INTO Landkreis VALUES (7, "Böblingen")
+INSERT INTO Landkreis VALUES (1, 'Rottweil');
+INSERT INTO Landkreis VALUES (2, 'Zollernalbkreis');
+INSERT INTO Landkreis VALUES (3, 'Tuttlingen');
+INSERT INTO Landkreis VALUES (4, 'Schwarzwald-Baar-Kreis');
+INSERT INTO Landkreis VALUES (5, 'Konstanz');
+INSERT INTO Landkreis VALUES (6, 'Stuttgart');
+INSERT INTO Landkreis VALUES (7, 'Böblingen');
 
 CREATE TABLE Person(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -18,47 +18,47 @@ CREATE TABLE Person(
     jahr INTEGER NOT NULL DEFAULT 18,
     benutzername TEXT NOT NULL,
     passwort TEXT NOT NULL,
-    FOREIGN KEY landkreisId REFERNECES Landkreis(id),
     fuehrerschein INTEGER NOT NULL DEFAULT 0,
-)
+    landkreisid INTEGER NOT NULL,
+    CONSTRAINTS fk_Person1 FOREIGN KEY (landkreisiD) REFERNECES Landkreis(id)
+);
 
-INSERT INTO Person VALUES (1, "Torben", "Sauter", 19, "torben_sauter", "Hallo", 7, 1)
-INSERT INTO Person VALUES (2, "Hans", "Bauer", 60, "hans_bb", "Hallo", 3, 1)
-INSERT INTO Person VALUES (3, "Jasmin", "Maier", 25, "jas", "Hallo", 1, 0)
+INSERT INTO Person VALUES (1, 'Torben', 'Sauter', 19, 'torben_sauter', 'Hallo', 7, 1);
+INSERT INTO Person VALUES (2, 'Hans', 'Bauer', 60, 'hans_bb', 'Hallo', 3, 1);
+INSERT INTO Person VALUES (3, 'Jasmin', 'Maier', 25, 'jas', 'Hallo', 1, 0);
 
-
-CREATE TABLE BeziehungPersonGruppe(
-    personid INTEGER,
-    gruppenid INTEGER
-)
 
 CREATE TABLE Gruppe(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     gruppenname TEXT NOT NULL,
     status INTEGER NOT NULL DEFAULT 1
-)
+);
 
-INSERT INTO Gruppe VALUES (1, "Die Wilden Hosen", 1)
-INSERT INTO Gruppe VALUES (2, "Lecker Leben", 0)
-
-CREATE TABLE BeziehungPersonEvent(
-    personid INTEGER,
-    eventid INTEGER
-)
+INSERT INTO Gruppe VALUES (1, 'Die Wilden Hosen', 1);
+INSERT INTO Gruppe VALUES (2, 'Lecker Leben', 0);
 
 CREATE TABLE Event(
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     eventname TEXT NOT NULL,
     ort TEXT NOT NULL,
     zeit TEXT NOT NULL,
-    bemerknung TEXT,
-    FOREIGN KEY gruppeid REFERNECES Gruppe(id)
-)
+    bemerkung TEXT,
+    gruppeid INTEGER NOT NULL,
+    CONSTRAINTS fk_Event1 FOREIGN KEY (gruppeid) REFERNECES Gruppe(id)
+);
 
-INSERT INTO Event VALUES (1, "Laptop", "Rottweil", "20:15", "", 1)
-INSERT INTO Event VALUES (2, "Holly", "Stuttgart", "14:00" , "Jeder bringt seine Getränke selber mit", 2)
-INSERT INTO Event VALUES (3, "Rocky", "Ebingen", "16:00", "", 1)
+INSERT INTO Event VALUES (1, 'Laptop', 'Rottweil', '20:15', '', 1);
+INSERT INTO Event VALUES (2, 'Holly', 'Stuttgart', '14:00' , 'Jeder bringt seine Getränke selber mit', 2);
+INSERT INTO Event VALUES (3, 'Rocky', 'Ebingen', '16:00', '', 1);
 
 
 
+CREATE TABLE BeziehungPersonEvent(
+    personid INTEGER DEFAULT 0,
+    eventid INTEGER DEFAULT 0
+);
 
+CREATE TABLE BeziehungPersonGruppe(
+    personid INTEGER DEFAULT 0,
+    gruppenid INTEGER DEFAULT 0
+);
