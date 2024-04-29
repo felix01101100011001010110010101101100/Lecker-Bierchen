@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
+    <title>Profil</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
+    <script src="home.js"></script>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <li><a href="home.html" id="home"><i class="fa-solid fa-house fa-2xl"></i></a></li>
+            <li><button onclick="aside_anzeigen()" id="gruppen"><i class="fa-solid fa-users fa-2xl"></i></button></li>
+            <li><a href="profil.html" id="profil"><i class="fa-regular fa-circle-user fa-2xl"></i></a></li>
+            <h1>Lecker Bierchen</h1>
+        </nav>
+    </header>
+
+    <form id="formProfil">
+        <div class="container profil">
+          <h2>Profil</h2>
+          <p>Profil bearbeiten:</p>
+          <hr>
+      
+          <label for="vn"><b>Vorname:</b></label>
+          <input type="text" placeholder="Max" name="vn" id="vnProfil" required>
+      
+          <label for="nn"><b>Nachname:</b></label>
+          <input type="text" placeholder="Mustermann" name="nn" id="nnProfil" required>
+
+          <label for="age"><b>Alter:</b></label><br>
+          <input type="number" placeholder="Alter" name="age" id="age" min="18" required><br><br>
+
+          <label for="bn"><b>Benutzername:</b></label>
+          <input type="text" placeholder="Benutzername" name="bn" id="bnProfil"disabled>
+
+          <label for="psw"><b>Passwort:</b></label>
+          <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
+
+          <label for="psw-wdh"><b>Passwort wiederholen:</b></label>
+          <input type="password" placeholder="Hier nochmal das Passwort bestätigen..." name="psw-wdh" id="psw-wdh" required>
+
+          <label for="lk"><b>Landkreis:</b></label><br>
+          <select size="1" id="lk" required>
+            <option>Zollernalbkreis</option>
+            <option>Detroitlingen</option>
+            <option>Bayern</option>
+          </select>
+
+          <p>Hast du einen gültigen Führerschein?</p>
+          <input type="radio" id="ja" name="führerschein" value="ja">
+          <label for="ja">ja</label>
+
+          <input type="radio" id="nein" name="führerschein" value="nein" checked>
+          <label for="nein">nein</label><br><br>
+
+          <hr>
+      
+          <button type="submit" class="registerbtn">Jetzt ändern!</button>
+        </div>
+      </form>
+      
+</body>
+</html>

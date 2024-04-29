@@ -4,32 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
-    <title>Profil</title>
-    <link rel="stylesheet" href="style.css"
+    <title>Registrierung</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
 
 </head>
 <body>
-    <header>
-        <nav>
-            <li><a href="home.html" id="home"><i class="fa-solid fa-house fa-2xl"></i></a></li>
-            <li><a href="gruppen.html" id="gruppen"><i class="fa-solid fa-users fa-2xl"></i></a></li>
-            <li><a href="profil.html" id="profil"><i class="fa-regular fa-circle-user fa-2xl"></i></a></li>
-            <h1>Lecker Bierchen</h1>
-        </nav>
-    </header>
-
-    <form id="formProfil">
-        <div class="container profil">
-          <h2>Profil</h2>
-          <p>Profil bearbeiten:</p>
+    <form>
+        <div class="container">
+          <h2>Registrierung</h2>
+          <p>Account erstellen:</p>
           <hr>
       
           <label for="vn"><b>Vorname:</b></label>
-          <input type="text" placeholder="Max" name="vn" id="vnProfil" disabled>
+          <input type="text" placeholder="Achtung - kann später nicht mehr geändert werden!" name="vn" id="vn" required>
       
           <label for="nn"><b>Nachname:</b></label>
-          <input type="text" placeholder="Mustermann" name="nn" id="nnProfil" disabled>
+          <input type="text" placeholder="Achtung - kann später nicht mehr geändert werden!" name="nn" id="nn" required>
 
           <label for="age"><b>Alter:</b></label><br>
           <input type="number" placeholder="Alter" name="age" id="age" min="18" required><br><br>
@@ -59,7 +50,11 @@
 
           <hr>
       
-          <button type="submit" class="registerbtn">Jetzt ändern!</button>
+          <a href="home.html" class="registerbtn">Registrieren</a>
+        </div>
+        
+        <div class="container signin">
+          <p>Du hast schon einen Account? <a href="index.html" id="anmelden">Anmelden</a></p>
         </div>
       </form>
 
