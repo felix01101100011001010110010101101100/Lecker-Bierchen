@@ -1,6 +1,6 @@
 //das aside element sichtbar machen
 function aside_anzeigen() {
-        var element = document.getElementById("alle_Gruppen");
+        let element = document.getElementById("alle_Gruppen");
         element.style.display = "block";
 }
 
@@ -9,25 +9,25 @@ function aside_anzeigen() {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-        var gruppe_erstellen = document.getElementById("gruppe_erstellen");
-        var alle_Gruppen = document.getElementById("alle_Gruppen");
+        let gruppe_erstellen = document.getElementById("gruppe_erstellen");
+        let alle_Gruppen = document.getElementById("alle_Gruppen");
       
         gruppe_erstellen.addEventListener("keypress", function(event) {
           if (event.key === "Enter") {
-            var gruppenname = gruppe_erstellen.value.trim();
+            let gruppenname = gruppe_erstellen.value.trim();
             if (gruppenname !== "") {
               addgruppennametoalle_Gruppen(gruppenname);
               gruppe_erstellen.value = ""; // Leeres Textfeld nach dem Hinzufügen zurücksetzen
             }
           }
         });
-      
+
         function addgruppennametoalle_Gruppen(gruppenname) {
-          var listItem = document.createElement("li");
-          var link = document.createElement("a");
+          let listItem = document.createElement("li");
+          let link = document.createElement("a");
           link.textContent = gruppenname;
           link.href = "gruppen.html";
           listItem.appendChild(link);
-          alle_Gruppen.appendChild(listItem);
+          alle_Gruppen.appendChild(listItem);     
         }
       });
