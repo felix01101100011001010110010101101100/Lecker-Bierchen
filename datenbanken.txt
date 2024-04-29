@@ -20,7 +20,7 @@ CREATE TABLE Person(
     passwort TEXT NOT NULL,
     fuehrerschein INTEGER NOT NULL DEFAULT 0,
     landkreisid INTEGER NOT NULL,
-    CONSTRAINTS fk_Person1 FOREIGN KEY (landkreisiD) REFERNECES Landkreis(id)
+    CONSTRAINT fk_Person1 FOREIGN KEY (landkreisiD) REFERENCES Landkreis(id)
 );
 
 INSERT INTO Person VALUES (1, 'Torben', 'Sauter', 19, 'torben_sauter', 'Hallo', 7, 1);
@@ -44,7 +44,7 @@ CREATE TABLE Event(
     zeit TEXT NOT NULL,
     bemerkung TEXT,
     gruppeid INTEGER NOT NULL,
-    CONSTRAINTS fk_Event1 FOREIGN KEY (gruppeid) REFERNECES Gruppe(id)
+    CONSTRAINT fk_Event1 FOREIGN KEY (gruppeid) REFERENCES Gruppe(id)
 );
 
 INSERT INTO Event VALUES (1, 'Laptop', 'Rottweil', '20:15', '', 1);
