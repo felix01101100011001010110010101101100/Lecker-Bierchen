@@ -30,6 +30,7 @@ nav{
 
 #buttons,#gruppe_erstellen{
     background-color: #e48013;
+    color: #D9D9E9;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
@@ -68,9 +69,13 @@ nav{
 }
 #asideGruppen{
     margin-top: 4%;
-    width:18%;
+    width:22%;
     font-size: 18px;
     text-align: center;
+    padding-right: 2%;
+    background-color: #9797bd;
+    color: #D9D9E9;
+    position: relative;
 }
 
 #profil:hover,#gruppen:hover,#home:hover{
