@@ -7,13 +7,11 @@ var router = express.Router();
 // Create an express instance
 var app = express();
 
-// Define a route for HTTP-GET on "/"
-router.get("/", (request, response) => {
-  // Write "Hello World" into the response object
-  response.send("Hallöle");
-});
+// Importiere das 'path'-Modul von Node.js
+var path = require('path'); 
 
-
+// Definiere das öffentliche Verzeichnis für statische Dateien
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Tell the express app to use the router
 app.use('/', router);
