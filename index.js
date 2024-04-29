@@ -21,13 +21,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
           }
         });
-      
+
         function addgruppennametoalle_Gruppen(gruppenname) {
           let listItem = document.createElement("li");
           let link = document.createElement("a");
           link.textContent = gruppenname;
           link.href = "gruppen.html";
           listItem.appendChild(link);
-          alle_Gruppen.appendChild(listItem);
+          alle_Gruppen.appendChild(listItem);     
         }
       });
