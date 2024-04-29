@@ -23,9 +23,9 @@ CREATE TABLE Person(
     CONSTRAINT fk_Person1 FOREIGN KEY (landkreisiD) REFERENCES Landkreis(id)
 );
 
-INSERT INTO Person VALUES (1, 'Torben', 'Sauter', 19, 'torben_sauter', 'Hallo', 7, 1);
-INSERT INTO Person VALUES (2, 'Hans', 'Bauer', 60, 'hans_bb', 'Hallo', 3, 1);
-INSERT INTO Person VALUES (3, 'Jasmin', 'Maier', 25, 'jas', 'Hallo', 1, 0);
+INSERT INTO Person VALUES (1, 'Torben', 'Sauter', 19, 'torben_sauter', 'Hallo', 1, 7);
+INSERT INTO Person VALUES (2, 'Hans', 'Bauer', 60, 'hans_bb', 'Hallo', 1, 3);
+INSERT INTO Person VALUES (3, 'Jasmin', 'Maier', 25, 'jas', 'Hallo', 0, 1);
 
 
 CREATE TABLE Gruppe(
@@ -47,9 +47,9 @@ CREATE TABLE Event(
     CONSTRAINT fk_Event1 FOREIGN KEY (gruppeid) REFERENCES Gruppe(id)
 );
 
-INSERT INTO Event VALUES (1, 'Laptop', 'Rottweil', '20:15', '', 1);
+INSERT INTO Event VALUES (1, 'Laptop', 'Rottweil', '20:15', '0', 1);
 INSERT INTO Event VALUES (2, 'Holly', 'Stuttgart', '14:00' , 'Jeder bringt seine Getränke selber mit', 2);
-INSERT INTO Event VALUES (3, 'Rocky', 'Ebingen', '16:00', '', 1);
+INSERT INTO Event VALUES (3, 'Rocky', 'Ebingen', '16:00', '0', 1);
 
 
 
