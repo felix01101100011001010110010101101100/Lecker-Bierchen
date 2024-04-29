@@ -30,6 +30,7 @@ nav{
 
 #buttons,#gruppe_erstellen{
     background-color: #e48013;
+    color: #D9D9E9;
     text-align: center;
     font-size: 30px;
     border-radius: 50px;
@@ -60,15 +61,21 @@ nav{
     position: fixed;
     margin-top: 0.1%;
     margin-left: 0.3%;
-    padding:17.5px;
     /*Hintergrund Boxen vergrößern*/
 }
 
+#profil,#home{
+    padding:17.5px;
+}
 #asideGruppen{
     margin-top: 4%;
-    width:18%;
+    width:22%;
     font-size: 18px;
     text-align: center;
+    padding-right: 2%;
+    background-color: #9797bd;
+    color: #D9D9E9;
+    position: relative;
 }
 
 #profil:hover,#gruppen:hover,#home:hover{
@@ -89,6 +96,8 @@ li {
 
 #gruppen {
     margin-left: 90%;
+    padding: 18.5px;
+   
 }
 
 #profil {
@@ -141,6 +150,10 @@ aside{
     font-size:20px;
     padding: 1.5%;
     
+}
+
+#bnEntfernen{
+    float: right;
 }
 
 #events{
@@ -316,7 +329,7 @@ form{
   #formAnmelden{
     width: 40%;
     margin-left:30%;
-    margin-top: 10%;
+    margin-top: 8%;
 }
 
 /*-----------------------------------------------------------
