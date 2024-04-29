@@ -152,6 +152,10 @@ aside{
     
 }
 
+#bnEntfernen{
+    float: right;
+}
+
 #events{
     margin-top: 2%;
     margin-left:5%;
