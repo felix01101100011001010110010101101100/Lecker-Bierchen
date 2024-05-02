@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Anmelden</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
-
+  	<script src="./index.js"></script>
 </head>
 <body>
 
-    <form id="formAnmelden">
+    <form id="formAnmelden" action="/login" method="post">
       <div class="container">
         <h2>Anmelden</h2>
         <p>Bitte geben Sie Ihren Benutzernamen und ihr Passwort an:</p>
@@ -23,8 +24,8 @@
         <label for="psw"><b>Passwort:</b></label>
         <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
         <hr>
-        
-        <a href="home.html" class="registerbtn">Anmelden</a> 
+
+        <button action="/login" method="post" onclick="loginUser()" class="registerbtn">Anmelden</button>
       </div>
       
       <div class="container signin">

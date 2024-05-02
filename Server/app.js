@@ -10,20 +10,29 @@ var app = express();
 // Importiere das 'path'-Modul von Node.js
 var path = require('path'); 
 
-// Definiere das öffentliche Verzeichnis für statische Dateien
-app.use(express.static(path.join(__dirname, '../public')));
-
 // Tell the express app to use the router
 app.use('/', router);
 
+// Konfiguriere express.static für das öffentliche Verzeichnis, es sind aber nur die stylesheets wirklich public
+app.use('/stylesheets', express.static(path.join(__dirname, '../public/stylesheets')));
+
+// Middleware die urlencoded bodies parsen kann
 app.use(express.urlencoded({ extended: true }));
 
 //Daten der Datenbank hinzufügen
-
 const sqlite3 = require('sqlite3').verbose();
 
 // Verbindung zur SQLite-Datenbank herstellen
 const db = new sqlite3.Database(path.join(__dirname, './data/test1.db'));
+
+//bycrypt verwenden um zu hashen
+const bcrypt = require('bcrypt');
+// anzahl salt runden
+const saltRounds = 10;
+
+//token
+const jwt = require('jsonwebtoken');
+const secretKey = 'geheimesSchluesselwort';
 
 // Verbindung zur SQLite-Datenbank herstellen und Tabelle erstellen mit serialize damit die reihenfolge korrekt eingehalten wird(macht man wenn man mehrere befehle hat)
 db.serialize(() => {
@@ -31,8 +40,12 @@ db.serialize(() => {
 });
 
 //db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-//  ["hallo", "t", 12, "leel", 123, 1, 3]);
+//  ["hallo", "t", 12, "leel", 123, 1, 3])
 
+
+
+
+//routes
 
 app.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
@@ -77,11 +90,11 @@ app.post('/register.html', (req, res) => {
     ];
     // Überprüfen, ob das Alter eine gültige Zahl ist
     const parsedAge = parseInt(age);
-    if (isNaN(parsedAge)) {
+    if (isNaN(parsedAge) && age > 17) {
         return res.status(400).send('Ungültiges Alter');
     }
-    console.log(psw);
-    console.log(pswwdh);
+    
+    
     // Überprüfen, ob das Passwort mit dem Bestätigungspasswort übereinstimmt
     if (psw !== pswwdh) {
         return res.status(400).send('Passwörter stimmen nicht überein');
@@ -95,13 +108,107 @@ app.post('/register.html', (req, res) => {
         return res.status(400).send("Ungültiger Landkreis");
     }
     
+    
+    // Passwort hashen
+    bcrypt.hash(psw, saltRounds, (err, hash) => {
+        if (err) {
+          console.error('Fehler beim Hashen des Passworts:', err);
+          return;
+        } 
+    
     // Daten in die SQLite-Datenbank einfügen
     db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-    [vn, nn, parsedAge, bn, psw, lkIndex, parsedFührerschein]);
-    res.status(400).send("Profil erstellung erfolgreich");
+    [vn, nn, parsedAge, bn, hash, lkIndex, parsedFührerschein]);
+    res.status(200).send("Profil erstellung erfolgreich");
+});
 });
 
 
-module.exports = db;
+// anmeldeversuch
+app.post('/login', (req, res) => {
+    const {bn, psw} = req.body;
+    
+    // Geheimes Schlüsselwort für das Signieren und Überprüfen von JWT
+    
+   
+   db.get("SELECT passwort FROM Person WHERE benutzername = ?", [bn], (err, pswdhash_db) => {
+    
+    if (err) {
+        
+        console.error('Fehler beim Abrufen des Benutzers aus der Datenbank:', err);
+        return;
+    }
+    if (!pswdhash_db.passwort) {
+        console.log('Benutzer nicht gefunden');
+        return;
+    }
 
+
+    bcrypt.compare(psw, pswdhash_db.passwort, (err, result) => {
+        if (err) {
+            console.error('Fehler beim Vergleichen der Passwörter:', err);
+            return;
+        }
+        if (result) {
+            console.log('Passwörter stimmen überein');
+            const token = jwt.sign({ bne: bn }, secretKey);
+            res.json({ token: token });
+        
+            
+        } else {
+            res.status(401).json({ message: 'Ungültige Anmeldeinformationen' });
+            console.log('Passwörter stimmen nicht überein');
+        }
+    });
+    });
+});
+
+// Middleware zum Überprüfen des JWT und Extrahieren des Benutzers
+function verifyToken(req, res, next) {
+    // Token aus dem Authorization-Header extrahieren
+    const token = req.headers['Authorization'];
+
+    if (typeof token !== 'undefined') {
+        // Token überprüfen
+        jwt.verify(token, secretKey, (err, decoded) => {
+            if (err) {
+                // Fehler bei der Überprüfung des Tokens
+                console.log(fehler);
+                res.redirect('../public/index.html');
+            } else {
+                // Token ist gültig, fügen Sie den decodierten Benutzer dem Anfrageobjekt hinzu
+                req.user = decoded;
+                next();
+            }
+        });
+    } else {
+        // Token nicht vorhanden
+        res.status(401).json({ message: 'Token fehlt' });
+    }
+}
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
+app.get('/register.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/register.html'));
+});
+
+app.get('/home.html', verifyToken, (req, res) => {
+    const token = req.headers['authorization'];
+    // Zugriff auf Benutzerinformationen über req.user
+    console.log("wilkommen");
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+});
+
+app.get('/index.js', (req, res) => {
+    // Zugriff auf Benutzerinformationen über req.user
+    res.sendFile(path.join(__dirname, '../public/index.js'));
+});
+
+
+
+
+
+module.exports = db;
 module.exports = app;
