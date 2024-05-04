@@ -127,14 +127,11 @@ app.post('/register.html', (req, res) => {
 // anmeldeversuch
 app.post('/login', (req, res) => {
     const {bn, psw} = req.body;
-    
-    // Geheimes Schlüsselwort für das Signieren und Überprüfen von JWT
-    
    
+    //hier könnte man doch bestimmt ne sql injecrtion machen
    db.get("SELECT passwort FROM Person WHERE benutzername = ?", [bn], (err, pswdhash_db) => {
     
     if (err) {
-        
         console.error('Fehler beim Abrufen des Benutzers aus der Datenbank:', err);
         return;
     }
@@ -152,8 +149,10 @@ app.post('/login', (req, res) => {
         if (result) {
             console.log('Passwörter stimmen überein');
             const token = jwt.sign({ bne: bn }, secretKey);
-            res.json({ token: token });
-        
+            //token im header übermitteln
+            res.header('Authorization', 'Bearer ' + token);
+            //home.html soll gerendert werden
+            res.sendFile(path.join(__dirname, '../public/home.html'));
             
         } else {
             res.status(401).json({ message: 'Ungültige Anmeldeinformationen' });
@@ -165,9 +164,16 @@ app.post('/login', (req, res) => {
 
 // Middleware zum Überprüfen des JWT und Extrahieren des Benutzers
 function verifyToken(req, res, next) {
-    // Token aus dem Authorization-Header extrahieren
-    const token = req.headers['Authorization'];
 
+    let token;
+    // Token aus dem Authorization-Header extrahieren
+    const authHeader = req.headers['authorization'];
+    if (authHeader) {
+        token = authHeader.split(' ')[1];
+        // Token kann jetzt richtig verwendet werden sonst ist da noch anderes zeug dran
+    } else {
+        // Der Token is dann undefined und das wird unten behandelt
+    }
     if (typeof token !== 'undefined') {
         // Token überprüfen
         jwt.verify(token, secretKey, (err, decoded) => {
