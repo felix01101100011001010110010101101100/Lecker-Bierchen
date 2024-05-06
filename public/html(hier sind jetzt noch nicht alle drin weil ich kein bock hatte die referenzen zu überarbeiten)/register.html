@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
     <title>Registrierung</title>
-    <link rel="stylesheet" href="/stylesheets/style.css"
+    <link rel="stylesheet" href="../stylesheets/style.css"
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../scripts/register.js"></script>
 </head>
 <body>
         <div class="container">
@@ -82,12 +83,12 @@
 
           <hr>
       
-          <button type="submit" class="registerbtn">Registrieren</button>
+          <button onclick="register_feedback()" type="submit" class="registerbtn">Registrieren</button>
         </form>
         </div>
         
         <div class="container signin">
-          <p>Du hast schon einen Account? <a href="index.html" id="anmelden">Anmelden</a></p>
+          <p>Du hast schon einen Account? <a href="/" id="anmelden">Anmelden</a></p>
         </div>
       
 

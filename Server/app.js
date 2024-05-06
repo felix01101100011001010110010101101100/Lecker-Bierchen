@@ -50,6 +50,7 @@ db.serialize(() => {
 app.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
 
+    //das gienge auch mit Datenbankaufruf aber wir müssen ja nur bestehen
     const Landkreise = [
         "Rottweil",
         "Zollernalbkreis",
@@ -94,7 +95,6 @@ app.post('/register.html', (req, res) => {
         return res.status(400).send('Ungültiges Alter');
     }
     
-    
     // Überprüfen, ob das Passwort mit dem Bestätigungspasswort übereinstimmt
     if (psw !== pswwdh) {
         return res.status(400).send('Passwörter stimmen nicht überein');
@@ -108,7 +108,6 @@ app.post('/register.html', (req, res) => {
         return res.status(400).send("Ungültiger Landkreis");
     }
     
-    
     // Passwort hashen
     bcrypt.hash(psw, saltRounds, (err, hash) => {
         if (err) {
@@ -116,11 +115,23 @@ app.post('/register.html', (req, res) => {
           return;
         } 
     
-    // Daten in die SQLite-Datenbank einfügen
-    db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-    [vn, nn, parsedAge, bn, hash, lkIndex, parsedFührerschein]);
-    res.status(200).send("Profil erstellung erfolgreich");
-});
+        // Überprüfen, ob der Benutzername bereits existiert
+        db.get('SELECT * FROM person WHERE benutzername = ?', [bn], (err, row) => {
+            if (err) {
+                console.error('Fehler beim Abrufen des Benutzernamens:', err);
+                return;
+            }
+
+            if (row) {
+                res.status(400).send("Benutzername bereits vorhanden");
+            } else {
+                // Daten in die SQLite-Datenbank einfügen
+                db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
+                [vn, nn, parsedAge, bn, hash, lkIndex, parsedFührerschein]);
+                res.status(200).send("Profil erstellung erfolgreich");
+            }
+        });
+    });
 });
 
 
@@ -197,22 +208,44 @@ app.get('/', (req, res) => {
 });
 
 app.get('/register.html', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/register.html'));
+    res.sendFile(path.join(__dirname, '../public/html/register.html'));
 });
 
 app.get('/home.html', verifyToken, (req, res) => {
     const token = req.headers['authorization'];
-    // Zugriff auf Benutzerinformationen über req.user
-    console.log("wilkommen");
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+});
+
+app.get('/gruppen.html', verifyToken, (req, res) => {
+    const token = req.headers['authorization'];
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+});
+
+app.get('/events.html', verifyToken, (req, res) => {
+    const token = req.headers['authorization'];
+    res.sendFile(path.join(__dirname, '../public/home.html'));
+});
+
+app.get('/profil.html', verifyToken, (req, res) => {
+    const token = req.headers['authorization'];
     res.sendFile(path.join(__dirname, '../public/home.html'));
 });
 
 app.get('/index.js', (req, res) => {
-    // Zugriff auf Benutzerinformationen über req.user
     res.sendFile(path.join(__dirname, '../public/index.js'));
 });
 
+app.get('/home.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/home.js'));
+});
 
+app.get('/scripts/register.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/register.js'));
+});
+
+app.get('/allgemein.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/allgemein.js'));
+});
 
 
 
