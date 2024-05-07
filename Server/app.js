@@ -212,23 +212,19 @@ app.get('/register.html', (req, res) => {
 });
 
 app.get('/home.html', verifyToken, (req, res) => {
-    const token = req.headers['authorization'];
     res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
 app.get('/gruppen.html', verifyToken, (req, res) => {
-    const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/html/.html'));
+    res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
 });
 
 app.get('/events.html', verifyToken, (req, res) => {
-    const token = req.headers['authorization'];
     res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
 app.get('/profil.html', verifyToken, (req, res) => {
-    const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/html/home.html'));
+    res.sendFile(path.join(__dirname, '../public/html/profil.html'));
 });
 
 app.get('/scripts/index.js', (req, res) => {
