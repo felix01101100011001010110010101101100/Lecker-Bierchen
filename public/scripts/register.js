@@ -1,4 +1,4 @@
-// das funktioniert noch niht richtig hier sollte eigentllich eine schöne nachricht angezeigt werden wenn etwas
+/*/ das funktioniert noch niht richtig hier sollte eigentllich eine schöne nachricht angezeigt werden wenn etwas
 //bei der registrierung schief läuft. Die funktion wäre schön ist aber eigentlich unnötig
     function register_feedback(){
         let vn = document.querySelector('#vn').value;
@@ -29,3 +29,4 @@
         }
     });
 }
+*/
