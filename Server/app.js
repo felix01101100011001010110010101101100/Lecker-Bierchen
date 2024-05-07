@@ -163,7 +163,7 @@ app.post('/login', (req, res) => {
             //token im header übermitteln
             res.header('Authorization', 'Bearer ' + token);
             //home.html soll gerendert werden
-            res.sendFile(path.join(__dirname, '../public/home.html'));
+            res.sendFile(path.join(__dirname, '../public/html/home.html'));
             
         } else {
             res.status(401).json({ message: 'Ungültige Anmeldeinformationen' });
@@ -213,30 +213,30 @@ app.get('/register.html', (req, res) => {
 
 app.get('/home.html', verifyToken, (req, res) => {
     const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
 app.get('/gruppen.html', verifyToken, (req, res) => {
     const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, '../public/html/.html'));
 });
 
 app.get('/events.html', verifyToken, (req, res) => {
     const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
 app.get('/profil.html', verifyToken, (req, res) => {
     const token = req.headers['authorization'];
-    res.sendFile(path.join(__dirname, '../public/home.html'));
+    res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
 app.get('/index.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.js'));
+    res.sendFile(path.join(__dirname, '../public/scripts/index.js'));
 });
 
 app.get('/home.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/home.js'));
+    res.sendFile(path.join(__dirname, '../public/scripts/home.js'));
 });
 
 app.get('/scripts/register.js', (req, res) => {
