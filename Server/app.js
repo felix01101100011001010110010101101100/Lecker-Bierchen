@@ -191,7 +191,7 @@ function verifyToken(req, res, next) {
             if (err) {
                 // Fehler bei der Überprüfung des Tokens
                 console.log(fehler);
-                res.redirect('../public/index.html');
+                res.redirect('../public/html/index.html');
             } else {
                 // Token ist gültig, fügen Sie den decodierten Benutzer dem Anfrageobjekt hinzu
                 req.user = decoded;
@@ -204,7 +204,7 @@ function verifyToken(req, res, next) {
     }
 }
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
 
 app.get('/register.html', (req, res) => {
