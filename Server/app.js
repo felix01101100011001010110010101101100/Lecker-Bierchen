@@ -231,11 +231,11 @@ app.get('/profil.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
-app.get('/index.js', (req, res) => {
+app.get('/scripts/index.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/index.js'));
 });
 
-app.get('/home.js', (req, res) => {
+app.get('/scripts/home.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/home.js'));
 });
 
@@ -243,7 +243,7 @@ app.get('/scripts/register.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/register.js'));
 });
 
-app.get('/allgemein.js', (req, res) => {
+app.get('/scripts/allgemein.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/allgemein.js'));
 });
 
