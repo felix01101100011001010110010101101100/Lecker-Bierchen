@@ -145,6 +145,19 @@ aside{
     margin:2%;
 }
 
+#schluessel{
+    color: #8F8FA1;
+    padding: 1.2%;
+    border-radius: 12px;
+    margin-left: 40%;
+    margin-top: 1%;
+}
+
+#schluessel:hover{
+    color: #FFFFFF;
+    background-color: #8F8FA1;
+}
+
 #benutzername{
     opacity: 1;
     color: #D9D9E9;
@@ -169,11 +182,12 @@ aside{
 }
 
 .switch {
-    margin-left: 55%;
+    margin-left: 2%;
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-top:-5%;
 }
   
 .switch input { 
