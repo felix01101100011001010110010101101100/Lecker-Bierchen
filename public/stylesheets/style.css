@@ -140,7 +140,7 @@ aside{
     text-align: left;
     background-color: #47475B;
     opacity: 0.5;
-    height: 13.5%;
+    height: 14%;
     border-radius: 10px;
     margin:2%;
 }
@@ -151,6 +151,13 @@ aside{
     font-size:20px;
     padding: 1.5%;
     word-spacing: 150px;
+}
+
+#beschreibungMitglieder{
+    color: #D9D9E9;
+    margin-top: -3%;
+    padding-left: 1.5%;
+    font-size: 15px;
 }
 
 #bnEntfernen{
