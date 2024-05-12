@@ -32,19 +32,33 @@ nav{
     background-color: #e48013;
     color: #D9D9E9;
     text-align: center;
-    font-size: 30px;
-    border-radius: 50px;
+    font-size: 25px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     margin-top: 7%;
     margin-left:5%;
     padding:2.5%;
-    width:90%;
+    width:70%;
+}
+
+#homeEnter{
+    background-color: #E48013;
+    font-size: 25px;
+    color: #D9D9E9;
+    border: none;
+    cursor: pointer;
+    padding:2.5%;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 #buttons::placeholder,#gruppe_erstellen::placeholder {
     color: #D9D9E9;
   }
 
-#buttons:hover{
+#buttons:hover, #homeEnter:hover{
     background-color:#c76e0e;
     cursor: pointer;
 }
@@ -69,13 +83,12 @@ nav{
 }
 #asideGruppen{
     margin-top: 4%;
-    width:22%;
+    width:18%;
     font-size: 18px;
     text-align: center;
     padding-right: 2%;
     background-color: #9797bd;
     color: #D9D9E9;
-    position: relative;
 }
 
 #profil:hover,#gruppen:hover,#home:hover{
@@ -155,7 +168,7 @@ aside{
 
 #schluessel:hover{
     color: #FFFFFF;
-    background-color: #8F8FA1;
+    background-color: #e48013;
 }
 
 #benutzername{
@@ -258,6 +271,7 @@ section{
     border-radius: 50px;
     padding-bottom: 9%;
     margin-bottom: -1.5%;
+    
 }
 
 section:hover{
