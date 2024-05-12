@@ -150,11 +150,15 @@ aside{
     color: #D9D9E9;
     font-size:20px;
     padding: 1.5%;
-    
+    word-spacing: 150px;
 }
 
 #bnEntfernen{
     float: right;
+}
+
+#bnEntfernen:hover{
+    color: #ff0000;
 }
 
 .switch {
@@ -178,7 +182,7 @@ aside{
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #8F8FA1;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -235,15 +239,27 @@ section{
     margin-bottom: -1.5%;
 }
 
+section:hover{
+    background-color: #B2B2C7;
+}
+
 #eventname{
     font-size: 25px;
-    padding-top:1.2%;
-    padding-left:5%;
+    padding-top:1%;
+    padding-left:2.5%;
+    word-spacing: 150px;
+}
+
+#beschreibung{
+    margin-left:2.5%;
+    margin-right:20%;
 }
 
 #fahrername{
     font-size:15px;
-    margin-left: 81%;
+    margin-left: 40%;
+    margin-top: -2%;
+    position: fixed;
 }
 
 #hinzufügen{
@@ -261,12 +277,12 @@ section{
     cursor: pointer;
 }
 
-#auswahl{
+/*#auswahl{
     accent-color: #e48013;
     margin-top: 2%;
     margin-left: 25%;
     transform: scale(2);
-}
+}*/
 
 #auto{
     background-color: #FFFFFF;
@@ -299,6 +315,17 @@ form{
     box-sizing: border-box;
   }
   
+ /* #regContainer{
+    margin-top:4%;
+    margin-left:13.5%;
+    float: left;
+  }
+
+  .container_signin{
+    float: left;
+    background-color: #D9D9E9;
+  }*/
+
   .container, #eventMain {
     padding: 16px;
     background-color: #D9D9E9;
@@ -398,7 +425,7 @@ Eventseite*/
 #eventMain{
     width: 40%;
     margin-left: 30%;
-    margin-top: 6%;
+    margin-top: 5%;
     background-color: #47475B;
     float: left;
     text-align: center;
@@ -424,6 +451,18 @@ Eventseite*/
     cursor: pointer;
     padding:2%;
     border-radius: 20px;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+#dabei{
+    float:left;
+    margin-left: 15%;
+}
+
+#raus{
+    float:right;
+    margin-right: 15%;
 }
 
 #labelEv{

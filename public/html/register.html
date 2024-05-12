@@ -13,29 +13,29 @@
 
 </head>
 <body>
-        <div class="container">
+        <div  class="container" id="regContainer">
           <h2>Registrierung</h2>
           <p>Account erstellen:</p>
           <hr>
           <form action="register.html" method="post">
 
           <label for="vn"><b>Vorname:</b></label>
-          <input type="text" placeholder="Achtung - kann später nicht mehr geändert werden!" name="vn" id="vn" required>
+          <input type="text" placeholder="Vorname" name="vn" id="vn" required>
       
           <label for="nn"><b>Nachname:</b></label>
-          <input type="text" placeholder="Achtung - kann später nicht mehr geändert werden!" name="nn" id="nn" required>
+          <input type="text" placeholder="Nachname" name="nn" id="nn" required>
 
           <label for="age"><b>Alter:</b></label><br>
           <input type="number" placeholder="Alter" name="age" id="age" min="18" required><br><br>
 
           <label for="bn"><b>Benutzername:</b></label>
-          <input type="text" placeholder="Benutzername" name="bn" id="bn" required>
+          <input type="text" placeholder="Benutzername (Achtung - kann später nicht mehr geändert werden!)" name="bn" id="bn" required>
 
           <label for="psw"><b>Passwort:</b></label>
           <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
 
           <label for="pswwdh"><b>Passwort wiederholen:</b></label>
-          <input type="password" placeholder="Hier nochmal das Passwort bestätigen..." name="pswwdh" id="pswwdh" required>
+          <input type="password" placeholder="Passwort bestätigen" name="pswwdh" id="pswwdh" required>
 
           <label for="lk"><b>Landkreis:</b></label><br>
           <select type="text" size="1" id="lk" name="lk" required>
@@ -89,7 +89,7 @@
         </form>
         </div>
         
-        <div class="container signin">
+        <div class="container_signin">
           <p>Du hast schon einen Account? <a href="/" id="anmelden">Anmelden</a></p>
         </div>
       
