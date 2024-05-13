@@ -163,13 +163,24 @@ aside{
     color: #8F8FA1;
     padding: 1.2%;
     border-radius: 12px;
-    margin-left: 40%;
+    margin-left: 35%;
     margin-top: 1%;
 }
 
 #schluessel:hover{
     color: #FFFFFF;
     background-color: #e48013;
+    cursor: pointer;
+}
+
+#leave{
+    color: #8F8FA1;
+    margin-left: 2.5%;
+}
+
+#leave:hover{
+    cursor: pointer;
+    color: #ff0000;
 }
 
 #benutzername{
