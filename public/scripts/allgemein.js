@@ -43,4 +43,12 @@ function get_profil_html(){
 
 }
 
-                    
+function dynamischProfil(){
+    $.ajax({
+        url: "/profil.html",
+        beforeSend: setAuthentification,
+        success: function(){
+            
+        }
+    })
+}                   
