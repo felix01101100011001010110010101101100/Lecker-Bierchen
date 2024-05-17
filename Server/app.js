@@ -30,7 +30,7 @@ const bcrypt = require('bcrypt');
 // anzahl salt runden
 const saltRounds = 10;
 
-//token
+//token zeug
 const jwt = require('jsonwebtoken');
 const secretKey = 'geheimesSchluesselwort';
 
