@@ -64,7 +64,7 @@ nav{
     cursor: pointer;
 }
 
-#profil,#gruppen,#home{
+#profil,#gruppen,#home,#event_vorschau{
     text-decoration: none;
 	font-weight: bold;
     border: solid;
@@ -79,8 +79,8 @@ nav{
     /*Hintergrund Boxen vergrößern*/
 }
 
-#profil,#home{
-    padding:17.5px;
+#profil,#home,#event_vorschau{
+    padding:19px;
 }
 #asideGruppen{
     margin-top: 4%;
@@ -92,7 +92,7 @@ nav{
     color: #D9D9E9;
 }
 
-#profil:hover,#gruppen:hover,#home:hover{
+#profil:hover,#gruppen:hover,#home:hover,#event_vorschau:hover{
     background-color: #D9D9E9;
     color:#5F5F73 ;
 }
@@ -116,6 +116,10 @@ li {
 
 #profil {
     margin-left: 95.5%;
+}
+
+#event_vorschau{
+    margin-left: 84.5%;
 }
 
 
@@ -278,16 +282,12 @@ section{
     background-color: #D9D9E9;
     margin-top:1.5%;
     margin-left: 4%;
-    height: 30%;
+    height: 40%;
     width: 50%;
     border-radius: 50px;
     padding-bottom: 9%;
     margin-bottom: -1.5%;
     
-}
-
-section:hover{
-    background-color: #B2B2C7;
 }
 
 #eventname{
@@ -493,23 +493,15 @@ Eventseite*/
 
 .erstellen{
     background-color: #E48013;
-    color: #2d2d3b;
+    color: #D9D9E9;
     border: none;
     cursor: pointer;
     padding:2%;
     border-radius: 20px;
-    padding-left: 6%;
-    padding-right: 6%;
-}
-
-#dabei{
+    padding-left: 3%;
+    padding-right: 3%;
     float:left;
-    margin-left: 15%;
-}
-
-#raus{
-    float:right;
-    margin-right: 15%;
+    margin-left: 25%;
 }
 
 #labelEv{
