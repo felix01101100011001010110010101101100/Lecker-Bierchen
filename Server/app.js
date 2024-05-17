@@ -52,7 +52,7 @@ app.post('/register.html', (req, res) => {
 
     //das gienge auch mit Datenbankaufruf aber wir müssen ja nur bestehen
     const Landkreise = [
-        "Rottweil",
+        "Landkreis Rottweil",
         "Zollernalbkreis",
         "Tuttlingen",
         "Schwarzwald-Baar-Kreis",
@@ -91,7 +91,7 @@ app.post('/register.html', (req, res) => {
     ];
     // Überprüfen, ob das Alter eine gültige Zahl ist
     const parsedAge = parseInt(age);
-    if (isNaN(parsedAge) && age > 17) {
+    if (isNaN(parsedAge) && age < 18) {
         return res.status(400).send('Ungültiges Alter');
     }
     
@@ -118,7 +118,7 @@ app.post('/register.html', (req, res) => {
         // Überprüfen, ob der Benutzername bereits existiert
         db.get('SELECT * FROM person WHERE benutzername = ?', [bn], (err, row) => {
             if (err) {
-                console.error('Fehler beim Abrufen des Benutzernamens:', err);
+                console.error('Fehler in der datenbankabfrage', err);
                 return;
             }
 
@@ -139,20 +139,20 @@ app.post('/register.html', (req, res) => {
 app.post('/login', (req, res) => {
     const {bn, psw} = req.body;
    
-    //hier könnte man doch bestimmt ne sql injecrtion machen
-   db.get("SELECT passwort FROM Person WHERE benutzername = ?", [bn], (err, pswdhash_db) => {
+    //hier könnte man doch bestimmt ne sql injection machen
+   db.get("SELECT passwort FROM Person WHERE benutzername = ?", [bn], (err, datenbankreturn) => {
     
     if (err) {
         console.error('Fehler beim Abrufen des Benutzers aus der Datenbank:', err);
         return;
     }
-    if (!pswdhash_db.passwort) {
+    if (!datenbankreturn.passwort) {
         console.log('Benutzer nicht gefunden');
         return;
     }
 
 
-    bcrypt.compare(psw, pswdhash_db.passwort, (err, result) => {
+    bcrypt.compare(psw, datenbankreturn.passwort, (err, result) => {
         if (err) {
             console.error('Fehler beim Vergleichen der Passwörter:', err);
             return;
