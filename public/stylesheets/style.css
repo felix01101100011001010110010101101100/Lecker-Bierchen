@@ -278,7 +278,7 @@ section{
     background-color: #D9D9E9;
     margin-top:1.5%;
     margin-left: 4%;
-    height: 30%;
+    height: 40%;
     width: 50%;
     border-radius: 50px;
     padding-bottom: 9%;
@@ -493,23 +493,15 @@ Eventseite*/
 
 .erstellen{
     background-color: #E48013;
-    color: #2d2d3b;
+    color: #D9D9E9;
     border: none;
     cursor: pointer;
     padding:2%;
     border-radius: 20px;
-    padding-left: 6%;
-    padding-right: 6%;
-}
-
-#dabei{
+    padding-left: 3%;
+    padding-right: 3%;
     float:left;
-    margin-left: 15%;
-}
-
-#raus{
-    float:right;
-    margin-right: 15%;
+    margin-left: 25%;
 }
 
 #labelEv{
