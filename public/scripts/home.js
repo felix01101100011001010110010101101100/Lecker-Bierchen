@@ -8,6 +8,10 @@ function aside_anzeigen() {
 // neue gruppe dem aside element hinzufügen
 
 
+
+
+//der folgende code ist outdated 
+/*
 document.addEventListener("DOMContentLoaded", function() {
         let gruppe_erstellen = document.getElementById("gruppe_erstellen");
         let alle_Gruppen = document.getElementById("alle_Gruppen");
@@ -31,3 +35,4 @@ document.addEventListener("DOMContentLoaded", function() {
           alle_Gruppen.appendChild(listItem);     
         }
       });
+      */
