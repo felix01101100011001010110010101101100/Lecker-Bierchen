@@ -46,6 +46,7 @@
           <input type="password" placeholder="Passwort bestätigen" name="psw-wdh" id="psw-wdh" required>
 
           <label for="lk"><b>Landkreis:</b></label><br>
+          
           <select size="1" id="lk" required>
             <option>Zollernalbkreis</option>
             <option>Detroitlingen</option>
@@ -64,6 +65,10 @@
           <button type="submit" class="registerbtn">Jetzt ändern!</button>
         </div>
       </form>
-      
+      <script>
+        $(document).ready(function(){
+            dynamischProfil()
+        })
+    </script>
 </body>
 </html>
