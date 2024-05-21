@@ -449,7 +449,23 @@ form{
     color: #2d2d3b;
   }
 
+  #vnProfil{
+    cursor: not-allowed;
+  }
+
+  #nnProfil{
+    cursor: not-allowed;
+  }
+
+  #age{
+    cursor: not-allowed;
+  }
+
   #bnProfil{
+    cursor: not-allowed;
+  }
+
+  #lkProfil{
     cursor: not-allowed;
   }
 
