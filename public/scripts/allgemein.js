@@ -59,11 +59,11 @@ function dynamischProfil(){
             $("#lkProfil").val(data.name)
 
 
-            if(data.fuehrerschein){
-                $("input[name=führerschein][value=" + data.fuehrerschein + "]").prop("checked",true);
+            if(data.fuehrerschein == 1){
+                $("#").val("Ja")
             }
             else{
-                $("input[name=führerschein][value='nein']").prop("checked", true);
+                $("#").val("Nein")
             }
         },
         error: function(error){
