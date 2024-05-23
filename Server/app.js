@@ -1,4 +1,4 @@
-// Load express module
+//6// Load express module
 var express = require('express');
 
 // Create a router instance
@@ -30,7 +30,7 @@ const bcrypt = require('bcrypt');
 // anzahl salt runden
 const saltRounds = 10;
 
-//token
+//token zeug
 const jwt = require('jsonwebtoken');
 const secretKey = 'geheimesSchluesselwort';
 
@@ -203,6 +203,33 @@ function verifyToken(req, res, next) {
         res.status(401).json({ message: 'Token fehlt' });
     }
 }
+
+
+//Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
+app.get("/api/profil", verifyToken, (req,res)=>{
+    
+    
+    const username = req.user.bne;
+    
+    const query = "SELECT * FROM Person WHERE benutzername=?";
+    db.get(query, [username], (err, dbreturn)=>{
+        if (err){
+            console.error("Fehler beim Abrufen der Daten: ", err);
+        }
+        if(!dbreturn){
+            return res.status(404).json({error: "Benutzer nicht gefunden"})
+        }
+        else {
+            res.json(dbreturn); 
+        }
+    })
+
+    
+
+});
+
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
@@ -242,6 +269,13 @@ app.get('/scripts/register.js', (req, res) => {
 app.get('/scripts/allgemein.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/allgemein.js'));
 });
+
+
+
+
+    
+
+
 
 
 
