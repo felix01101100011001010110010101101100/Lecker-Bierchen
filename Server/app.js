@@ -127,7 +127,7 @@ app.post('/register.html', (req, res) => {
             } else {
                 // Daten in die SQLite-Datenbank einfügen
                 db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-                [vn, nn, parsedAge, bn, hash, lkIndex, parsedFührerschein]);
+                [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex]);
                 res.status(200).send("Profil erstellung erfolgreich");
             }
         });
@@ -211,7 +211,7 @@ app.get("/api/profil", verifyToken, (req,res)=>{
     
     const username = req.user.bne;
     
-    const query = "SELECT * FROM Person WHERE benutzername=?";
+    const query = "SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?";
     db.get(query, [username], (err, dbreturn)=>{
         if (err){
             console.error("Fehler beim Abrufen der Daten: ", err);
