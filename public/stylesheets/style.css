@@ -18,7 +18,7 @@ nav{
 /*-------------------------------------------------------------------------*/
 
 /*Home*/
-#startseiteMain{
+#startseiteMain, #uebersichtMain{
     background-color:#47475b;
     margin:auto;
     position: fixed;
@@ -290,7 +290,7 @@ section{
     
 }
 
-#eventname{
+#eventname,#eventnameUebersicht{
     font-size: 25px;
     padding-top:1%;
     padding-left:2.5%;
@@ -541,4 +541,23 @@ small{
     color:#D9D9E9;
 }
 
+/*------------------------
+Uebersicht Events*/
+
+#uebersichtMain{
+   width: 78%;
+   margin-left: 10%; 
+   margin-top: 10%;
+}
+
+#uebersichtSection{
+    width: 90%;
+    height: 25%;
+    margin-top: 3.2%;
+    border-radius: 25px;
+}
+
+#eventnameUebersicht{
+    margin-top: 1%;
+}
   
