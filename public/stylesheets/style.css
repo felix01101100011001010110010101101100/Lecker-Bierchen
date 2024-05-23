@@ -362,7 +362,7 @@ form{
     box-sizing: border-box;
   }
   
- /* #regContainer{
+  #regContainer{
     margin-top:4%;
     margin-left:13.5%;
     float: left;
@@ -371,18 +371,23 @@ form{
   .container_signin{
     float: left;
     background-color: #D9D9E9;
-  }*/
+    text-align: center;
+    margin-left:13.5%;
+    width: 73.79%;
+    margin-bottom: 4%;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; 
+  }
 
   .container, #eventMain {
-    padding: 16px;
+    padding: 14px;
     background-color: #D9D9E9;
-    border-width: 0cap;
     border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    
+    border-top-right-radius: 20px; 
   }
+
   
-  input[type=text], input[type=password], textarea,input[type=time], #lk , #age {
+  input[type=text], input[type=password], textarea,input[type=time], #lk , #age,#dl {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -449,23 +454,7 @@ form{
     color: #2d2d3b;
   }
 
-  #vnProfil{
-    cursor: not-allowed;
-  }
-
-  #nnProfil{
-    cursor: not-allowed;
-  }
-
-  #age{
-    cursor: not-allowed;
-  }
-
-  #bnProfil{
-    cursor: not-allowed;
-  }
-
-  #lkProfil{
+  #vnProfil,#nnProfil,#age,#bnProfil,#lkProfil,#dl{
     cursor: not-allowed;
   }
 
@@ -518,6 +507,10 @@ Eventseite*/
     padding-right: 3%;
     float:left;
     margin-left: 25%;
+}
+
+#erstellen{
+    margin-left: 38.5%;
 }
 
 #labelEv{
