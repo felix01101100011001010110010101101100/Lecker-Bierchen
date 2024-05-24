@@ -60,10 +60,10 @@ function dynamischProfil(){
         
 
             if(data.fuehrerschein == 1){
-                $("#").val("Ja")
+                $("#dl").val("Ja")
             }
             else{
-                $("#").val("Nein")
+                $("#dl").val("Nein")
             }
         },
         error: function(error){
