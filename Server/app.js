@@ -128,7 +128,7 @@ app.post('/register.html', (req, res) => {
                 // Daten in die SQLite-Datenbank einfügen
                 db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
                 [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex,]);
-                res.status(200).send("Profil erstellung erfolgreich");
+                res.sendFile(path.join(__dirname, '../public/html/index.html'));
             }
         });
     });
