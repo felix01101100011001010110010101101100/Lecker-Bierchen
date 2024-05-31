@@ -131,7 +131,17 @@ router.post('/login', (req, res) => {
 
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
-router.get("/api/profil", verifyToken, (req,res)=>{
+app.get("/api/profil", verifyToken, (req,res)=>{
+    var datenDieZurueckGehen = personDao.personenDatenAbrufen(request.app.locals.dbConnection);
+    res.json(datenDieZurueckGehen);
+
+
+
+
+
+
+
+    /*
     const username = req.user.bne;
     
     const query = "SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?";
@@ -146,7 +156,8 @@ router.get("/api/profil", verifyToken, (req,res)=>{
             res.json(dbreturn); 
         }
     })
-
+*/
+    //var daten = 
     
 
 });
