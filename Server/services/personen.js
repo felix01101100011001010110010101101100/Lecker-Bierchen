@@ -128,8 +128,6 @@ app.post('/login', (req, res) => {
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
 app.get("/api/profil", verifyToken, (req,res)=>{
-    
-    
     const username = req.user.bne;
     
     const query = "SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?";
