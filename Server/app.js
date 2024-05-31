@@ -39,39 +39,7 @@ db.serialize(() => {
   
 });
 
-// Middleware zum Überprüfen des JWT und Extrahieren des Benutzers
-function verifyToken(req, res, next) {
-
-    let token;
-    // Token aus dem Authorization-Header extrahieren
-    const authHeader = req.headers['authorization'];
-    if (authHeader) {
-        token = authHeader.split(' ')[1];
-        // Token kann jetzt richtig verwendet werden sonst ist da noch anderes zeug dran
-    } else {
-        // Der Token is dann undefined und das wird unten behandelt
-    }
-    if (typeof token !== 'undefined') {
-        // Token überprüfen
-        jwt.verify(token, secretKey, (err, decoded) => {
-            if (err) {
-                // Fehler bei der Überprüfung des Tokens
-                console.log(fehler);
-                res.redirect('../public/html/index.html');
-            } else {
-                // Token ist gültig, fügen Sie den decodierten Benutzer dem Anfrageobjekt hinzu
-                req.user = decoded;
-                next();
-            }
-        });
-    } else {
-        // Token nicht vorhanden
-        res.status(401).json({ message: 'Token fehlt' });
-    }
-}
-
-
-var serviceRouter = require('./services/personen.js');
+serviceRouter = require('./services/personen.js');
 app.use(serviceRouter);
 
 serviceRouter = require('./services/event.js');
@@ -87,6 +55,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
 
+// folgendes muss alles noch in andere dateinen aufgespalten werden
+const verifyToken = require('./services/verifyToken.js')
 app.get('/register.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/register.html'));
 });
@@ -126,11 +96,6 @@ app.get('/scripts/allgemein.js', (req, res) => {
 
 
 
-    
 
-
-
-
-
-module.exports = db;
+module.exports.db = db;
 module.exports = app;
