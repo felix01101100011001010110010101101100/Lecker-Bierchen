@@ -5,7 +5,7 @@ function loginUser() {
     var username = $('#bn').val();
     var password = $('#psw').val();
 
-    bcrypt.hash(psw, saltRounds, (err, hash) => {
+    bcrypt.hash(passwort, saltRounds, (err, hash) => {
         if (err) {
           console.error('Fehler beim Hashen des Passworts:', err);
           return;

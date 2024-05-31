@@ -1,6 +1,4 @@
-const PersonDao = require('./PersonDao.js');
-const personD = new PersonDao(request.app.locals.dbConnection);    
-    
+
     function register(){
 
         let vn = document.querySelector('#vn').value;
