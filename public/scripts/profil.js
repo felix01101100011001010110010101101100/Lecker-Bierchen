@@ -1,7 +1,7 @@
 //Funktion, um die Daten im Profil anzugucken
 function dynamischProfil(){
     $.ajax({
-        url: "/api/profil",
+        url: "/profil",
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
