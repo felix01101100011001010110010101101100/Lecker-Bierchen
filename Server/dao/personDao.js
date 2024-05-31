@@ -18,9 +18,10 @@ class PersonDao{
     passwortAbrufen(benutzername){
         this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?"[benutzername])
     }
-                
-    passwortAbrufen(benutzername){
-        this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?"[benutzername])
+
+    landkreisAufrufen(landkreisname){
+        var ret = this.dbconnection.get("SELECT id FROM Lankreis WHERE name=?"[landkreisname]);
+        return ret;
     }
 
 }

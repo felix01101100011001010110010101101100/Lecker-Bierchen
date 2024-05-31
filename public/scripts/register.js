@@ -75,7 +75,6 @@
             } 
         
         
-        
         $.ajax({
             url: '/register.html',
             type: 'POST',
