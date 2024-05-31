@@ -10,6 +10,10 @@ class PersonDao{
         this.dbconnection.get("SELECT * FROM Person WHERE benutzername=?"[this.username]);
     }
 
+    passwortAbrufen(benutzername){
+        this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?"[benutzername])
+    }
+
 
 
 
