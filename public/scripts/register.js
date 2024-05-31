@@ -81,7 +81,7 @@ const personD = new PersonDao(request.app.locals.dbConnection);
         $.ajax({
             url: '/register.html',
             type: 'POST',
-            data: { vn, nn, age, bn, hash, lk, führerschein},
+            data: {vn, nn, age, bn, hash, lk, führerschein},
 
             success: function(response) {
                 // Erfolgreiche Registrierung, weiterleiten zur Login-Seite 
