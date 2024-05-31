@@ -10,7 +10,7 @@ function loginUser() {
         .done(function(res, textStatus, jqXHR) {   
             var authHeader = jqXHR.getResponseHeader('Authorization');
             var token = authHeader.split(' ')[1]; // Der Token ist normalerweise nach dem Bearer-Schlüsselwort
-            localStorage.setItem('token', token);
+            sessionStorage.setItem('token', token);
             
     })
        
