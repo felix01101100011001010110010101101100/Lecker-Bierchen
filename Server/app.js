@@ -97,5 +97,5 @@ app.get('/scripts/allgemein.js', (req, res) => {
 
 
 
-module.exports = db;
+module.exports.db = db;
 module.exports = app;

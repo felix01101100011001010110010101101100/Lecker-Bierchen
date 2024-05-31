@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router();
 const verifyToken = require('./verifyToken.js')
+const db = require('../app.js').db;
 
 router.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
