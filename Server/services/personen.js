@@ -1,4 +1,8 @@
-app.post('/register.html', (req, res) => {
+const express = require('express');
+var router = express.Router();
+const verifyToken = require('./verifyToken.js')
+
+router.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
 
     //das gienge auch mit Datenbankaufruf aber wir müssen ja nur bestehen
@@ -87,7 +91,7 @@ app.post('/register.html', (req, res) => {
 
 
 // anmeldeversuch
-app.post('/login', (req, res) => {
+router.post('/login', (req, res) => {
     const {bn, psw} = req.body;
    
     //hier könnte man doch bestimmt ne sql injection machen
@@ -127,7 +131,7 @@ app.post('/login', (req, res) => {
 
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
-app.get("/api/profil", verifyToken, (req,res)=>{
+router.get("/api/profil", verifyToken, (req,res)=>{
     const username = req.user.bne;
     
     const query = "SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?";
@@ -146,3 +150,5 @@ app.get("/api/profil", verifyToken, (req,res)=>{
     
 
 });
+
+module.exports = router;
