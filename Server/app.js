@@ -71,6 +71,10 @@ function verifyToken(req, res, next) {
 }
 
 
+serviceRouter = require('./services/person.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
