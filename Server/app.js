@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 const sqlite3 = require('sqlite3').verbose();
 
 // Verbindung zur SQLite-Datenbank herstellen
-const db = new sqlite3.Database(path.join(__dirname, './data/test1.db'));
+const dbConnection = new sqlite3.Database(path.join(__dirname, './data/test1.db'));
 
 //bycrypt verwenden um zu hashen
 const bcrypt = require('bcrypt');
@@ -97,5 +97,5 @@ app.get('/scripts/allgemein.js', (req, res) => {
 
 
 
-module.exports.db = db;
+app.locals.dbConnection = dbConnection;
 module.exports = app;
