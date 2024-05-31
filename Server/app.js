@@ -34,11 +34,6 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const secretKey = 'geheimesSchluesselwort';
 
-// Verbindung zur SQLite-Datenbank herstellen und Tabelle erstellen mit serialize damit die reihenfolge korrekt eingehalten wird(macht man wenn man mehrere befehle hat)
-db.serialize(() => {
-  
-});
-
 serviceRouter = require('./services/personen.js');
 app.use(serviceRouter);
 
@@ -93,6 +88,14 @@ app.get('/scripts/allgemein.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/allgemein.js'));
 });
 
+
+app.get('/scripts/authentification.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/authentification.js'));
+});
+
+app.get('/scripts/navigation.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/navigation.js'));
+});
 
 
 

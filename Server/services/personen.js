@@ -2,41 +2,28 @@ const express = require('express');
 var router = express.Router();
 const verifyToken = require('./verifyToken.js')
 
-const PersonDao = require('./PersonDao.js');
+const PersonDao = require('../dao/personDao.js');
+
+
 
 router.post('/register.html', (req, res) => {
-    const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
-    const PersonDao = new PersonDao(req.app.locals.dbConnection);
-    //das gienge auch mit Datenbankaufruf aber wir müssen ja nur bestehen
-    const personDao = new PersonDao(db, req);
+    const {vn, nn, age, bn, hash, lk, führerschein} = req.body;
+    const personDao = new PersonDao(req.app.locals.dbConnection);
 
-
+    if (personDao.personenDatenAbrufen()) {
+        res.status(400).send("Benutzername bereits vorhanden");
+    } else {
+        // Daten in die SQLite-Datenbank einfügen
+        personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
+    }
 });
-
+    
 
 // anmeldeversuch
 router.post('/login', (req, res) => {
-    const {bn, psw} = req.body;
-   
-    //hier könnte man doch bestimmt ne sql injection machen
-   db.get("SELECT passwort FROM Person WHERE benutzername = ?", [bn], (err, datenbankreturn) => {
-    
-    if (err) {
-        console.error('Fehler beim Abrufen des Benutzers aus der Datenbank:', err);
-        return;
-    }
-    if (!datenbankreturn.passwort) {
-        console.log('Benutzer nicht gefunden');
-        return;
-    }
+    const {bn, hash} = req.body;
 
-
-    bcrypt.compare(psw, datenbankreturn.passwort, (err, result) => {
-        if (err) {
-            console.error('Fehler beim Vergleichen der Passwörter:', err);
-            return;
-        }
-        if (result) {
+        if (PersonDao.passwort() == hash) {
             console.log('Passwörter stimmen überein');
             const token = jwt.sign({ bne: bn }, secretKey);
             //token im header übermitteln
@@ -49,8 +36,7 @@ router.post('/login', (req, res) => {
             console.log('Passwörter stimmen nicht überein');
         }
     });
-    });
-});
+
 
 
 
@@ -58,9 +44,6 @@ router.post('/login', (req, res) => {
 router.get("/profil", verifyToken, (req,res)=>{
     var datenDieZurueckGehen = personDao.personenDatenAbrufen(request.app.locals.dbConnection);
     res.json(datenDieZurueckGehen);
-
-
-
 
 
 

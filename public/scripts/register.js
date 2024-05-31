@@ -1,4 +1,8 @@
+const PersonDao = require('./PersonDao.js');
+const personD = new PersonDao(request.app.locals.dbConnection);    
+    
     function register(){
+
         let vn = document.querySelector('#vn').value;
         let nn = document.querySelector('#nn').value;
         let age = document.querySelector('#age').value;
@@ -72,42 +76,27 @@
               return;
             } 
         
-            // Überprüfen, ob der Benutzername bereits existiert
-            db.get('SELECT * FROM person WHERE benutzername = ?', [bn], (err, row) => {
-                if (err) {
-                    console.error('Fehler in der datenbankabfrage', err);
-                    return;
-                }
-    
-                if (row) {
-                    res.status(400).send("Benutzername bereits vorhanden");
+        
+        
+        $.ajax({
+            url: '/register.html',
+            type: 'POST',
+            data: { vn, nn, age, bn, hash, lk, führerschein},
+
+            success: function(response) {
+                // Erfolgreiche Registrierung, weiterleiten zur Login-Seite 
+            },
+            error: function(xhr, status, error) {
+                if (xhr.status === 400 && xhr.responseJSON.message === 'Benutzername bereits vorhanden') {
+                    var bnInput = document.getElementById('bn');
+                    bnInput.setCustomValidity('Benutzername bereits vorhanden');
+                    bnInput.reportValidity();  // Zeigt die Popup-Nachricht an
+                    console.log('Benutzername bereits vorhanden');
                 } else {
-                    // Daten in die SQLite-Datenbank einfügen
-                    db.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-                    [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex,]);
-                    res.sendFile(path.join(__dirname, '../public/html/index.html'));
+                    console.error('Fehler bei der Registrierung:', error);
                 }
+            }
             });
         });
-
-    $.ajax({
-        url: '/register.html',
-        type: 'POST',
-        data: { vn, nn, age, bn, psw, pswwdh, lk, führerschein},
-
-        success: function(response) {
-            // Erfolgreiche Registrierung, weiterleiten zur Login-Seite 
-        },
-        error: function(xhr, status, error) {
-            if (xhr.status === 400 && xhr.responseJSON.message === 'Benutzername bereits vorhanden') {
-                var bnInput = document.getElementById('bn');
-                bnInput.setCustomValidity('Benutzername bereits vorhanden');
-                bnInput.reportValidity();  // Zeigt die Popup-Nachricht an
-                console.log('Benutzername bereits vorhanden');
-            } else {
-                console.error('Fehler bei der Registrierung:', error);
-            }
-        }
-    });
 }
-*/
+
