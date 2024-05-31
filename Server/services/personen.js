@@ -132,7 +132,7 @@ router.post('/login', (req, res) => {
 
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
-app.get("/api/profil", verifyToken, (req,res)=>{
+router.get("/api/profil", verifyToken, (req,res)=>{
     var datenDieZurueckGehen = personDao.personenDatenAbrufen(request.app.locals.dbConnection);
     res.json(datenDieZurueckGehen);
 
