@@ -71,7 +71,7 @@ function verifyToken(req, res, next) {
 }
 
 
-serviceRouter = require('./services/person.js');
+var serviceRouter = require('./services/personen.js');
 app.use(serviceRouter);
 
 serviceRouter = require('./services/event.js');

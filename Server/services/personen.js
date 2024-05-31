@@ -1,3 +1,9 @@
+const BenutzerDao = require('../dao/personDao.js');
+
+
+const personDao = new PersonDao(request.app.locals.dbConnection);
+
+
 app.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, psw, pswwdh, lk, führerschein} = req.body;
 
@@ -128,6 +134,16 @@ app.post('/login', (req, res) => {
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
 app.get("/api/profil", verifyToken, (req,res)=>{
+    var datenDieZurueckGehen = personDao.personenDatenAbrufen(request.app.locals.dbConnection);
+    res.json(datenDieZurueckGehen);
+
+
+
+
+
+
+
+    /*
     const username = req.user.bne;
     
     const query = "SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?";
@@ -142,7 +158,8 @@ app.get("/api/profil", verifyToken, (req,res)=>{
             res.json(dbreturn); 
         }
     })
-
+*/
+    //var daten = 
     
 
 });
