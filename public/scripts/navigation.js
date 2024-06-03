@@ -36,4 +36,14 @@ function get_profil_html(){
 
 
 
+function gruppeAside(){
+    $.ajax({
+        url:"/gruppe/aside",
+        type:"GET",
+        beforeSend: setAuthentification,
+        success: function(data){
 
+        }
+
+    })
+}
