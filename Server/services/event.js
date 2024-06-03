@@ -11,6 +11,7 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
     
 
     res.send(datenDieZurueckGehen);
+    res.send(anzahlMenschen);
 
 
 })

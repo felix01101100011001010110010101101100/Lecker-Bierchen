@@ -46,7 +46,7 @@ router.post('/login', (req, res) => {
 
 
 
-//Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
+//um die Daten vom Server fürs Profil an Client zu senden
 router.get("/profil", verifyToken, (req,res)=>{
     const personDao = new PersonDao(request.app.locals.dbConnection);
 
