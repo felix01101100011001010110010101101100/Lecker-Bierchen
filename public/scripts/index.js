@@ -20,7 +20,7 @@ function loginUser() {
             sessionStorage.setItem('token', token);
             
     })
-       
+    
         .fail(function(xhr, status, error) {
             // Fehler bei der Anmeldung, Fehlermeldung anzeigen oder andere Aktionen ausführen
             console.error('Fehler bei der Anmeldung:', error);

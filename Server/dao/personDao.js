@@ -15,6 +15,14 @@ class PersonDao{
                     [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex]);
     }
 
+    exists(bn){
+        var ret = this.dbconnection.get("SELECT COUNT(benutzername) AS cnt FROM Person WHERE benutzername=?"[bn]);
+        if (ret.cnt == 1) 
+            return true;
+
+        return false;
+    }
+
     passwortAbrufen(benutzername){
         this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?"[benutzername])
     }
