@@ -30,9 +30,6 @@ const bcrypt = require('bcrypt');
 // anzahl salt runden
 const saltRounds = 10;
 
-//token zeug
-const jwt = require('jsonwebtoken');
-const secretKey = 'geheimesSchluesselwort';
 
 serviceRouter = require('./services/person.js');
 app.use(serviceRouter);
@@ -49,6 +46,7 @@ app.use(serviceRouter);
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
+
 
 // folgendes muss alles noch in andere dateinen aufgespalten werden
 const verifyToken = require('./services/verifyToken.js')
