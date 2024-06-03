@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 var router = express.Router();
 const verifyToken = require('./verifyToken.js')
@@ -5,45 +6,52 @@ const PersonDao = require('../dao/personDao.js');
 const jwt = require('jsonwebtoken');
 const secretKey = 'geheimesSchluesselwort';
 const tokenValidTime = '1h';
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 router.get('/person/eindeutig', async function(req, res) {
     const {bn} = req.query;
     const personDao = new PersonDao(req.app.locals.dbConnection);
-    console.log('Service Person: Client requested one record, benutzername=' + bn);
-    if (await res.status(200).json(personDao.personenDatenAbrufen(bn))) {
-        const exists = true;
+    var exists = true;
+    if (await personDao.personenDatenAbrufen(bn)) {
+        exists = true;
     } else {
-        const exists = false;
+        exists = false;
     }
-    return ;
+    res.status(200).json(exists);
 
 });
 
 router.post('/person/register', async (req, res) => {
-    const {vn, nn, age, bn, hash, lk, führerschein} = req.body;
+    const {vn, nn, age, bn, psw, lk, führerschein} = req.body;
+
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(psw, salt);
+
     const personDao = new PersonDao(req.app.locals.dbConnection);
-        personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
-        res.status(200).json({message: 'Person erfolgreich angelegt'});
+    personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
+    res.status(200).json({message: 'Person erfolgreich angelegt'});
 
 });
     
 
 // anmeldeversuch
-router.post('/login', (req, res) => {
-    const {bn, hash} = req.body;
-
-        if (PersonDao.passwort() == hash) {
+router.post('/person/login', async (req, res) => {
+    const {bn, psw} = req.body
+   
+    const personDao = new PersonDao(req.app.locals.dbConnection);
+        if (await personDao.comparePassword(bn, psw)) {
             console.log('Passwörter stimmen überein');
             const token = jwt.sign({ bne: bn }, secretKey);
             //token im header übermitteln
             res.header('Authorization', 'Bearer ' + token);
             //home.html soll gerendert werden
-            res.sendFile(path.join(__dirname, '../public/html/home.html'));
+            res.sendFile(path.join(__dirname, '../../public/html/home.html'));
             
         } else {
             res.status(401).json({ message: 'Ungültige Anmeldeinformationen' });
-            console.log('Passwörter stimmen nicht überein');
+            console.log('s');
         }
     });
 

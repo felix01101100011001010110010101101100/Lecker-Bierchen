@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+const secretKey = 'geheimesSchluesselwort';
 // Middleware zum Überprüfen des JWT und Extrahieren des Benutzers
 function verifyToken(req, res, next) {
 

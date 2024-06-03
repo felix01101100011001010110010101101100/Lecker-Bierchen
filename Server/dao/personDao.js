@@ -1,4 +1,4 @@
-
+const bcrypt = require('bcrypt');
 class PersonDao{
 
     constructor(dbConnection){
@@ -17,6 +17,23 @@ class PersonDao{
             });
         });
     }
+
+    comparePassword(bn, psw) {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?", [bn], function(err, row) {
+                if (err) {
+                    reject(err);
+                } else if (row) {
+                    bcrypt.compare(psw, row.passwort)
+                        .then(isMatch => resolve(isMatch))
+                        .catch(err => reject(err));
+                } else {
+                    resolve(false);
+                }
+            });
+        });
+    }
+
 
     personenAnlegen(vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex){
         this.dbconnection.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',

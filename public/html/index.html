@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Anmelden</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
@@ -14,7 +15,7 @@
 </head>
 <body>
 
-    <form id="formAnmelden" action="/login" method="post">
+    <form id="formAnmelden">
       <div class="container">
         <h2>Anmelden</h2>
         <p>Bitte geben Sie Ihren Benutzernamen und ihr Passwort an:</p>
@@ -27,7 +28,7 @@
         <input type="password" placeholder="Passwort eingeben" name="psw" id="psw" required>
         <hr>
 
-        <button action="/login" method="post" onclick="loginUser()" class="registerbtn">Anmelden</button>
+        <button id="loginbtn" class="registerbtn">Anmelden</button>
       </div>
       
       <div class="container signin">
