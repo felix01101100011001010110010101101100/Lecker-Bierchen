@@ -34,7 +34,7 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const secretKey = 'geheimesSchluesselwort';
 
-serviceRouter = require('./services/personen.js');
+serviceRouter = require('./services/person.js');
 app.use(serviceRouter);
 
 serviceRouter = require('./services/event.js');
