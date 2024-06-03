@@ -1,3 +1,6 @@
+window.onload = function() {
+    document.querySelector('#registerbtn').addEventListener('click', register);
+}
 
     function register(){
 
@@ -67,16 +70,11 @@
             return res.status(400).send("Ungültiger Landkreis");
         }
         
-        // Passwort hashen
-        bcrypt.hash(psw, saltRounds, (err, hash) => {
-            if (err) {
-              console.error('Fehler beim Hashen des Passworts:', err);
-              return;
-            } 
-        
-        
+        var salt = dcodeIO.bcrypt.genSaltSync(10);
+        var hash = dcodeIO.bcrypt.hashSync(psw, salt);
+
         $.ajax({
-            url: '/register.html',
+            url: '/person/register',
             type: 'POST',
             data: {vn, nn, age, bn, hash, lk, führerschein},
 
@@ -94,6 +92,5 @@
                 }
             }
             });
-        });
-}
+        };
 

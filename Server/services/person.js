@@ -1,20 +1,24 @@
 const express = require('express');
 var router = express.Router();
 const verifyToken = require('./verifyToken.js')
-
 const PersonDao = require('../dao/personDao.js');
+const jwt = require('jsonwebtoken');
+const secretKey = 'geheimesSchluesselwort';
+const tokenValidTime = '1h';
 
 
 
 
 
-router.post('/register.html', (req, res) => {
+router.post('/person/register', (req, res) => {
     const {vn, nn, age, bn, hash, lk, führerschein} = req.body;
     const personDao = new PersonDao(req.app.locals.dbConnection);
 
-    if (personDao.personenDatenAbrufen()) {
+    if (personDao.personenDatenAbrufen(bn)) {
         res.status(400).send("Benutzername bereits vorhanden");
+        console.log('Benutzername bereits vorhanden');
     } else {
+        console.log(personDao.exists(bn))
         // Daten in die SQLite-Datenbank einfügen
         personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
     }

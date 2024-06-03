@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/8920ad7d52.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
     <title>Registrierung</title>
     <link rel="stylesheet" href="../stylesheets/style.css"
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="styleRegister.css">
@@ -18,7 +19,7 @@
           <h2>Registrierung</h2>
           <p>Account erstellen:</p>
           <hr>
-          <form action="register.html" method="post">
+          <form>
 
           <label for="vn"><b>Vorname:</b></label>
           <input type="text" placeholder="Vorname" name="vn" id="vn" required>
@@ -85,9 +86,9 @@
           <label for="nein">nein</label><br><br>
 
           <hr>
-      
-          <button onclick="register()" type="submit" class="registerbtn">Registrieren</button>
+    
         </form>
+        <button id="registerbtn" class="registerbtn">Registrieren</button>
         </div>
         
         <div class="container_signin">
