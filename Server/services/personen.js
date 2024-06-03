@@ -6,6 +6,8 @@ const PersonDao = require('../dao/personDao.js');
 
 
 
+
+
 router.post('/register.html', (req, res) => {
     const {vn, nn, age, bn, hash, lk, führerschein} = req.body;
     const personDao = new PersonDao(req.app.locals.dbConnection);
@@ -42,8 +44,16 @@ router.post('/login', (req, res) => {
 
 //Funktion (oder was auch immer), um die Daten vom Server fürs Profil an Client zu senden
 router.get("/profil", verifyToken, (req,res)=>{
-    var datenDieZurueckGehen = personDao.personenDatenAbrufen(request.app.locals.dbConnection);
-    res.json(datenDieZurueckGehen);
+    const personDao = new PersonDao(request.app.locals.dbConnection);
+
+    try{
+        datenDieZurueckGehen = personDao.personenDatenAbrufen();
+        res.json(datenDieZurueckGehen);
+    }
+    catch(ex){
+        response.status(400).json({"fehler": true, "nachricht": ex.message})
+    }
+    
 
 
 
