@@ -3,11 +3,15 @@ class EventDao{
         this.dbconnection = dbConnection;
     }
 
-    loadById(id){
-        this.dbconnection.get("SELECT * FROM Event INNER JOIN BeziehungPersonEvent ON Event.id = BeziehungPersonEvent.eventid WHERE personid=?"[id])
+    loadById(personid){
+        this.dbconnection.get("SELECT * FROM Event INNER JOIN BeziehungPersonEvent ON Event.id = BeziehungPersonEvent.eventid WHERE personid=?"[personid])
     }
 
-    
+    anzahlMenschenImEvent(eventid){
+        this.dbconnection.get("SELECT count(*) FROM Event INNER JOIN BeziehungPersonEvent ON Event.id=BeziehungPersonEvent.eventid WHERE eventid=?"[eventid]);
+    }
+
+
 
 
 }
