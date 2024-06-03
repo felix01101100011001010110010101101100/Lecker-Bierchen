@@ -6,7 +6,16 @@ class PersonDao{
     }
 
     personenDatenAbrufen(bn){
-        return this.dbconnection.get("SELECT * FROM Person WHERE benutzername=?", [bn]);
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT * FROM Person WHERE benutzername=?", [bn], function(err, row) {
+                if (err) {
+                    reject(err);
+                }
+                console.log("l"+bn);
+                console.log(row);
+                resolve(row);
+            });
+        });
     }
 
     personenAnlegen(vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex){
@@ -14,7 +23,7 @@ class PersonDao{
                     [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex]);
     }
 
-
+  
     passwortAbrufen(benutzername){
         this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?", [benutzername])
     }
