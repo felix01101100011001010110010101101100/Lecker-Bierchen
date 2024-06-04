@@ -82,7 +82,7 @@ nav{
     /*Hintergrund Boxen vergrößern*/
 }
 
-#home::after,#profil::after,#gruppen::after,#event_vorschau::after { /*ID´s aus Gruppen mitenthalten*/
+#home::after,#profil::after,#gruppen::after,#event_vorschau::after { 
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -326,7 +326,7 @@ section{
     margin-top:1.5%;
     margin-left: 4%;
     height: 40%;
-    width: 50%;
+    width: 55%;
     border-radius: 50px;
     padding-bottom: 9%;
     margin-bottom: -1.5%;
@@ -340,18 +340,13 @@ section{
     word-spacing: 150px;
 }
 
-
-
-#beschreibung{
-    margin-left:2.5%;
-    margin-right:20%;
+#eventname{
+    margin-left: 15%;
 }
 
-#fahrername{
-    font-size:15px;
-    margin-left: 40%;
-    margin-top: -2%;
-    position: fixed;
+#beschreibung{
+    margin-left:15%;
+    margin-right:15%;
 }
 
 #hinzufügen{
@@ -359,7 +354,7 @@ section{
     background-color: #e48013;
     color: #D9D9E9;
     border-radius: 50%;
-    margin-left: 25%;
+    margin-left: 27.5%;
     margin-top: 4%;
     padding:1.5%;
 }

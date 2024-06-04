@@ -16,6 +16,21 @@ function get_home_html(){
 
 }
 
+function get_event_uebersicht_html(){
+    $.ajax({
+        url: '/event_uebersicht.html',
+        type: 'GET',
+        beforeSend: setAuthentification,
+        success: function(data) {
+            console.log('Klappt:');
+            $('body').html(data);
+        },
+        error: function( errorThrown) {
+            console.log('Error:', errorThrown);
+        }
+    });       
+
+}
 
 function get_profil_html(){
     $.ajax({    
