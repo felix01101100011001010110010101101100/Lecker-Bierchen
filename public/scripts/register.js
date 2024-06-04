@@ -29,8 +29,6 @@ window.onload = function() {
 
         const parsedFührerschein = parseInt(führerschein);
         
-        var salt = dcodeIO.bcrypt.genSaltSync(10);
-        var hash = dcodeIO.bcrypt.hashSync(psw, salt);
         
         $.ajax({
             
@@ -39,13 +37,12 @@ window.onload = function() {
             data: { bn },
             
             success: function(res) {
-                console.log("Benutzernahme vorhanden: "+ res)
                 if (res) {
                     alert('Benutzername bereits vorhanden');
+                    return;
                 }
                 else {
                     console.log('Benutzername noch nicht vorhanden');
-                    
                 }
             
                 $.ajax({
@@ -56,14 +53,14 @@ window.onload = function() {
                     success: function(res) {
                         //wenn landkreis id da ist dann wird weitergemacht
                         let lkId = res.id;
-                        console.log('Landkreis ID:', lkId);
+                        
                         $.ajax({
                             url: '/person/register',
                             type: 'POST',
-                            data: {vn, nn, age, bn, hash, lk, führerschein},
+                            data: {vn, nn, age, bn, psw, lk, führerschein},
 
                             success: function(res) {
-                                // Erfolgreiche Registrierung, weiterleiten zur Login-Seite 
+                                
                             },
                             error: function(xhr, status, error) {
                                     console.error('Fehler bei der Registrierung:', error);
