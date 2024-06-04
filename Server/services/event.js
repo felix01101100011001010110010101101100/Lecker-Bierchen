@@ -8,8 +8,6 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
     anzahlMenschen = eventDao.anzahlMenschenImEvent(eventid);
 
     datenDieZurueckGehen = eventDao.loadById(id);
-    
-
     res.send(datenDieZurueckGehen);
     res.send(anzahlMenschen);
 

@@ -66,14 +66,13 @@ router.post('/person/login', async (req, res) => {
 //um die Daten vom Server fürs Profil an Client zu senden
 router.get("/profil", verifyToken, (req,res)=>{
     const personDao = new PersonDao(req.app.locals.dbConnection);
-
-    var username = req.user.bne;
+    const username = req.user.bne;
     try{
-        var daten = personDao.personAnzeigen(username);
+        const daten = personDao.personAnzeigen(username);
         res.send(daten);
     }
     catch(ex){
-        response.status(400).send({"fehler": true, "nachricht": ex.message})
+        res.status(400).send({"fehler": true, "nachricht": ex.message})
     }
     
 

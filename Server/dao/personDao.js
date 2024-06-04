@@ -19,9 +19,14 @@ class PersonDao{
     }
 
     personAnzeigen(benutzername){
-        var daten = this.dbconnection.get("SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?", [benutzername]);
-        console.log("bishi")
+        try{
+        const daten = this.dbconnection.get("SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?", [benutzername]);
         return daten;
+        }
+        catch (error) {
+            console.error("FEhler");
+        }
+    
     }
 
     comparePassword(bn, psw) {

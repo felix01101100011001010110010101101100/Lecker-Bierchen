@@ -95,7 +95,9 @@ app.get('/scripts/navigation.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/navigation.js'));
 });
 
-
+app.get('/event_uebersicht.html', verifyToken, (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/html/events_uebersicht.html'));
+});
 
 
 
