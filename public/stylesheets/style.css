@@ -28,6 +28,8 @@ nav{
     border-radius: 100px;
 }
 
+
+
 #buttons,#gruppe_erstellen{
     background-color: #e48013;
     color: #D9D9E9;
@@ -76,8 +78,49 @@ nav{
     position: fixed;
     margin-top: 0.1%;
     margin-left: 0.3%;
+    cursor: pointer;
     /*Hintergrund Boxen vergrößern*/
 }
+
+#home::after,#profil::after,#gruppen::after,#event_vorschau::after { /*ID´s aus Gruppen mitenthalten*/
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #47475B;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+#home::after,#profil::after,#gruppen::after,#event_vorschau::after {
+    top: 100%;  /* Position unter dem Button */
+}
+
+#home:after{
+    content: "Home";
+}
+
+#profil:after{
+    content: "Profil";
+}
+
+#gruppen:after{
+    content: "Deine Gruppen";
+}
+
+#event_vorschau:after{
+    content: "Deine Events"
+}
+
+#home:hover::after,#profil:hover::after,#gruppen:hover::after,#event_vorschau:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 
 #profil,#home,#event_vorschau{
     padding:19px;
