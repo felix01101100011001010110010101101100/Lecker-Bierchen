@@ -18,6 +18,12 @@ class PersonDao{
         });
     }
 
+    personAnzeigen(benutzername){
+        var daten = this.dbconnection.get("SELECT * FROM Person JOIN Landkreis ON Person.landkreisid = Landkreis.id WHERE benutzername=?", [benutzername]);
+        console.log("bishi")
+        return daten;
+    }
+
     comparePassword(bn, psw) {
         return new Promise((resolve, reject) => {
             this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?", [bn], function(err, row) {
@@ -48,6 +54,34 @@ class PersonDao{
     landkreisAufrufen(landkreisname){
         var ret = this.dbconnection.get("SELECT id FROM Lankreis WHERE name=?", [landkreisname]);
         return ret;
+    }
+
+    loadAll() {
+        const landkreisDao = new LandkreisDao(this._conn);
+        const gruppeDao = new GruppeDao(this._conn);
+        const eventDao = new EventDao(this._conn);
+
+        var sql = 'SELECT * FROM Person';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all(); 
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].fuehrerschein == 0) 
+                result[i].fuehrerschein = false;
+            else 
+                result[i].fuehrerschein = true;
+    
+            result[i].landkreis = landkreisDao.loadById(result[i].landkreisid);
+            delete result[i].landkreisid;
+
+            result[i].gruppen = gruppeDao.loadForPerson(result[i].id);
+            result[i].events = eventDao.loadForPerson(result[i].id);
+        }
+
+        return result;
     }
 
 }

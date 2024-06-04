@@ -23,6 +23,11 @@ router.get('/person/eindeutig', async function(req, res) {
 
 });
 
+router.get('/scripts/profil.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public/scripts/profil.js'));
+});
+
+
 router.post('/person/register', async (req, res) => {
     const {vn, nn, age, bn, psw, lk, führerschein} = req.body;
 
@@ -60,14 +65,15 @@ router.post('/person/login', async (req, res) => {
 
 //um die Daten vom Server fürs Profil an Client zu senden
 router.get("/profil", verifyToken, (req,res)=>{
-    const personDao = new PersonDao(request.app.locals.dbConnection);
+    const personDao = new PersonDao(req.app.locals.dbConnection);
 
+    var username = req.user.bne;
     try{
-        datenDieZurueckGehen = personDao.personenDatenAbrufen();
-        res.json(datenDieZurueckGehen);
+        var daten = personDao.personAnzeigen(username);
+        res.send(daten);
     }
     catch(ex){
-        response.status(400).json({"fehler": true, "nachricht": ex.message})
+        response.status(400).send({"fehler": true, "nachricht": ex.message})
     }
     
 
