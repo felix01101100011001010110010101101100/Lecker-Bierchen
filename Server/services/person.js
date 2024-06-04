@@ -7,21 +7,25 @@ const secretKey = 'geheimesSchluesselwort';
 const tokenValidTime = '1h';
 
 
+router.get('/person/eindeutig', async function(req, res) {
+    const {bn} = req.query;
+    const personDao = new PersonDao(req.app.locals.dbConnection);
+    console.log('Service Person: Client requested one record, benutzername=' + bn);
+    if (await res.status(200).json(personDao.personenDatenAbrufen(bn))) {
+        const exists = true;
+    } else {
+        const exists = false;
+    }
+    return ;
 
+});
 
-
-router.post('/person/register', (req, res) => {
+router.post('/person/register', async (req, res) => {
     const {vn, nn, age, bn, hash, lk, führerschein} = req.body;
     const personDao = new PersonDao(req.app.locals.dbConnection);
-
-    if (personDao.personenDatenAbrufen(bn)) {
-        res.status(400).send("Benutzername bereits vorhanden");
-        console.log('Benutzername bereits vorhanden');
-    } else {
-        console.log(personDao.exists(bn))
-        // Daten in die SQLite-Datenbank einfügen
         personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
-    }
+        res.status(200).json({message: 'Person erfolgreich angelegt'});
+
 });
     
 

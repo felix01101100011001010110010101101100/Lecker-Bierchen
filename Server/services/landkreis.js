@@ -1,18 +1,20 @@
 const express = require('express');
 var router = express.Router();
+const LandkreisDao = require('../dao/landkreisDao.js');
 
-class LandkreisDao{
-    constructor(dbConnection){
-        this.dbconnection = dbConnection;
-    }
+router.get('/gib_landkreis_id', async (req, res) => {
+    const {lk} = req.query;
+    console.log(lk);
+    const landkreisDao = new LandkreisDao(req.app.locals.dbConnection);
+    id = await landkreisDao.landkreisId(lk)
+    console.log('Service Landkreis: Landkreis id is ' + id);
+    res.status(200).json({ id: id });
+    
+});
 
-    landkreisAufrufen(landkreisname){
-        var ret = this.dbconnection.get("SELECT id FROM Lankreis WHERE name=?"[landkreisname]);
-        return ret;
-    }
 
 
-}
+
 
 
 module.exports = router;
