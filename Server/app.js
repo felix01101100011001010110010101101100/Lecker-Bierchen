@@ -99,7 +99,9 @@ app.get('/event_uebersicht.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/events_uebersicht.html'));
 });
 
-
+app.get('/scripts/profil.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/profil.js'));
+});
 
 
 app.locals.dbConnection = dbConnection;

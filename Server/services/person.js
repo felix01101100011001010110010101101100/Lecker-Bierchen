@@ -23,9 +23,9 @@ router.get('/person/eindeutig', async function(req, res) {
 
 });
 
-router.get('/scripts/profil.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../public/scripts/profil.js'));
-});
+//router.get('/scripts/profil.js', (req, res) => {
+  //  res.sendFile(path.join(__dirname, '../../public/scripts/profil.js'));
+//});
 
 
 router.post('/person/register', async (req, res) => {
@@ -64,11 +64,12 @@ router.post('/person/login', async (req, res) => {
 
 
 //um die Daten vom Server fürs Profil an Client zu senden
-router.get("/profil", verifyToken, (req,res)=>{
+router.get("/profil", verifyToken, async (req,res)=>{
     const personDao = new PersonDao(req.app.locals.dbConnection);
     const username = req.user.bne;
+    
     try{
-        const daten = personDao.personAnzeigen(username);
+        const daten = await personDao.personAnzeigen(username);
         res.send(daten);
     }
     catch(ex){

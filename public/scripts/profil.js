@@ -11,6 +11,7 @@ function dynamischProfil(){
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
+            console.log(data);
             $("#vnProfil").val(data.vorname);
             $("#nnProfil").val(data.nachname);
             $("#age").val(data.jahr);
