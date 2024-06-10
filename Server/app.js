@@ -107,6 +107,11 @@ app.get('/scripts/event_uebersicht.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/event_uebersicht.js'));
 });
 
+app.get('/scripts/event_erstellen.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/event_erstellen.js'));
+});
+
+
 
 app.locals.dbConnection = dbConnection;
 module.exports = app;
