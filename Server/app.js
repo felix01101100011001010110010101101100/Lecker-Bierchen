@@ -103,6 +103,10 @@ app.get('/scripts/profil.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/profil.js'));
 });
 
+app.get('/scripts/event_uebersicht.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/event_uebersicht.js'));
+});
+
 
 app.locals.dbConnection = dbConnection;
 module.exports = app;
