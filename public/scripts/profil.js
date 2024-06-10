@@ -1,10 +1,3 @@
-//Funktion, um die Daten im Profil anzugucken
-//window.onload = function() {
-  //  document.querySelector('#profil').addEventListener('click', dynamischProfil);
-    
-//}
-
-
 function dynamischProfil(){
     $.ajax({
         url: "/profil",
