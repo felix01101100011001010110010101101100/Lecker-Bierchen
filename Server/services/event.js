@@ -8,10 +8,10 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
 
     //anzahlMenschen = eventDao.anzahlMenschenImEvent(eventid);
 
-    datenDieZurueckGehen = eventDao.loadById(id);
-    res.send(datenDieZurueckGehen);
+    //datenDieZurueckGehen = eventDao.loadById(id);
+    //res.send(datenDieZurueckGehen);
     //res.send(anzahlMenschen);
-    //res.json({eventname:"Die coolen Hosen", ort: "Albstadt", zeit: "15 Uhr", gruppenname: "Nice", bemerkung: "Alle bringen ihre eigenen Getränke mit."})
+    res.json({eventname:"Die coolen Hosen", ort: "Albstadt", zeit: "15 Uhr", gruppenname: "Nice", bemerkung: "Alle bringen ihre eigenen Getränke mit."})
 
 })
 
