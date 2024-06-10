@@ -3,7 +3,7 @@ function dynamischEventUebersicht(){
     $.ajax({
         url: "/eventUebersicht",
         type: "GET",
-        beforeSend: setAuthentification, //könnte nicht funktionieren, da die Funktion vlt. nicht erreichbar ist
+        beforeSend: setAuthentification,
         success: function(data){
             //hier muss die Berechnung der Fahrersuche hin
 
