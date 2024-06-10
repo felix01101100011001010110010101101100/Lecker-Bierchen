@@ -16,7 +16,10 @@ function dynamischEventUebersicht(){
 
 
 
-        }
+        },
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 
 

@@ -2,6 +2,37 @@
 function aside_anzeigen() {
         let element = document.getElementById("alle_Gruppen");
         element.style.display = "block";
+
+        $.ajax({
+          url:"/gruppe/home/anzeigen",
+          type:"GET",
+          beforeSend: setAuthentification,
+          success: function(data){
+            
+          },
+          
+          error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
+        })
+
+}
+
+function gruppeErstellen(){
+    var daten = $("#gruppe_erstellen").val();
+    $.ajax({
+      url:"/gruppe/erstellen",
+      type:"POST",
+      beforeSend: setAuthentification,
+      data: {daten: daten},
+      success: function(data){
+        console.log("Hier");
+      },
+      error: function(error){
+        console.error("Error: ", error) //vlt. alert
+    },
+
+    })
 }
 
 
