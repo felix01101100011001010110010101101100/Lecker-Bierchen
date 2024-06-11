@@ -19,12 +19,14 @@ function aside_anzeigen() {
 }
 
 function gruppeErstellen(){
-    var daten = $("#gruppe_erstellen").val();
+    var gruppenname = $("#gruppe_erstellen").val();
+    var status = 0;
+    //var key = zufallszahlengenerator
     $.ajax({
       url:"/gruppe/erstellen",
       type:"POST",
       beforeSend: setAuthentification,
-      data: {daten: daten},
+      data: {gruppenname: gruppenname, status : status, key: key},
       success: function(data){
         console.log("Hier");
       },
@@ -37,7 +39,10 @@ function gruppeErstellen(){
 
 
 function keyGruppe(){
-    var daten = $("#")
+    var daten = $("#key_buttons").val();
+    
+
+
 }
 
 
