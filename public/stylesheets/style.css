@@ -30,7 +30,7 @@ nav{
 
 
 
-#buttons,#gruppe_erstellen{
+#buttons,#gruppe_erstellen, #key_buttons{
     background-color: #e48013;
     color: #D9D9E9;
     text-align: center;
@@ -57,11 +57,11 @@ nav{
     width: 20%;
 }
 
-#buttons::placeholder,#gruppe_erstellen::placeholder {
+#buttons::placeholder,#gruppe_erstellen::placeholder, #key_buttons::placeholder {
     color: #D9D9E9;
   }
 
-#buttons:hover, #homeEnter:hover{
+#buttons:hover, #homeEnter:hover, #key_buttons:hover{
     background-color:#c76e0e;
     cursor: pointer;
 }

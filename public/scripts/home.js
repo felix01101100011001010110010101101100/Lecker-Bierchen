@@ -36,6 +36,13 @@ function gruppeErstellen(){
 }
 
 
+function keyGruppe(){
+    var daten = $("#")
+}
+
+
+
+
 // neue gruppe dem aside element hinzufügen
 
 
