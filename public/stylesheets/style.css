@@ -333,16 +333,16 @@ section{
     
 }
 
-#eventname,#eventnameUebersicht{
+#eventname{
     font-size: 25px;
     padding-top:1%;
     padding-left:2.5%;
     word-spacing: 150px;
 }
 
-#eventname{
+/*#eventname{
     margin-left: 15%;
-}
+}*/
 
 #beschreibung{
     margin-left:15%;
@@ -592,6 +592,7 @@ Uebersicht Events*/
 
 #eventnameUebersicht{
     margin-top: 1%;
-    word-spacing: 75px;
+    margin-left: 20px;
 }
+
   
