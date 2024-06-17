@@ -12,7 +12,6 @@ router.get("/gruppe/home/anzeigen", verifyToken, (req, res)=>{
     };
 
     res.json([daten1, daten2]);
-    res.send([daten1, daten2])
 })
 
 module.exports = router;
