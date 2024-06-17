@@ -39,8 +39,17 @@ function gruppeErstellen(){
 
 
 function keyGruppe(){
-    var daten = $("#key_buttons").val();
+    var key = $("#key_buttons").val();
     
+    $.ajax({
+      url:"home/key/raus",
+      type:"GET",
+      beforeSend: setAuthentification,
+      data: {key: key},
+      success: function(data){
+        
+      }
+    })
 
 
 }
