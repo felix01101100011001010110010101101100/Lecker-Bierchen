@@ -8,8 +8,14 @@ function aside_anzeigen() {
           type:"GET",
           beforeSend: setAuthentification,
           success: function(data){
-            var inhalt = "<a href=''"
-            
+            console.log(data);
+            var inhalt = "Deine Gruppen <hr>";
+            data.forEach(function(gruppe){
+
+              inhalt += "<a href='../html/gruppen.html'>" + gruppe.gruppenname + "</a><br>";
+
+            })
+          $("#asideGruppen").html(inhalt)
           },
           
           error: function(error){
