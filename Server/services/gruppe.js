@@ -1,9 +1,24 @@
 const express = require('express');
-const { get } = require('./event');
+const verifyToken = require('./verifyToken');
 var router = express.Router();
 
-//get("/gruppe/aside", verifyToken, (req, res)=>{
+router.get("/gruppe/home/anzeigen", verifyToken, (req, res)=>{
+    let daten1 = {
+        gruppenname: "Niceer Dicer"
+    };
+
+    let daten2 = {
+        gruppenname: "Die coolen Hosen"
+    };
     
-//})
+    let daten3 = {
+        gruppenname: "Die coolen Hosen"
+    }
+    let daten4 = {
+        gruppenname: "Die coolen Hosen"
+    }
+
+    res.json([daten1, daten2,daten3, daten4]);
+})
 
 module.exports = router;

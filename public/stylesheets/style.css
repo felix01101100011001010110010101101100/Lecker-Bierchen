@@ -597,4 +597,8 @@ Uebersicht Events*/
     font-size: 15px;
 }
 
+#eventnameUebersicht td{
+    line-height: 2;
+}
+
   

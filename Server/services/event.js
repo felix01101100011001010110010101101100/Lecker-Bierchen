@@ -13,7 +13,23 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
     //datenDieZurueckGehen = eventDao.loadById(id);
     //res.send(datenDieZurueckGehen);
     //res.send(anzahlMenschen);
-    res.json({eventname:"Die coolen Hosen", ort: "Albstadt", zeit: "15 Uhr", gruppenname: "Nice", bemerkung: "Alle bringen ihre eigenen Getränke mit."})
+    let daten1 = {
+        eventname: "Die coolen Hosen",
+        ort: "Albstadt",
+        zeit: "15 Uhr",
+        gruppenname: "Nice",
+        bemerkung: "Alle bringen ihre eigenen Getränke mit."
+    };
+
+    let daten2 = {
+        eventname: "Event",
+        ort: "Tübingen",
+        zeit: "18 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Habt Spaß!"
+    };
+
+    res.json([daten1, daten2]);
 
 })
 
