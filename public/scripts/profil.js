@@ -20,6 +20,7 @@ function dynamischProfil(){
                 $("#dl").val("Nein")
             }
 
+            
         },
         error: function(error){
             console.error("Error: ", error) //vlt. alert
