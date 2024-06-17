@@ -8,6 +8,7 @@ function aside_anzeigen() {
           type:"GET",
           beforeSend: setAuthentification,
           success: function(data){
+            var inhalt = "<a href=''"
             
           },
           
