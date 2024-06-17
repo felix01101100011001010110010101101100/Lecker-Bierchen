@@ -8,7 +8,7 @@ function dynamischEventUebersicht(){
             //hier muss die Berechnung der Fahrersuche hin
             console.log(data);
 
-            var inhalt = "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td>"+ data.eventname + "</td> <td>"+ data.ort +"</td> <td>"+ data.zeit 
+            var inhalt = "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td>Eventname: "+ data.eventname + "</td> <td>Ort: "+ data.ort +"</td> <td>Zeit: "+ data.zeit 
             +"</td><td> Gruppe: "+ data.gruppenname + "</td><td> Fahrer:</td> <tr><td colspan='4' id='beschreibung'>Beschreibung: "+ 
             data.bemerkung + "</td></tr></table> </section>"
 

@@ -55,6 +55,20 @@ function keyGruppe(){
 }
 
 
+function oeffentlicheGruppe(){
+  $.ajax({
+    url:"home/oeffentlich",
+    type:"GET",
+    beforeSend: setAuthentification,
+    success: function(data){
+      //Alle öffentliche Gruppen anzeigen nach öffentliche Gruppe suchen und den Gruppennamen ausgeben
+      var inhalt = "<option>Öffentliche gruppe suchen</option>" + "<option> " + data.gruppenname + "</option>"
+      $("#buttons").html(inhalt)
+    }
+  })
+}
+
+
 
 
 // neue gruppe dem aside element hinzufügen
