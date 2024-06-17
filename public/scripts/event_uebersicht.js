@@ -9,7 +9,7 @@ function dynamischEventUebersicht(){
             console.log(data);
 
             var inhalt = "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td>"+ data.eventname + "</td> <td>"+ data.ort +"</td> <td>"+ data.zeit 
-            +"</td><td> Gruppe: "+ data.gruppenname + "</td><td> Fahrer:</td> <tr><td id='beschreibung'>Beschreibung: "+ 
+            +"</td><td> Gruppe: "+ data.gruppenname + "</td><td> Fahrer:</td> <tr><td colspan='4' id='beschreibung'>Beschreibung: "+ 
             data.bemerkung + "</td></tr></table> </section>"
 
             $("#uebersichtMain").html(inhalt);
