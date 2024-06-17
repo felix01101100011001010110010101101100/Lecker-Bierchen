@@ -99,6 +99,17 @@ app.get('/event_uebersicht.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/events_uebersicht.html'));
 });
 
+app.get('/scripts/profil.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/profil.js'));
+});
+
+app.get('/scripts/event_uebersicht.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/event_uebersicht.js'));
+});
+
+app.get('/scripts/event_erstellen.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/event_erstellen.js'));
+});
 
 
 

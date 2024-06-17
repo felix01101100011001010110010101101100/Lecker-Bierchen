@@ -1,16 +1,10 @@
-//Funktion, um die Daten im Profil anzugucken
-//window.onload = function() {
-  //  document.querySelector('#profil').addEventListener('click', dynamischProfil);
-    
-//}
-
-
 function dynamischProfil(){
     $.ajax({
         url: "/profil/benutzername",
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
+            console.log(data);
             $("#vnProfil").val(data.vorname);
             $("#nnProfil").val(data.nachname);
             $("#age").val(data.jahr);

@@ -10,6 +10,7 @@
     <script src="home.js"></script>
     <script src="../scripts/navigation.js"></script>
     <script src="../scripts/authentification.js"></script>
+    <script src="../scripts/event_erstellen.js"></script>
 </head>
 <body>
     <header>
@@ -26,21 +27,21 @@
 
     <main id="eventMain">
         <label for="ev" id="labelEv"><b>Eventname</b></label>
-        <input type="text" name="bn" id="bn" required>
+        <input type="text" name="bn" id="eventname" required>
 
         <label for="ort" id="labelEv"><b>Ort</b></label>
-        <input type="text" name="bn" id="bn" required>
+        <input type="text" name="bn" id="ort" required>
 
         <label for="time" id="labelEv"><b>Zeit</b></label>
-        <input type="time" name="bn" id="bn" required>
+        <input type="time" name="bn" id="zeit" required>
 
         <label for="kom" id="labelEv"><b>Bemerkung</b></label>
         <br>
-        <textarea rows="12" cols="40" style="resize: none;" maxlength="200"></textarea>
+        <textarea id="bemerkung" rows="12" cols="40" style="resize: none;" maxlength="200"></textarea>
 
         <hr style="border: 1px solid #B2B2C7;margin-bottom: 15px;">
 
-        <button type="submit" class="erstellen" id="erstellen">Jetzt erstellen</button>
+        <button onclick="eventErstellen()" type="submit" class="erstellen" id="erstellen">Jetzt erstellen</button>
     </main>
     
     <footer>
