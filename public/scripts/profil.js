@@ -1,6 +1,6 @@
 function dynamischProfil(){
     $.ajax({
-        url: "/profil",
+        url: "/profil/benutzername",
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
