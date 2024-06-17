@@ -3,9 +3,11 @@ const verifyToken = require('./verifyToken');
 const EventDao = require('../dao/eventDao.js');
 var router = express.Router();
 
-router.get("/eventUebersicht", verifyToken, (req, res)=>{
-    const eventDao = new EventDao(req.app.locals.dbConnection);
 
+router.get("/eventUebersicht", verifyToken, (req, res)=>{
+    const id = req.id;
+    const eventDao = new EventDao(req.app.locals.dbConnection);
+    
     //anzahlMenschen = eventDao.anzahlMenschenImEvent(eventid);
 
     //datenDieZurueckGehen = eventDao.loadById(id);
@@ -13,6 +15,13 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
     //res.send(anzahlMenschen);
     res.json({eventname:"Die coolen Hosen", ort: "Albstadt", zeit: "15 Uhr", gruppenname: "Nice", bemerkung: "Alle bringen ihre eigenen Getränke mit."})
 
+})
+
+router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
+    const {eventname, ort, zeit, bemerkung} = req.body;
+    const eventDao = new EventDao(req.app.locals.dbConnection);
+    eventDao.eventAnlegen(eventname, ort, zeit, bemerkung);
+    res.status(200).json({message: 'Event erfolgreich angelegt'});
 })
 
 

@@ -57,8 +57,6 @@ router.post('/person/login', async (req, res) => {
     });
 
 
-
-
 //Profil anzeigen
 router.get("/profil", verifyToken, async (req,res)=>{
     const personDao = new PersonDao(req.app.locals.dbConnection);
@@ -72,5 +70,13 @@ router.get("/profil", verifyToken, async (req,res)=>{
         res.status(400).send({"fehler": true, "nachricht": ex.message})
     }
 });
+
+
+router.get("/person/id", verifyToken, async (req, res)=>{
+    const personDao = new PersonDao(req.app.locals.dbConnection);
+    const username = req.user.bne;
+    const id = await personDao.personId(username);
+    res.json(id);
+})
 
 module.exports = router;

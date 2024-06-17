@@ -92,6 +92,19 @@ class PersonDao{
         return result;
     }
 
+    personId(benutzername){
+        return new Promise((resolve, reject)=>{
+            this.dbconnection.get("SELECT id FROM Person WHERE benutzername=?", [benutzername], (err,row)=>{
+                if (err){
+                    console.error("Fehler");
+                    reject("Fehler");
+                }
+                else{
+                    resolve(row);
+                }
+            })}
+        )}
+
 }
 
 module.exports = PersonDao;
