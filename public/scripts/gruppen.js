@@ -20,3 +20,14 @@ function dynamischEventInGruppe(){
     })
 
 }
+
+function eventErstellenButton(){
+    $.ajax({
+        url:"event_erstellen.html",
+        type:"GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $('body').html(data);
+        },
+    })
+}
