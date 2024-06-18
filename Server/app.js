@@ -58,9 +58,6 @@ app.get('/home.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/home.html'));
 });
 
-app.get('/gruppen.html', verifyToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
-});
 
 app.get('/events.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/home.html'));

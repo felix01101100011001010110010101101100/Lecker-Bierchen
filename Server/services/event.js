@@ -65,5 +65,4 @@ router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
     res.status(200).json({message: 'Event erfolgreich angelegt'});
 })
 
-
 module.exports = router;
