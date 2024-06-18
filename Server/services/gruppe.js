@@ -25,12 +25,8 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
 });
 
 
-router.get('/gruppen.html', verifyToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
-});
 
-
-router.get('gruppen/daten', verifyToken, async (req, res) => {
+router.get('/gruppen/daten', verifyToken, async (req, res) => {
     const gruppenid = req.query.gruppenid;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
     const eventListe = await gruppenDao.getEvents(gruppenid);
