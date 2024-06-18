@@ -1,33 +1,4 @@
-//das aside element sichtbar machen
-function aside_anzeigen() {
-        let element = document.getElementById("alle_Gruppen");
-        element.style.display = "block";
 
-        id = sessionStorage.getItem('id');
-
-        $.ajax({
-          url:"/gruppe/home/anzeigen",
-          type:"GET",
-          beforeSend: setAuthentification,
-          data: {id :id},
-          
-          success: function(data){
-           
-            var inhalt = "<p>Deine Gruppen</p> <hr>";
-            data.forEach(function(gruppe){
-
-              inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + ")'>" + gruppe.gruppenname + "</p><br>";
-
-            })
-          $("#asideGruppen").html(inhalt)
-          },
-          
-          error: function(error){
-            console.error("Error: ", error) //vlt. alert
-        },
-        })
-
-}
 
 function gruppeErstellen(){
     var gruppenname = $("#gruppe_erstellen").val();
