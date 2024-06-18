@@ -1,4 +1,4 @@
-const { set } = require("../../Server/app");
+//const { set } = require("../../Server/app");
 
 function get_home_html(){
     $.ajax({
@@ -59,7 +59,7 @@ function einzelneGruppeGetHtml(gruppenid){
         beforeSend: setAuthentification,
         data: {gruppenid},
         success: function(res){
-            
+            let 
         }
     }))
     
