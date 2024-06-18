@@ -1,4 +1,4 @@
-//const { json } = require("express");
+
 
 function get_home_html(){
     $.ajax({
@@ -45,13 +45,13 @@ function get_profil_html(){
 
 }
 
-function einzelneGruppeGetHtml(){
+function einzelneGruppeGetHtml(id){
     $.ajax({
-        url:"/gruppen.html",
+        url:"/gruppe",
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
-            console.log("geladen");
+
         }
     })
 }
