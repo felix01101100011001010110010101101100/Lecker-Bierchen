@@ -60,7 +60,7 @@ function einzelneGruppeGetHtml(gruppenid){
         beforeSend: setAuthentification,
         data: {gruppenid},
         success: function(res){
-            
+            let 
         }
     }))
         
