@@ -54,17 +54,6 @@ function einzelneGruppeGetHtml(gruppenid){
             $('body').html(data);
         },
     })
-    .then ($.ajax({
-        url:"/gruppen/daten",
-        type:"GET",
-        beforeSend: setAuthentification,
-        data: {gruppenid},
-        success: function(res){
-            let 
-        }
-    }))
-        
-    
 }
 
 //das aside element sichtbar machen
