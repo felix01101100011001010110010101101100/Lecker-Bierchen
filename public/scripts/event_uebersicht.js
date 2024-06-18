@@ -2,7 +2,6 @@ function dynamischEventUebersicht(){
     var inhalt = ""
     // id aus dem Session Storage abrufen. Er wird bei der verification mit abgespeichert
     id = sessionStorage.getItem('id');
-    
     $.ajax({
         url: "/eventUebersicht",
         type: "GET",
@@ -10,7 +9,7 @@ function dynamischEventUebersicht(){
         data: {id: id},
         success: function(data){
             //hier muss die Berechnung der Fahrersuche hin
-
+            console.log(data);
             var inhalt = ""
             data.forEach(function(event){
                 inhalt += "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td> <b>Eventname:</b>"+ event.eventname+" </td> <td> <b>Ort:</b> " + event.ort + "</td> <td> <b>Zeit:</b> " + event.zeit 
