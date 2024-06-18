@@ -1,4 +1,4 @@
-
+const { set } = require("../../Server/app");
 
 function get_home_html(){
     $.ajax({
@@ -45,15 +45,24 @@ function get_profil_html(){
 
 }
 
-function einzelneGruppeGetHtml(id){
+function einzelneGruppeGetHtml(gruppenid){
     $.ajax({
-        url:"/gruppe",
+        url:"/gruppen.html",
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
-
-        }
+        },
     })
+    .then ($.ajax({
+        url:"/gruppen/daten",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid},
+        success: function(res){
+            
+        }
+    }))
+    
 }
 
 
