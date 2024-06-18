@@ -45,13 +45,13 @@ function get_profil_html(){
 
 }
 
-function einzelneGruppeGetHtml(id){
+function einzelneGruppeGetHtml(){
     $.ajax({
-        url:"/gruppe",
+        url:"/gruppen.html",
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
-
+            console.log("geladen");
         }
     })
 }
