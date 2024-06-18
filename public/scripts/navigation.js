@@ -51,6 +51,7 @@ function einzelneGruppeGetHtml(gruppenid){
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
+            $('body').html(data);
         },
     })
     /*
