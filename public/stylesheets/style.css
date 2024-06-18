@@ -590,6 +590,7 @@ Uebersicht Events*/
    margin-top: 10%;
    overflow-y: auto;
    overflow-x:hidden;
+   position:relative;
 }
 
 #uebersichtSection{
