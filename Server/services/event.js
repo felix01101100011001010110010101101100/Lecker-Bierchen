@@ -7,7 +7,6 @@ var router = express.Router();
 router.get("/eventUebersicht", verifyToken, async (req, res)=>{
     const id = req.query.id;
     const eventDao = new EventDao(req.app.locals.dbConnection);
-
     datenDieZurueckGehen = await eventDao.loadById(id);
     res.json(datenDieZurueckGehen);
 })
