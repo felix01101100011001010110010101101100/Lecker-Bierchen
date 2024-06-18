@@ -29,7 +29,23 @@ class GruppenDao{
             });
         });
     }
-   
+
+    gruppeBeitreten(personid, gruppenid){
+        this.dbconnection.run("INSERT INTO BeziehungPersonGruppe(personid, gruppenid) VALUES(?,?)",[personid, gruppenid]);
+    }
+
+    getGruppenId(gruppenname){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT id FROM Gruppe WHERE gruppenname=?", [gruppenname], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.id);
+                }
+            });
+        });
+    }
+
 
 }
 module.exports = GruppenDao;
