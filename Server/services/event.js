@@ -10,12 +10,6 @@ router.get("/eventUebersicht", verifyToken, async (req, res)=>{
     datenDieZurueckGehen = await eventDao.loadById(id);
     res.json(datenDieZurueckGehen);
 
-
-
-
-    datenDieZurueckGehen = await eventDao.loadById(id);
-    res.json(datenDieZurueckGehen);
-
 })
 
 router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
