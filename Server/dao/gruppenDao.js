@@ -13,14 +13,16 @@ class GruppenDao{
     alleGruppenDesBenutzers(personid) {
         
         return new Promise((resolve, reject) => {
-            this.dbconnection.all("SELECT Gruppe.gruppenname FROM BeziehungPersonGruppe JOIN Gruppe ON BeziehungPersonGruppe.gruppenid = Gruppe.id WHERE BeziehungPersonGruppe.personid = ?", [personid], (err, rows) => {
-            //this.dbconnection.all("SELECT gruppenname FROM Gruppe", (err, rows) => {
+            this.dbconnection.all("SELECT gruppenname, id FROM BeziehungPersonGruppe JOIN Gruppe ON BeziehungPersonGruppe.gruppenid = Gruppe.id WHERE BeziehungPersonGruppe.personid = ?", [personid], (err, rows) => {
+                
+                //this.dbconnection.all("SELECT gruppenname FROM Gruppe", (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
                     // Transformiert das Ergebnis in das gewünschte Format
                     const formatierteDaten = rows.map(row => {
-                        return { gruppenname: row.gruppenname };
+                        
+                        return { gruppenname: row.gruppenname , id: row.id};
                     });
                     resolve(formatierteDaten);
                 }
