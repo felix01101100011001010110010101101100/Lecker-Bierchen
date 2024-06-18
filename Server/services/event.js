@@ -7,8 +7,50 @@ var router = express.Router();
 router.get("/eventUebersicht", verifyToken, async (req, res)=>{
     const id = req.query.id;
     const eventDao = new EventDao(req.app.locals.dbConnection);
+<<<<<<< HEAD
+    
+    //anzahlMenschen = eventDao.anzahlMenschenImEvent(eventid);
+
+    //datenDieZurueckGehen = eventDao.loadById(id);
+    //res.send(datenDieZurueckGehen);
+    //res.send(anzahlMenschen);
+    let daten1 = {
+        eventname: "Die coolen Hosen",
+        ort: "Albstadt",
+        zeit: "15 Uhr",
+        gruppenname: "Nice",
+        bemerkung: "Alle bringen ihre eigenen Getränke mit."
+    };
+
+    let daten2 = {
+        eventname: "Event",
+        ort: "Tübingen",
+        zeit: "18 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Habt Spaß!"
+    };
+
+    let daten3 = {
+        eventname: "Hallo",
+        ort: "Hechingen",
+        zeit: "19 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Ih Spaß!"
+    };
+
+    let daten4 = {
+        eventname: "Hallo",
+        ort: "Hechingen",
+        zeit: "19 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Ih Spaß!"
+    };
+
+    res.json([daten1, daten2, daten3,daten4]);
+=======
     datenDieZurueckGehen = await eventDao.loadById(id);
     res.json(datenDieZurueckGehen);
+>>>>>>> f385826c9d71f6890791ace25b03244123bf50cd
 
 })
 
