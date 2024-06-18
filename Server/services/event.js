@@ -7,8 +7,7 @@ var router = express.Router();
 router.get("/eventUebersicht", verifyToken, async (req, res)=>{
     const id = req.query.id;
     const eventDao = new EventDao(req.app.locals.dbConnection);
-<<<<<<< HEAD
-    
+
     //anzahlMenschen = eventDao.anzahlMenschenImEvent(eventid);
 
     //datenDieZurueckGehen = eventDao.loadById(id);
@@ -47,10 +46,15 @@ router.get("/eventUebersicht", verifyToken, async (req, res)=>{
     };
 
     res.json([daten1, daten2, daten3,daten4]);
-=======
+
     datenDieZurueckGehen = await eventDao.loadById(id);
     res.json(datenDieZurueckGehen);
->>>>>>> f385826c9d71f6890791ace25b03244123bf50cd
+
+
+
+
+    datenDieZurueckGehen = await eventDao.loadById(id);
+    res.json(datenDieZurueckGehen);
 
 })
 

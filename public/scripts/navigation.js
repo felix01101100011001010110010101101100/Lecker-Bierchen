@@ -1,4 +1,4 @@
-//const { json } = require("express");
+
 
 function get_home_html(){
     $.ajax({

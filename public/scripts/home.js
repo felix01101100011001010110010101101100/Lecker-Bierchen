@@ -16,12 +16,16 @@ function aside_anzeigen() {
             var inhalt = "<p>Deine Gruppen</p> <hr>";
             data.forEach(function(gruppe){
 
-<<<<<<< HEAD
+
               inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + ")'>" + gruppe.gruppenname + "</p><br>";
 
-=======
+              inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + ")'>" + gruppe.gruppenname + "</p><br>";
+        
+
+
+
               inhalt += "<a href='../html/gruppen.html'>" + gruppe.gruppenname+ "</a><br>";
->>>>>>> f385826c9d71f6890791ace25b03244123bf50cd
+
             })
           $("#asideGruppen").html(inhalt)
           },
