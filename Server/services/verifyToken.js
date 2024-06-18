@@ -21,7 +21,6 @@ function verifyToken(req, res, next) {
             } else {
                 // Token ist gültig, fügen Sie den decodierten Benutzer dem Anfrageobjekt hinzu
                 req.user = decoded;
-                console.log(decoded)
                 next();
             }
         });
