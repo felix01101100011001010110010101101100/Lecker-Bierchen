@@ -51,8 +51,10 @@ function einzelneGruppeGetHtml(gruppenid){
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
+            $('body').html(data);
         },
     })
+    /*
     .then ($.ajax({
         url:"/gruppen/daten",
         type:"GET",
@@ -62,6 +64,7 @@ function einzelneGruppeGetHtml(gruppenid){
             let 
         }
     }))
+        */
     
 }
 
