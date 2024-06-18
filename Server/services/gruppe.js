@@ -5,10 +5,9 @@ var router = express.Router();
 
 router.get("/gruppe/home/anzeigen", verifyToken, async (req, res)=>{
     //username wird ja immer in der middleware gesetzt
-    const id = req.id;
+    const id = req.query.id;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection); // Create new instance of GruppenDao
     const gruppenListe = await gruppenDao.alleGruppenDesBenutzers(id);
-    console.log(gruppenListe);
     res.json(gruppenListe); // Senden Liste als JSON-Antwort
 
 })

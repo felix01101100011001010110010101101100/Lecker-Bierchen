@@ -13,8 +13,8 @@ class GruppenDao{
     alleGruppenDesBenutzers(personid) {
         
         return new Promise((resolve, reject) => {
-            //this.dbconnection.all("SELECT Gruppe.gruppenname FROM BeziehungPersonGruppe JOIN Gruppe ON BeziehungPersonGruppe.gruppenid = Gruppe.id WHERE BeziehungPersonGruppe.personid = ?", [personid], (err, rows) => {
-            this.dbconnection.all("SELECT gruppenname FROM Gruppe", (err, rows) => {
+            this.dbconnection.all("SELECT Gruppe.gruppenname FROM BeziehungPersonGruppe JOIN Gruppe ON BeziehungPersonGruppe.gruppenid = Gruppe.id WHERE BeziehungPersonGruppe.personid = ?", [personid], (err, rows) => {
+            //this.dbconnection.all("SELECT gruppenname FROM Gruppe", (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {

@@ -6,7 +6,6 @@ function get_home_html(){
         type: 'GET',
         beforeSend: setAuthentification,
         success: function(data) {
-            console.log('Klappt:');
             $('body').html(data);
         },
         error: function( errorThrown) {
@@ -22,7 +21,6 @@ function get_event_uebersicht_html(){
         type: 'GET',
         beforeSend: setAuthentification,
         success: function(data) {
-            console.log('Klappt:');
             $('body').html(data);
         },
         error: function( errorThrown) {
@@ -37,9 +35,7 @@ function get_profil_html(){
         url: '/profil.html',
         type: 'GET',
         beforeSend: setAuthentification,
-        success: function(data) {
-            console.log('Klappt');
-            $('body').html(data);
+        success: function(data) {            $('body').html(data);
         },
         error: function(errorThrown) {
             console.log('Error:', errorThrown);

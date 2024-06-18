@@ -12,7 +12,7 @@ function aside_anzeigen() {
           data: {id :id},
           
           success: function(data){
-            console.log(data);
+           
             var inhalt = "<p>Deine Gruppen</p> <hr>";
             data.forEach(function(gruppe){
 
