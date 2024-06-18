@@ -24,8 +24,22 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
     res.status(200).json({ message: 'Gruppe erfolgreich angelegt' }); // Send response
 });
 
+
 router.get('/gruppen.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
 });
+
+
+router.get('gruppen/daten', verifyToken, async (req, res) => {
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const eventListe = await gruppenDao.getEvents(gruppenid);
+    console.log(eventListe);	
+    res.json(eventListe);
+
+});
+
+
+
 
 module.exports = router;
