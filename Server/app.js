@@ -62,10 +62,6 @@ app.get('/gruppen.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
 });
 
-app.get('/events.html', verifyToken, (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/html/home.html'));
-});
-
 app.get('/profil.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/profil.html'));
 });
@@ -110,6 +106,11 @@ app.get('/scripts/event_uebersicht.js', (req, res) => {
 app.get('/scripts/event_erstellen.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/event_erstellen.js'));
 });
+
+app.get/('event_erstellen.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/html/event_erstellen.html'));
+});
+
 
 
 
