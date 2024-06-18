@@ -49,6 +49,17 @@ function get_profil_html(){
 
 }
 
+function einzelneGruppeGetHtml(id){
+    $.ajax({
+        url:"/gruppe",
+        type:"GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+
+        }
+    })
+}
+
 
 
 function gruppeAside(){

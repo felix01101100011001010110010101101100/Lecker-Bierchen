@@ -29,7 +29,23 @@ router.get("/eventUebersicht", verifyToken, (req, res)=>{
         bemerkung: "Habt Spaß!"
     };
 
-    res.json([daten1, daten2]);
+    let daten3 = {
+        eventname: "Hallo",
+        ort: "Hechingen",
+        zeit: "19 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Ih Spaß!"
+    };
+
+    let daten4 = {
+        eventname: "Hallo",
+        ort: "Hechingen",
+        zeit: "19 Uhr",
+        gruppenname: "Zuhause",
+        bemerkung: "Ih Spaß!"
+    };
+
+    res.json([daten1, daten2, daten3,daten4]);
 
 })
 
