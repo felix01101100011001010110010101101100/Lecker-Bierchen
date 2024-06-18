@@ -9,7 +9,7 @@ function aside_anzeigen() {
           beforeSend: setAuthentification,
           success: function(data){
             console.log(data);
-            var inhalt = "Deine Gruppen <hr>";
+            var inhalt = "<p>Deine Gruppen</p> <hr>";
             data.forEach(function(gruppe){
 
               inhalt += "<a href='../html/gruppen.html'>" + gruppe.gruppenname + "</a><br>";

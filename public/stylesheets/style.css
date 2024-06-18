@@ -135,6 +135,13 @@ nav{
     color: #D9D9E9;
 }
 
+#asideGruppen a, #asideGruppen p, #asideGruppen hr{
+    text-decoration: none;
+    color: #D9D9E9;
+    text-align: center;
+    margin-left: 20px;
+}
+
 #profil:hover,#gruppen:hover,#home:hover,#event_vorschau:hover{
     background-color: #D9D9E9;
     color:#5F5F73 ;
