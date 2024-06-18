@@ -3,7 +3,7 @@ function eventErstellen(){
     var ort = $("#ort").val();
     var zeit = $("#zeit").val();
     var bemerkung = $("#bemerkung").val();
-
+    
     $.ajax({
         url:"/event/in/gruppe/erstellen",
         type:"POST",

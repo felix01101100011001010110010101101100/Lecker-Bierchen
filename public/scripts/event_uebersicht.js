@@ -1,12 +1,15 @@
 function dynamischEventUebersicht(){
     var inhalt = ""
+    // id aus dem Session Storage abrufen. Er wird bei der verification mit abgespeichert
+    id = sessionStorage.getItem('id');
+    
     $.ajax({
         url: "/eventUebersicht",
         type: "GET",
         beforeSend: setAuthentification,
+        data: {id: id},
         success: function(data){
             //hier muss die Berechnung der Fahrersuche hin
-            console.log(data);
 
             var inhalt = ""
             data.forEach(function(event){
@@ -14,12 +17,11 @@ function dynamischEventUebersicht(){
                 + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> </td> <tr><td colspan='4' id='beschreibung'>Beschreibung: "+ 
                 event.bemerkung + "</td></tr></table> </section>";
             })
+            //Fahrersuche: alle Namen in der Datenbank ausgegeben, die an dem Event teilnehmen (count(*) benutzen, aber wir ruft man 
+            //die auf???)und dann in eine Liste packen und dann
+            //einen Zufallszahlengenerator anwenden und die Person, die an dieser Stelle steht muss fahren
             
-
             $("#uebersichtMain").html(inhalt);
-
-
-
         },
         error: function(error){
             console.error("Error: ", error) //vlt. alert

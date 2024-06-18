@@ -3,10 +3,14 @@ function aside_anzeigen() {
         let element = document.getElementById("alle_Gruppen");
         element.style.display = "block";
 
+        id = sessionStorage.getItem('id');
+
         $.ajax({
           url:"/gruppe/home/anzeigen",
           type:"GET",
           beforeSend: setAuthentification,
+          data: {id :id},
+          
           success: function(data){
             console.log(data);
             var inhalt = "<p>Deine Gruppen</p> <hr>";
@@ -28,17 +32,19 @@ function aside_anzeigen() {
 function gruppeErstellen(){
     var gruppenname = $("#gruppe_erstellen").val();
     var status = 0;
-    //var key = zufallszahlengenerator
+    var key = Math.floor(Math.random() * 10000000000000) + 1;
+
     $.ajax({
       url:"/gruppe/erstellen",
       type:"POST",
       beforeSend: setAuthentification,
       data: {gruppenname: gruppenname, status : status, key: key},
       success: function(data){
-        console.log("Hier");
+        console.log("Gruppe erfolgreich angelegt");
       },
       error: function(error){
-        console.error("Error: ", error) //vlt. alert
+        console.error("Error: ", error) 
+        alert("Gruppe konnte nicht angelegt werden");
     },
 
     })

@@ -1,3 +1,0 @@
-Wir haben die Registrierung, also die Datei register.html dynamisch gemacht.
-Sowie das Profil anzeigen in der Datei profil.html.
-Außerdem noch das Login bei der Datei index.html.
