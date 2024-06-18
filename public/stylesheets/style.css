@@ -588,10 +588,12 @@ Uebersicht Events*/
    width: 78%;
    margin-left: 10%; 
    margin-top: 10%;
+   overflow-y: auto;
+   overflow-x:hidden;
 }
 
 #uebersichtSection{
-    width: 90%;
+    width: 92%;
     height: 25%;
     margin-top: 3.2%;
     border-radius: 25px;
