@@ -34,7 +34,6 @@ router.get('/gruppen/event', verifyToken, async (req, res) => {
     const Gruppenmitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
     console.log(eventListe);	
     res.json(eventListe);
-
 });
 
 
