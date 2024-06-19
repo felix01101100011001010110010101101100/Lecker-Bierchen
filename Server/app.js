@@ -87,6 +87,8 @@ app.get('/scripts/event_erstellen.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/event_erstellen.js'));
 });
 
+app.get('/events_erstellen.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/html/events_erstellen.html'));
 app.get('/event_erstellen.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/events_erstellen.html'));
 });
