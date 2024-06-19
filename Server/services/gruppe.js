@@ -26,10 +26,12 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
 
 
 
-router.get('/gruppen/daten', verifyToken, async (req, res) => {
+router.get('/gruppen/event', verifyToken, async (req, res) => {
     const gruppenid = req.query.gruppenid;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    console.log(gruppenid);
     const eventListe = await gruppenDao.getEvents(gruppenid);
+    const Gruppenmitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
     console.log(eventListe);	
     res.json(eventListe);
 

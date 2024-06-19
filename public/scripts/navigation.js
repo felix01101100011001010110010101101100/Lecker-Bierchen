@@ -35,7 +35,8 @@ function get_profil_html(){
         url: '/profil.html',
         type: 'GET',
         beforeSend: setAuthentification,
-        success: function(data) {            $('body').html(data);
+        success: function(data) {            
+            $('body').html(data);
         },
         error: function(errorThrown) {
             console.log('Error:', errorThrown);
@@ -52,7 +53,9 @@ function einzelneGruppeGetHtml(gruppenid){
         beforeSend: setAuthentification,
         success: function(data){
             $('body').html(data);
-        },
+            dynamischEventInGruppe(gruppenid)
+        }
+    
     })
 }
 

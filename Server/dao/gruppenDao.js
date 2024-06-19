@@ -2,10 +2,6 @@ class GruppenDao{
     constructor(dbConnection){
         this.dbconnection = dbConnection;
     }
-    alleBenutzerEinerGruppe(gruppenid){
-        
-    }
-
     neueGruppe(gruppenname, status, key){
         this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key) VALUES(?,?,?)",[gruppenname, status, key]);
     }
@@ -61,6 +57,18 @@ class GruppenDao{
         });
     }
 
-
+    getGruppenmitglieder(gruppenid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.all("SELECT personid FROM BeziehungPersonGruppe WHERE gruppenid=?", [gruppenid], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                    
+                }
+            });
+        });
+    }
 }
+
 module.exports = GruppenDao;
