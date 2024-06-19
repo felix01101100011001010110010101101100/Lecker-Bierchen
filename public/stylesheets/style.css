@@ -198,11 +198,15 @@ aside{
     font-size: 25px;
     height: 100%;
     border-width: 0cap;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
     overflow-y: auto;
     overflow-x:hidden;
 }
+
+#asideGroup{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 
 #mitglider{
     margin-top: 2%;
