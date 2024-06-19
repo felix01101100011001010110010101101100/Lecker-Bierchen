@@ -185,6 +185,8 @@ li {
     margin-top: 9%;
     border-width: 0cap;
     border-radius: 20px;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
 aside{
@@ -196,7 +198,10 @@ aside{
     font-size: 25px;
     height: 100%;
     border-width: 0cap;
-    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
 #mitglider{
@@ -211,6 +216,8 @@ aside{
     height: 14%;
     border-radius: 10px;
     margin:2%;
+    overflow-y: auto;
+    overflow-x:hidden;
 }
 
 #schluessel{

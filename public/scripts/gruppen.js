@@ -8,8 +8,8 @@ function dynamischEventInGruppe(gruppenid){
         beforeSend: setAuthentification,
         data: {gruppenid: gruppenid},
         success: function(data){
-            inhalt = "<section><i class='fa-solid fa-car fa-5x' id='auto'></i><p id='eventname'><b>" + Name + "</b> <b>" + Ort +"</b> <b>"+Uhrzeit+"</b> </p>"+
-            "<p id='beschreibung'>Beschreibung: "+ Beschreibung+ "</p><p id='fahrername'> "+Mustermann+"</p>"+
+            inhalt = "<section><i class='fa-solid fa-car fa-5x' id='auto'></i><p id='eventname'><b>" + data.eventname + "</b> <b>" + data.ort +"</b> <b>"+data.zeit+"</b> </p>"+
+            "<p id='beschreibung'>Beschreibung: "+ data.bemerkung+ "</p><p id='fahrername'> </p>"+
             "<p><button type='submit' class='erstellen' id='dabei'>Bin dabei!</button> <button type='submit' class='erstellen' id='raus5'>Bin raus!</button></p> </section>"
 
 
