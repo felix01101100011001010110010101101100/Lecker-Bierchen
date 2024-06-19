@@ -22,7 +22,7 @@ function dynamischEventInGruppe(gruppenid){
 
 function eventErstellenButton(){
     $.ajax({
-        url:"event_erstellen.html",
+        url:"/event_erstellen.html",
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
