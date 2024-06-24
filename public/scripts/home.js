@@ -8,7 +8,7 @@ function gruppeErstellen(){
       url:"/gruppe/erstellen",
       type:"POST",
       beforeSend: setAuthentification,
-      data: {gruppenname: gruppenname, status : status, key: key, id : sessionStorage.getItem('id')},
+      data: {gruppenname: gruppenname, status : status, key: key, id : sessionStorage.getItem('id'), administator: 1},
       success: function(data){
         console.log("Gruppe erfolgreich angelegt");
       },
@@ -31,7 +31,10 @@ function keyGruppe(){
       data: {key: key},
       success: function(data){
         
-      }
+      },
+      error: function(error){
+        console.error("Error: ", error) //vlt. alert
+    },
     })
 }
 
@@ -46,7 +49,10 @@ function oeffentlicheGruppe(){
       //Alle öffentliche Gruppen anzeigen nach öffentliche Gruppe suchen und den Gruppennamen ausgeben
       var inhalt = "<option>Öffentliche gruppe suchen</option>" + "<option> " + data.gruppenname + "</option>"
       $("#buttons").html(inhalt)
-    }
+    },
+    error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
   })
 }
 
