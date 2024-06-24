@@ -200,6 +200,7 @@ aside{
     border-width: 0cap;
     overflow-y: auto;
     overflow-x:hidden;
+    border-radius: 20px;
 }
 
 #asideGroup{
