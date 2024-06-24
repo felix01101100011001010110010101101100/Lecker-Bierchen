@@ -56,6 +56,7 @@ function eventErstellenButton(){
 }
 
 function gruppeVerlassen(){
+    console.log("Hier")
     $.ajax({
         url: "gruppe/verlassen",
         type: "DELETE",
