@@ -57,6 +57,7 @@ function einzelneGruppeGetHtml(gruppenid){
             //um für andere gruppenfunktionen die gruppenid zu haben
             sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
             dynamischEventInGruppe(gruppenid)
+            gruppenName(gruppenid)
         }
     
     })
