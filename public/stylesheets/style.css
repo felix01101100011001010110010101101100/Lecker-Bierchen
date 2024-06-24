@@ -268,7 +268,7 @@ aside{
     float: right;
 }
 
-#bnEntfernen:hover{
+#bnEntfernen:hover, #eventEntfernen:hover{
     color: #ff0000;
 }
 
