@@ -23,7 +23,8 @@ function dynamischProfil(){
             
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Ihr Profil konnte leider nicht angezeigt werden")
         },
     })
 }             

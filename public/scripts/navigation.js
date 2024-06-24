@@ -72,7 +72,7 @@ function aside_anzeigen() {
       },
       
       error: function(error){
-        console.error("Error: ", error) //vlt. alert
+        console.error("Error: ", error) 
     },
     })
 
