@@ -190,6 +190,7 @@ li {
 }
 
 aside{
+    position: sticky;
     float: right;
     background-color: #D9D9E9;
     color: #2d2d3b;
@@ -344,18 +345,19 @@ input:checked + .slider:before {
 section{
     float:left;
     background-color: #D9D9E9;
+    color: #47475B;
     margin-top:1.5%;
     margin-left: 4%;
-    height: 40%;
-    width: 55%;
+    height: 8%;
+    width: 45%;
     border-radius: 50px;
-    padding-bottom: 9%;
+    /*padding-bottom: 9%;*/
     margin-bottom: -1.5%;
     
 }
 
 #eventname{
-    font-size: 25px;
+    font-size: 20px;
     padding-top:1%;
     padding-left:2.5%;
     word-spacing: 150px;
@@ -368,6 +370,7 @@ section{
 #beschreibung{
     margin-left:15%;
     margin-right:15%;
+    font-size: 10px;
 }
 
 #hinzufügen{
@@ -385,12 +388,9 @@ section{
     cursor: pointer;
 }
 
-/*#auswahl{
-    accent-color: #e48013;
-    margin-top: 2%;
-    margin-left: 25%;
-    transform: scale(2);
-}*/
+#dabei{
+    margin-left:50%;
+}
 
 #auto{
     background-color: #FFFFFF;

@@ -1,4 +1,4 @@
-function eventDabei(){
+/*function eventDabei(){
     var dabei = $("#dabei").val();
     $.ajax({
         url:"/event/dabei",
@@ -6,4 +6,4 @@ function eventDabei(){
         beforeSend: setAuthentification,
         data: {}
     })
-}
+}*/
