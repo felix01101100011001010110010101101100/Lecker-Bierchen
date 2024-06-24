@@ -9,7 +9,8 @@ function gruppenName(){
             $("body").html(inhalt);
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Der Gruppenname kann leider nicht angezeigt werden")
         },
     })
 }
@@ -33,7 +34,8 @@ function dynamischEventInGruppe(gruppenid){
             
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error)
+            alert("Das Event kann nicht angezeigt werden")
         },
     })
 }
@@ -47,7 +49,8 @@ function eventErstellenButton(){
             $('body').html(data);
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Das Event konnte nicht erstellt werden")
         },
     })
 }
@@ -61,7 +64,8 @@ function gruppeVerlassen(){
             console.log("Gruppe verlassen funktioniert")
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Sie konnten die Gruppe nicht verlassen")
         },
     })
 }

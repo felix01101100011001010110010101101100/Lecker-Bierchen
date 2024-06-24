@@ -21,7 +21,8 @@ function dynamischEventUebersicht(){
             $("#uebersichtMain").html(inhalt);
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Events können nicht angezeigt werden")
         },
     })
 }
@@ -36,7 +37,8 @@ function eventEntfernen(){
             console.log("Event gelöscht")
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
+            alert("Event konnte nicht entfernt werden")
         },
     })
 }

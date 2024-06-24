@@ -13,7 +13,8 @@ function eventErstellen(){
             console.log("funktioniert");
         },
         error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error)
+            alert("Gruppe konnte nicht erstellt werden")
         },
     })
 }

@@ -33,7 +33,8 @@ function keyGruppe(){
         
       },
       error: function(error){
-        console.error("Error: ", error) //vlt. alert
+        console.error("Error: ", error) 
+        alert("Der Key hat leider nicht funktioniert. Versuchen Sie es in ein paar Minuten nochmal oder versuchen Sie es mit einem anderen")
     },
     })
 }
@@ -51,7 +52,7 @@ function oeffentlicheGruppe(){
       $("#buttons").html(inhalt)
     },
     error: function(error){
-            console.error("Error: ", error) //vlt. alert
+            console.error("Error: ", error) 
         },
   })
 }
