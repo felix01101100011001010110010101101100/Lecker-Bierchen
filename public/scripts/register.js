@@ -2,7 +2,6 @@ window.onload = function() {
     document.querySelector('#registerbtn').addEventListener('click', register);
     
 }
-
     function register(){
 
         let vn = document.querySelector('#vn').value;

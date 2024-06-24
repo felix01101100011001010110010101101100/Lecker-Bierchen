@@ -23,6 +23,10 @@ class EventDao{
         this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid) VALUES(?,?,?,?,?)",[eventname, ort, zeit, bemerkung, gruppeid]);
     }
 
+    deleteEvent(eventid){
+        this.dbconnection.run("DELETE FROM Event WHERE id=?", [eventid]);
+    }
+
 }
 
 module.exports = EventDao;
