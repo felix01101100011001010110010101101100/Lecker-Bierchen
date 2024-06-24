@@ -29,7 +29,7 @@ function dynamischEventUebersicht(){
 }
 
 
-function loeschenEvent(){
+function eventEntfernen(){
     $.ajax({
         url:"loeschen/EventUebersicht",
         type:"DELETE",
