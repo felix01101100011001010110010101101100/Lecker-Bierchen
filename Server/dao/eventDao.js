@@ -3,7 +3,7 @@ class EventDao{
         this.dbconnection = dbConnection;
     }
 
-    loadById(id) {
+    loadById(id) {  //alle daten für die übersicht laden
         return new Promise((resolve, reject) => {
             this.dbconnection.all("SELECT * FROM Event INNER JOIN BeziehungPersonEvent ON Event.id = BeziehungPersonEvent.eventid WHERE personid=?", [id], (err, row) => {
                 if (err) {

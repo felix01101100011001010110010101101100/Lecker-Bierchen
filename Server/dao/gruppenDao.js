@@ -69,6 +69,17 @@ class GruppenDao{
             });
         });
     }
+    getGruppenname(gruppenid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT gruppenname FROM Gruppe WHERE id=?", [gruppenid], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
+    }
 }
 
 module.exports = GruppenDao;
