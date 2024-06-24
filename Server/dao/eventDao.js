@@ -31,6 +31,7 @@ class EventDao{
         this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)",[id, eventname]);
     }
 
+    
 }
 
 module.exports = EventDao;

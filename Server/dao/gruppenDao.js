@@ -80,6 +80,10 @@ class GruppenDao{
             });
         });
     }
+
+    gruppeVerlassen(personid, gruppenid){
+        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
+    }
 }
 
 module.exports = GruppenDao;

@@ -56,10 +56,10 @@ function eventErstellenButton(){
 }
 
 function gruppeVerlassen(){
-    console.log("Hier")
     $.ajax({
         url: "gruppe/verlassen",
         type: "DELETE",
+        date: {id: sessionStorage.getItem("id"), gruppenid: sessionStorage.getItem("gruppenid")},
         beforeSend: setAuthentification,
         success: function(data){
             console.log("Gruppe verlassen funktioniert")
