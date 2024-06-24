@@ -2,8 +2,8 @@ class GruppenDao{
     constructor(dbConnection){
         this.dbconnection = dbConnection;
     }
-    neueGruppe(gruppenname, status, key){
-        this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key) VALUES(?,?,?)",[gruppenname, status, key]);
+    neueGruppe(gruppenname, status, key, administrator){
+        this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key, administrator) VALUES(?,?,?,?)",[gruppenname, status, key, administrator]);
     }
 
     alleGruppenDesBenutzers(personid) {
