@@ -11,6 +11,7 @@ function dynamischEventUebersicht(){
             //hier muss die Berechnung der Fahrersuche hin
             var inhalt = ""
             data.forEach(function(event){
+                console.log(event);
                 $.ajax({
                     url: "/getGruppename",
                     type: "GET",
