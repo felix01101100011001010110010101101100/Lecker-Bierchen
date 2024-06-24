@@ -18,15 +18,3 @@ function eventErstellen(){
     })
 }
 
-function eventDabei(){
-    $.ajax({
-        url:"/event/dabei",
-        type:"POST",
-        beforeSend: setAuthentification,
-        data: {}
-    })
-}
-
-function eventRaus(){
-
-}
