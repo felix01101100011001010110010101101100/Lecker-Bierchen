@@ -44,6 +44,7 @@ router.get('/gruppen/event', verifyToken, async (req, res) => {
 
 router.delete('/gruppe/verlassen', verifyToken, async (req, res) => {
     const { id, gruppenid } = req.body;
+    console.log(req.body);
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
     gruppenDao.gruppeVerlassen(id, gruppenid);
     res.status(200).json({ message: 'Gruppe erfolgreich verlassen' });

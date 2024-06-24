@@ -82,6 +82,7 @@ class GruppenDao{
     }
 
     gruppeVerlassen(personid, gruppenid){
+        console.log(personid, gruppenid);
         this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
     }
 }
