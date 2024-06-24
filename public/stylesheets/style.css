@@ -177,6 +177,7 @@ li {
 
 /*Gruppen*/
 #gruppenseiteMain{
+    /*flex: 1;*/
     background-color:#47475b;
     margin:auto;
     position: fixed;
@@ -352,7 +353,7 @@ section{
     width: 45%;
     border-radius: 50px;
     /*padding-bottom: 9%;*/
-    margin-bottom: -1.5%;
+    margin-bottom: 1.5%;
     
 }
 
@@ -370,7 +371,7 @@ section{
 #beschreibung{
     margin-left:15%;
     margin-right:15%;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 #hinzufügen{
