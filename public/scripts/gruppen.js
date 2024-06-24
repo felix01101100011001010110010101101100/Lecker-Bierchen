@@ -8,6 +8,9 @@ function gruppenName(){
             inhalt = data.gruppennname;
             $("body").html(inhalt);
         },
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 }
 
@@ -29,7 +32,9 @@ function dynamischEventInGruppe(gruppenid){
             })
             
         },
-
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 }
 
@@ -41,6 +46,9 @@ function eventErstellenButton(){
         success: function(data){
             $('body').html(data);
         },
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 }
 
@@ -51,6 +59,9 @@ function gruppeVerlassen(){
         beforeSend: setAuthentification,
         success: function(data){
             console.log("Gruppe verlassen funktioniert")
-        }
+        },
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 }

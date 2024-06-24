@@ -34,6 +34,9 @@ function eventEntfernen(){
         beforeSend: setAuthentification,
         success:function(data){
             console.log("Event gelöscht")
-        }
+        },
+        error: function(error){
+            console.error("Error: ", error) //vlt. alert
+        },
     })
 }
