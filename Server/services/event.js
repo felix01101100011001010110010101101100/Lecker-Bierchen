@@ -21,8 +21,5 @@ router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
 })
 
 
-router.get("/gruppen/event", verifyToken, (req,res)=>{
-    res.send({eventname: Holly, ort: Rottweil, zeit: 16, bemerkung: Gut})
-})
 
 module.exports = router;
