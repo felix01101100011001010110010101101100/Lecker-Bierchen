@@ -46,23 +46,6 @@ function get_profil_html(){
 
 }
 
-function einzelneGruppeGetHtml(gruppenid){
-
-    $.ajax({
-        url:"/gruppen.html",
-        type:"GET",
-        beforeSend: setAuthentification,
-        success: function(data){
-            $('body').html(data);
-            //um für andere gruppenfunktionen die gruppenid zu haben
-            sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
-            dynamischEventInGruppe(gruppenid)
-            gruppenName(gruppenid)
-        }
-    
-    })
-}
-
 //das aside element sichtbar machen
 function aside_anzeigen() {
     let element = document.getElementById("alle_Gruppen");
@@ -82,7 +65,7 @@ function aside_anzeigen() {
         data.forEach(function(gruppe){
 
 
-          inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + ")'>" + gruppe.gruppenname + "</p><br>";
+          inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + "," + gruppe.gruppename+ ")'>" + gruppe.gruppenname + "</p><br>";
 
         })
       $("#asideGruppen").html(inhalt)
@@ -94,15 +77,18 @@ function aside_anzeigen() {
     })
 
 }
-
-function gruppeAside(){
+function einzelneGruppeGetHtml(gruppenid, gruppename){
     $.ajax({
-        url:"/gruppe/aside",
+        url:"/gruppen.html",
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
-
+            $('body').html(data);
+            //um für andere gruppenfunktionen die gruppenid zu haben
+            sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
+            dynamischEventInGruppe(gruppenid);
         }
-
+    
     })
 }
+
