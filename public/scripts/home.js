@@ -35,7 +35,8 @@ function keyGruppe(){
     })
 }
 
-
+//kann rausgelöscht werden,  wenn wir keine Zeit mehr haben
+/*
 function oeffentlicheGruppe(){
   $.ajax({
     url:"home/oeffentlich",
@@ -49,3 +50,4 @@ function oeffentlicheGruppe(){
   })
 }
 
+*/
