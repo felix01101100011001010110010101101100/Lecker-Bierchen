@@ -264,7 +264,7 @@ aside{
     font-size: 15px;
 }
 
-#bnEntfernen{
+#bnEntfernen,#eventEntfernen{
     float: right;
 }
 
