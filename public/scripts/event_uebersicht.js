@@ -26,7 +26,16 @@ function dynamischEventUebersicht(){
             console.error("Error: ", error) //vlt. alert
         },
     })
+}
 
 
-
+function loeschenEvent(){
+    $.ajax({
+        url:"loeschen/EventUebersicht",
+        type:"DELETE",
+        beforeSend: setAuthentification,
+        success:function(){
+            console.log("Event gelöscht")
+        }
+    })
 }
