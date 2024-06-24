@@ -1,4 +1,4 @@
-function gruppenName(){  
+/*function gruppenName(){  
     var inhalt = ""
     $.ajax({
         url: "/gruppen/name",
@@ -13,7 +13,7 @@ function gruppenName(){
             alert("Der Gruppenname kann leider nicht angezeigt werden")
         },
     })
-}
+}*/
 
 function dynamischEventInGruppe(gruppenid){
     var inhalt = ""
