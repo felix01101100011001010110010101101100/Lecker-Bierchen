@@ -40,3 +40,14 @@ function eventErstellenButton(){
         },
     })
 }
+
+function gruppeVerlassen(){
+    $.ajax({
+        url:"gruppe/verlassen",
+        type:"DELETE",
+        beforeSend: setAuthentification,
+        success: function(data){
+            
+        }
+    })
+}
