@@ -50,7 +50,7 @@ function gruppeVerlassen(){
         type: "DELETE",
         beforeSend: setAuthentification,
         success: function(data){
-            // Erfolgshandling kann hier hinzugefügt werden
+            console.log("Gruppe verlassen funktioniert")
         }
     })
 }
