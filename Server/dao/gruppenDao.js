@@ -85,6 +85,18 @@ class GruppenDao{
         console.log(personid, gruppenid);
         this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
     }
+
+    getGruppenIdViaKey(key){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT id FROM Gruppe WHERE key=?", [key], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.id);
+                }
+            });
+        });
+    }
 }
 
 module.exports = GruppenDao;
