@@ -8,7 +8,7 @@ function gruppeErstellen(){
       url:"/gruppe/erstellen",
       type:"POST",
       beforeSend: setAuthentification,
-      data: {gruppenname: gruppenname, status : status, key: key, id : sessionStorage.getItem('id')},
+      data: {gruppenname: gruppenname, status : status, key: key, id : sessionStorage.getItem('id'), administator: 1},
       success: function(data){
         console.log("Gruppe erfolgreich angelegt");
       },
