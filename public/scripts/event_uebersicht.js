@@ -34,7 +34,7 @@ function eventEntfernen(){
         url:"loeschen/EventUebersicht",
         type:"DELETE",
         beforeSend: setAuthentification,
-        success:function(){
+        success:function(data){
             console.log("Event gelöscht")
         }
     })
