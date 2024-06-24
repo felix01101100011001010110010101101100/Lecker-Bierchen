@@ -24,7 +24,7 @@ function dynamischEventInGruppe(gruppenid){
             "<p id='beschreibung'>Beschreibung: "+ data.bemerkung+ "</p><p id='fahrername'> </p>"
             "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei()'>Bin dabei!</button></p> </section>"  
             console.log(data)
-            $("main").hmtl(inhalt);
+            $("#events").hmtl(inhalt);
         }
 
     })
