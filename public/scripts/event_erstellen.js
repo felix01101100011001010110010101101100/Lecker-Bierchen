@@ -17,3 +17,11 @@ function eventErstellen(){
         },
     })
 }
+
+function eventDabei(){
+    
+}
+
+function eventRaus(){
+
+}
