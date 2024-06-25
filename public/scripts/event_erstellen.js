@@ -12,6 +12,10 @@ function eventErstellen(){
         data: { eventname, ort, zeit, bemerkung, gruppenid },
         success: function(eventname, ort, zeit, bemerkung, gruppenid){
             console.log("funktioniert");
+            $("#eventname").val("");
+            $("#ort").val("");
+            $("#zeit").val("");
+            $("#bemerkung").val("");
         },
         error: function(error){
             console.error("Error: ", error)

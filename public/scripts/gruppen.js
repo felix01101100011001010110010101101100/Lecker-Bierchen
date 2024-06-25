@@ -73,4 +73,8 @@ function gruppeVerlassen(){
     })
 }
 
+function mitgliederAnzeigen(){
+    
+}
+
 
