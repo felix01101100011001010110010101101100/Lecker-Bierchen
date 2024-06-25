@@ -126,13 +126,19 @@ nav{
     padding:19px;
 }
 #asideGruppen{
+    position: fixed;
+    left: 90%;
+    top: 0%; 
+    z-index: 100;
     margin-top: 4%;
+    height: 9%;
     width:18%;
     font-size: 18px;
     text-align: center;
     padding-right: 2%;
     background-color: #9797bd;
     color: #D9D9E9;
+    transform: translateX(-50%);
 }
 
 #asideGruppen a, #asideGruppen p, #asideGruppen hr{
