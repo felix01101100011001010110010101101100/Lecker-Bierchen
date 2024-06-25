@@ -123,6 +123,18 @@ class GruppenDao{
     deleteGruppe(gruppenid){
         this.dbconnection.run("DELETE FROM Gruppe WHERE id=?", [gruppenid]);
     }
+
+    getKey(gruppenid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT key FROM Gruppe WHERE id=?", [gruppenid], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.key);
+                }
+            });
+        });
+    }
 }
 
 module.exports = GruppenDao;
