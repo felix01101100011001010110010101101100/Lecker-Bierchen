@@ -2,8 +2,18 @@ class GruppenDao{
     constructor(dbConnection){
         this.dbconnection = dbConnection;
     }
-    neueGruppe(gruppenname, status, key, administrator){
-        this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key, administrator) VALUES(?,?,?,?)",[gruppenname, status, key, administrator]);
+    neueGruppe(gruppenname, status, key, administrator) {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key, administrator) VALUES(?,?,?,?)", [gruppenname, status, key, administrator], function(err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    // `this` bezieht sich hier auf das Statement-Objekt, nach dem erstellen wird die ID des neu erstellten 
+                    // objekts gherausgegeben sodss dann eine korrekte zuordnung in der Beziehungstabelle gemacht werden kann
+                    resolve(this.lastID);
+                }
+            });
+        });
     }
 
     alleGruppenDesBenutzers(personid) {
