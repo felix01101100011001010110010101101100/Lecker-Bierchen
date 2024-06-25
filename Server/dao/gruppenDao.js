@@ -119,6 +119,10 @@ class GruppenDao{
             });
         });
     }
+
+    deleteGruppe(gruppenid){
+        this.dbconnection.run("DELETE FROM Gruppe WHERE id=?", [gruppenid]);
+    }
 }
 
 module.exports = GruppenDao;

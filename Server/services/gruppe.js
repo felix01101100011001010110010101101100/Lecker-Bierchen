@@ -61,7 +61,14 @@ router.get('/gruppe/gruppenadmin', verifyToken, async (req, res) => { //hier bit
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
     const gruppenadmin = await gruppenDao.getGruppenadmin(gruppenid);
     res.json(gruppenadmin);
-}
+});
+
+router.post('gruppe/loeschen', verifyToken, async (req, res) => {
+    const gruppenid = req.body.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    gruppenDao.deleteGruppe(gruppenid);
+    res.status(200).json({ message: 'Gruppe erfolgreich gelöscht' });
+});
 
 
 
