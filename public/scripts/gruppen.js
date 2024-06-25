@@ -72,7 +72,20 @@ function gruppeVerlassen(){
             console.error("Error: ", error) 
             alert("Sie konnten die Gruppe nicht verlassen")
         },
+        
     })
+    .then($.ajax({
+        url: "/home.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
+    }))
 }
 
 function mitgliederAnzeigen(){
