@@ -9,7 +9,6 @@ const tokenValidTime = '1h';
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-
 router.get('/person/eindeutig', async function(req, res) {
     const {bn} = req.query;
     const personDao = new PersonDao(req.app.locals.dbConnection);
