@@ -26,12 +26,12 @@ function keyGruppe(){
     var key = $("#key_buttons").val();
     
     $.ajax({
-      url:"home/key/raus",
-      type:"GET",
+      url:"/gruppe/beitreten",
+      type:"POST",
       beforeSend: setAuthentification,
-      data: {key: key},
+      data: {key: key, personid: sessionStorage.getItem('id')},
       success: function(data){
-        
+        console.log("erfolgreich beigetreten")
       },
       error: function(error){
         console.error("Error: ", error) 
