@@ -56,6 +56,13 @@ router.post('/gruppe/beitreten', verifyToken, async (req, res) => {
     res.status(200).json({ message: 'Gruppe erfolgreich beigetreten' });
 });
 
+router.get('/gruppe/gruppenadmin', verifyToken, async (req, res) => { //hier bitte die gruppenid übergeben, die ist im local storage gespeichert
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const gruppenadmin = await gruppenDao.getGruppenadmin(gruppenid);
+    res.json(gruppenadmin);
+}
+
 
 
 module.exports = router;
