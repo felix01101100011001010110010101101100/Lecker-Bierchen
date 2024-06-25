@@ -72,19 +72,33 @@ function gruppeVerlassen(){
             console.error("Error: ", error) 
             alert("Sie konnten die Gruppe nicht verlassen")
         },
+        
     })
+    .then($.ajax({
+        url: "/home.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
+    }))
 }
 
 function mitgliederAnzeigen(){
     inhalt = "";
+    gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     $.ajax({
-        url: "gruppen/mitglieder/:id",
+        url: "gruppen/mitglieder/:gruppenid" + gruppenid,
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" class="fa-solid fa-xmark"></i></p>' +
+                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
                 console.log("Mitglieder anzeigen funktioniert");
             })
@@ -97,5 +111,30 @@ function mitgliederAnzeigen(){
         },
     })
 }
+
+function mitgliederKicken() {
+    var id = sessionStorage.getItem("id");
+    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    var pruefung = 0
+    
+    // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
+    // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
+    $.ajax({
+        url: "gruppe/mitglieder/kicken",
+        type: "DELETE",
+        data: { id: id, gruppenid: gruppenid },
+        beforeSend: setAuthentification,
+        success: function(data) {
+            var admin = data.administator
+            console.log("Mitglied kicken funktioniert");
+
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Sie konnten das Mitglied nicht kicken");
+        }
+    });
+}
+
 
 
