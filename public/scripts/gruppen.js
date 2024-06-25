@@ -27,7 +27,9 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei()'>Bin dabei!</button></p> </section>";  
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei()'>Bin dabei!</button>"+
+                "<button type='submit' class='erstellen' id='remove'> Löschen</button>"+
+                "<button type='submit' class='erstellen' id='fahrer'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
                 $("#events").html(inhalt);
             })
