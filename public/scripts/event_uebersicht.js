@@ -3,10 +3,9 @@ function dynamischEventUebersicht(){
     id = sessionStorage.getItem('id');
     gruppenid = sessionStorage.getItem('gruppenid');
     $.ajax({
-        url: "/eventUebersicht",
+        url: "/eventUebersicht/"+id,
         type: "GET",
         beforeSend: setAuthentification,
-        data: {id: id},
         success: function(data){
             //hier muss die Berechnung der Fahrersuche hin
             var inhalt = ""
