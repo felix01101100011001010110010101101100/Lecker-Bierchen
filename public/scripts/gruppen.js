@@ -115,14 +115,19 @@ function mitgliederAnzeigen(){
 function mitgliederKicken() {
     var id = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    var pruefung = 0
     
+    // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
+    // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
         url: "gruppe/mitglieder/kicken",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
+            var admin = data.administator
             console.log("Mitglied kicken funktioniert");
+
         },
         error: function(error) {
             console.error("Error: ", error);
