@@ -98,4 +98,15 @@ function mitgliederAnzeigen(){
     })
 }
 
+function eventLoeschen(){
+    $.ajax({
+        url:"/",
+        type:"GET",
+        
+    })
+}
+
+function fahrerSuche(){
+
+}
 
