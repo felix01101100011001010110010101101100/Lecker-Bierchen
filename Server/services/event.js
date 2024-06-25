@@ -47,7 +47,8 @@ router.post("event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte ev
     const eventDao = new EventDao(req.app.locals.dbConnection);
     eventDao.fahrerFestlegen(eventid, personid);
     res.status(200).json({message: 'Fahrer erfolgreich festgelegt'});
-})
+});
+
 
 
 

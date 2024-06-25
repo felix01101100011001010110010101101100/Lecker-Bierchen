@@ -71,5 +71,11 @@ router.post('gruppe/loeschen', verifyToken, async (req, res) => {
 });
 
 
+router.get("gruppe/getKey", verifyToken, async (req, res) => {
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const key = await gruppenDao.getKey(gruppenid);
+    res.json(key);
+});
 
 module.exports = router;
