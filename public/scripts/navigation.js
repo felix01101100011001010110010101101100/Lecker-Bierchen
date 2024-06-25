@@ -64,8 +64,8 @@ function aside_anzeigen() {
         var inhalt = "<p>Deine Gruppen</p> <hr>";
         data.forEach(function(gruppe){
 
-
-          inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + "," + gruppe.gruppename+ ")'>" + gruppe.gruppenname + "</p><br>";
+            console.log(gruppe);
+            inhalt += "<p onclick='einzelneGruppeGetHtml(" + gruppe.id + "," + gruppe.gruppename + ")'>" + gruppe.gruppenname + "</p><br>";
 
         })
       $("#asideGruppen").html(inhalt)
@@ -77,8 +77,7 @@ function aside_anzeigen() {
     })
 
 }
-function einzelneGruppeGetHtml(gruppenid, gruppename){
-    var inhalt= ""
+function einzelneGruppeGetHtml(gruppenid,gruppename){
     $.ajax({
         url:"/gruppen.html",
         type:"GET",
@@ -88,10 +87,12 @@ function einzelneGruppeGetHtml(gruppenid, gruppename){
             //um für andere gruppenfunktionen die gruppenid zu haben
             sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
             dynamischEventInGruppe(gruppenid);
-        
-            inhalt = "<p id='gruppenname'>"+ gruppename +"</p>"
-            console.log(gruppename)
-            $("#gruppenname").html(inhalt);
+            console.log(gruppename);
+            $("#gruppenname").html(gruppename);
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
         }
     
     })

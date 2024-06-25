@@ -395,9 +395,10 @@ section{
     cursor: pointer;
 }
 
-#dabei{
-    margin-left:42%;
+#dabei,#remove,#fahrer{
+    margin-left:13.5%;
 }
+
 
 #auto{
     background-color: #FFFFFF;
