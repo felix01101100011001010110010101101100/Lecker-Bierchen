@@ -32,10 +32,9 @@ function dynamischEventUebersicht(){
     })
 }
 
-
 function eventEntfernen(){
     $.ajax({
-        url:"loeschen/EventUebersicht",
+        url:"event/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
         success:function(data){
