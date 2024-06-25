@@ -78,6 +78,7 @@ function aside_anzeigen() {
 
 }
 function einzelneGruppeGetHtml(gruppenid, gruppename){
+    var inhalt= ""
     $.ajax({
         url:"/gruppen.html",
         type:"GET",
@@ -87,6 +88,10 @@ function einzelneGruppeGetHtml(gruppenid, gruppename){
             //um für andere gruppenfunktionen die gruppenid zu haben
             sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
             dynamischEventInGruppe(gruppenid);
+            
+            inhalt = "<p id='gruppenname'>"+ gruppename +"</p>"
+            console.log(gruppename)
+            $("#gruppenname").html(inhalt);
         }
     
     })

@@ -2,8 +2,8 @@ class GruppenDao{
     constructor(dbConnection){
         this.dbconnection = dbConnection;
     }
-    neueGruppe(gruppenname, status, key){
-        this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key) VALUES(?,?,?)",[gruppenname, status, key]);
+    neueGruppe(gruppenname, status, key, administrator){
+        this.dbconnection.run("INSERT INTO Gruppe(gruppenname, status, key, administrator) VALUES(?,?,?,?)",[gruppenname, status, key, administrator]);
     }
 
     alleGruppenDesBenutzers(personid) {
@@ -65,6 +65,34 @@ class GruppenDao{
                 } else {
                     resolve(rows);
                     
+                }
+            });
+        });
+    }
+    getGruppenname(gruppenid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT gruppenname FROM Gruppe WHERE id=?", [gruppenid], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
+    }
+
+    gruppeVerlassen(personid, gruppenid){
+        console.log(personid, gruppenid);
+        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
+    }
+
+    getGruppenIdViaKey(key){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT id FROM Gruppe WHERE key=?", [key], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.id);
                 }
             });
         });

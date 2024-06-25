@@ -348,11 +348,11 @@ section{
     background-color: #D9D9E9;
     color: #47475B;
     margin-top:1.5%;
-    margin-left: 4%;
-    height: 8%;
-    width: 45%;
+    margin-left: 2.5%;
+    height: 10%;
+    width: 55%;
     border-radius: 50px;
-    /*padding-bottom: 9%;*/
+    padding-bottom: 1%;
     margin-bottom: 1.5%;
     
 }
@@ -371,7 +371,7 @@ section{
 #beschreibung{
     margin-left:15%;
     margin-right:15%;
-    font-size: 15px;
+    font-size: 17.5px;
 }
 
 #hinzufügen{
@@ -390,7 +390,7 @@ section{
 }
 
 #dabei{
-    margin-left:50%;
+    margin-left:45%;
 }
 
 #auto{

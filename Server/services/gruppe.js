@@ -16,7 +16,7 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
 
     const { gruppenname, status, key , id} = req.body; // Extract data from request body
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection); // Create new instance of GruppenDao
-    gruppenDao.neueGruppe(gruppenname, status, key);
+    gruppenDao.neueGruppe(gruppenname, status, key, id);
 
     gruppenid = await gruppenDao.getGruppenId(gruppenname);
     gruppenDao.gruppeBeitreten(id, gruppenid);
@@ -24,6 +24,12 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
     res.status(200).json({ message: 'Gruppe erfolgreich angelegt' }); // Send response
 });
 
+router.get('/getGruppename', verifyToken, async (req, res) => {
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const gruppenname = await gruppenDao.getGruppenname(gruppenid);
+    res.json(gruppenname);
+});
 
 
 router.get('/gruppen/event', verifyToken, async (req, res) => {
@@ -36,6 +42,21 @@ router.get('/gruppen/event', verifyToken, async (req, res) => {
     res.json(eventListe);
 });
 
+router.delete('/gruppe/verlassen', verifyToken, async (req, res) => {
+    const { id, gruppenid } = req.body;
+    console.log(req.body);
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    gruppenDao.gruppeVerlassen(id, gruppenid);
+    res.status(200).json({ message: 'Gruppe erfolgreich verlassen' });
+});
+
+router.post('/gruppe/beitreten', verifyToken, async (req, res) => {
+    const { id, key } = req.body;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const gruppenid = await gruppenDao.getIdViaKey(key);
+    gruppenDao.gruppeBeitreten(id, gruppenid);
+    res.status(200).json({ message: 'Gruppe erfolgreich beigetreten' });
+});
 
 
 
