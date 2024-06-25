@@ -63,7 +63,7 @@ router.get('/gruppe/gruppenadmin', verifyToken, async (req, res) => { //hier bit
     res.json(gruppenadmin);
 });
 
-router.post('gruppe/loeschen', verifyToken, async (req, res) => {
+router.delete('gruppe/loeschen', verifyToken, async (req, res) => {
     const gruppenid = req.body.gruppenid;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
     gruppenDao.deleteGruppe(gruppenid);
@@ -77,5 +77,22 @@ router.get("gruppe/getKey", verifyToken, async (req, res) => {
     const key = await gruppenDao.getKey(gruppenid);
     res.json(key);
 });
+
+router.delete("gruppe/mitglied/entfernen", verifyToken, async (req, res) => {
+    const personid = req.body.personid;
+    const gruppenid = req.body.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    gruppenDao.mitgliedEntfernen(personid, gruppenid);
+    res.status(200).json({message: 'Mitglied erfolgreich entfernt'});
+});
+
+router.get("gruppe/Mitglieder", verifyToken, async (req, res) => {
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const Mitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
+    // von jedem mitglied werden id benutzername und alter zurückgegeben
+    res.json(Mitglieder);
+});
+
 
 module.exports = router;
