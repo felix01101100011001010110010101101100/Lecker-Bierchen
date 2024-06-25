@@ -32,5 +32,13 @@ router.post("/event/dabei", verifyToken, (req, res)=>{
     res.status(200).json({message: 'beim Event erfolgreich beigetreten'});
 })
 
+router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte eventid übergeben
+    const eventid = req.query.eventid;
+    const eventDao = new EventDao(req.app.locals.dbConnection);
+    const TeilnehmerIdListe = await eventDao.getTeilnehmer(eventid);
+    res.json(TeilnehmerIdListe);
+})
+
+
 
 module.exports = router;
