@@ -74,7 +74,26 @@ function gruppeVerlassen(){
 }
 
 function mitgliederAnzeigen(){
-    
+    inhalt = "";
+    $.ajax({
+        url: "gruppen/mitglieder/:id",
+        type:"GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            data.forEach(function(event){
+                inhalt += '<div id="benutzernameboxen">' +
+                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" class="fa-solid fa-xmark"></i></p>' +
+                '</div>';
+                console.log("Mitglieder anzeigen funktioniert");
+            })
+            
+            
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Die Mitglieder konnten nicht angezeigt werden")
+        },
+    })
 }
 
 
