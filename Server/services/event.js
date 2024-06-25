@@ -4,8 +4,8 @@ const EventDao = require('../dao/eventDao.js');
 var router = express.Router();
 
 
-router.get("/eventUebersicht", verifyToken, async (req, res)=>{
-    const id = req.query.id;
+router.get("/eventUebersicht/:id", verifyToken, async (req, res)=>{
+    const id = req.params.id;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     datenDieZurueckGehen = await eventDao.loadById(id);
     console.log(datenDieZurueckGehen);
