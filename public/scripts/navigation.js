@@ -89,8 +89,9 @@ function einzelneGruppeGetHtml(gruppenid, gruppename){
             sessionStorage.setItem('gerade_in_gruppen_id', gruppenid);
             dynamischEventInGruppe(gruppenid);
         
-            console.log(gruppename);
-            $("#gruppenname").html(gruppename);
+            inhalt = "<p id='gruppenname'>"+ gruppename +"</p>"
+            console.log(gruppename)
+            $("#gruppenname").html(inhalt);
         }
     
     })

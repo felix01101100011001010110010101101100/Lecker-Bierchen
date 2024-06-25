@@ -50,10 +50,9 @@ router.delete('/gruppe/verlassen', verifyToken, async (req, res) => {
 });
 
 router.post('/gruppe/beitreten', verifyToken, async (req, res) => {
-    const { id, key } = req.body;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    const gruppenid = await gruppenDao.getIdViaKey(key);
-    gruppenDao.gruppeBeitreten(id, gruppenid);
+    const gruppenid = await gruppenDao.getGruppenIdViaKey(req.body.key);
+    gruppenDao.gruppeBeitreten(req.body.personid, gruppenid);
     res.status(200).json({ message: 'Gruppe erfolgreich beigetreten' });
 });
 

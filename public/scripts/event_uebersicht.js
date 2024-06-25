@@ -3,7 +3,7 @@ function dynamischEventUebersicht(){
     id = sessionStorage.getItem('id');
     //gruppenid = sessionStorage.getItem('gruppenid');
     $.ajax({
-        url: "/eventUebersicht/${id}",
+        url: "/eventUebersicht/"+id,
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
@@ -12,12 +12,14 @@ function dynamischEventUebersicht(){
             console.log(data)
             
             data.forEach(function(event){
-                inhalt += "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td> <b>Eventname:</b> ${event.eventname} </td> <td> <b>Ort:</b> " + event.ort + "</td> <td> <b>Zeit:</b> " + event.zeit 
-                + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> </td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td><td></td><td><i id='eventEntfernen' onclick='eventEntfernen("+event.id+")' class='fa-solid fa-xmark'></td> <tr><td colspan='10' id='beschreibung'>Beschreibung: "+ 
-                event.bemerkung + "</td></tr></table> </section>";
-            });
-            $("#uebersichtMain").html(inhalt);
+                console.log(event);
+                
+            inhalt += "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td> <b>Eventname:</b>"+ event.eventname+" </td> <td> <b>Ort:</b> " + event.ort + "</td> <td> <b>Zeit:</b> " + event.zeit 
+                + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> </td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td><td></td><td><i id='eventEntfernen' class='fa-solid fa-xmark'></td> <tr><td colspan='10' id='beschreibung'>Beschreibung: "+ 
+                        event.bemerkung + "</td></tr></table> </section>";
+                    })
             
+
             //Fahrersuche: alle Namen in der Datenbank ausgegeben, die an dem Event teilnehmen (count(*) benutzen, aber wir ruft man 
             //die auf???)und dann in eine Liste packen und dann
             //einen Zufallszahlengenerator anwenden und die Person, die an dieser Stelle steht muss fahren
@@ -44,3 +46,4 @@ function eventEntfernen(){
         },
     })
 }
+
