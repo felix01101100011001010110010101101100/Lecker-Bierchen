@@ -11,6 +11,7 @@ function gruppeErstellen(){
       data: {gruppenname: gruppenname, status : status, key: key, id : sessionStorage.getItem('id'), administator: 1},
       success: function(data){
         console.log("Gruppe erfolgreich angelegt");
+        $("#gruppe_erstellen").val("");
       },
       error: function(error){
         console.error("Error: ", error) 

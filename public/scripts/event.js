@@ -1,9 +1,12 @@
-/*function eventDabei(){
-    var dabei = $("#dabei").val();
+function eventDabei(){
     $.ajax({
         url:"/event/dabei",
         type:"POST",
         beforeSend: setAuthentification,
-        data: {}
+        data: {personid:personid},
+        success:function(){
+            console.log("funktioniert");
+        }
+
     })
-}*/
+}
