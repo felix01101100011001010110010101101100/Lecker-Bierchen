@@ -3,7 +3,7 @@ function dynamischEventUebersicht(){
     id = sessionStorage.getItem('id');
     //gruppenid = sessionStorage.getItem('gruppenid');
     $.ajax({
-        url: "/eventUebersicht/${id}",
+        url: "/eventUebersicht/"+id,
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
@@ -46,3 +46,4 @@ function eventEntfernen(){
         },
     })
 }
+
