@@ -8,6 +8,7 @@ router.get("/eventUebersicht/:id", verifyToken, async (req, res)=>{
     const id = req.params.id;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     datenDieZurueckGehen = await eventDao.loadById(id)
+    
     res.json(datenDieZurueckGehen);
 })
 

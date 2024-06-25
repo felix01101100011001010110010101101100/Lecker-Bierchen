@@ -5,10 +5,12 @@ class EventDao{
 
     loadById(id) {  //alle daten für die übersicht laden
         return new Promise((resolve, reject) => {
-            this.dbconnection.all("SELECT * FROM Event INNER JOIN BeziehungPersonEvent ON Event.id = BeziehungPersonEvent.eventid WHERE personid=?", [id], (err, row) => {
+            this.dbconnection.all("Select eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, row) => {
+
                 if (err) {
                     reject(err);
                 } else {
+                    console.log(row);
                     resolve(row);
                 }
             });

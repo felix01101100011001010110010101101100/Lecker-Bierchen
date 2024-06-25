@@ -16,9 +16,8 @@ router.post('/gruppe/erstellen', verifyToken, async (req, res) => {
 
     const { gruppenname, status, key , id} = req.body; // Extract data from request body
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection); // Create new instance of GruppenDao
-    gruppenDao.neueGruppe(gruppenname, status, key, id);
-
-    gruppenid = await gruppenDao.getGruppenId(gruppenname);
+    gruppenid = await gruppenDao.neueGruppe(gruppenname, status, key, id);
+    
     gruppenDao.gruppeBeitreten(id, gruppenid);
 
     res.status(200).json({ message: 'Gruppe erfolgreich angelegt' }); // Send response
