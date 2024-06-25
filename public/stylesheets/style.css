@@ -278,8 +278,14 @@ aside{
     float: right;
 }
 
-#bnEntfernen:hover, #eventEntfernen:hover{
+#bnEntfernen:hover, #eventEntfernen:hover, #trash:hover{
     color: #ff0000;
+}
+
+#trash{
+    margin-right:1%;
+    margin-left:1%;
+    color: #8F8FA1;
 }
 
 .switch {

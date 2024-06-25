@@ -72,19 +72,33 @@ function gruppeVerlassen(){
             console.error("Error: ", error) 
             alert("Sie konnten die Gruppe nicht verlassen")
         },
+        
     })
+    .then($.ajax({
+        url: "/home.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
+    }))
 }
 
 function mitgliederAnzeigen(){
     inhalt = "";
+    gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     $.ajax({
-        url: "gruppen/mitglieder/:id",
+        url: "gruppen/mitglieder/:gruppenid" + gruppenid,
         type:"GET",
         beforeSend: setAuthentification,
         success: function(data){
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" class="fa-solid fa-xmark"></i></p>' +
+                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
                 console.log("Mitglieder anzeigen funktioniert");
             })
@@ -98,60 +112,29 @@ function mitgliederAnzeigen(){
     })
 }
 
-function eventLoeschen(){
-    
-    
-
-}
-
-function fahrerSuche(){
+function mitgliederKicken() {
+    var id = sessionStorage.getItem("id");
+    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     var pruefung = 0
-    var listeTeilnehmer = []
-    var fahrer = ""
-    $.ajax({
-        url:"/gruppe/gruppenadmin",
-        type:"GET",
-        beforeSend: setAuthentification,
-        success: function(data){
-            var admin = data.administrator
-            if (sessionStorage.getItem('id') === admin){
-                pruefung = 1 
-            }
-            else{
-                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
-            }
-        },
-        error: function(error){
-            console.error("Error: ", error)
-            alert("Event konnte nicht gelöscht werden")
-        },
-        
-    })
     
-    .then(function(data1){
-        $.ajax({
-            url:"/event/TeilnehmerIdListe",
-            type:"GET",
-            beforeSend: setAuthentification,
-            success: function(data){
-                if (pruefung == 1){
-                    listeTeilnehmer.push(data)
-                    zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
-                    fahrer = listeTeilnehmer[zufallszahl]
-                }
-            }
-        })
-    })
-    .then(function(data2){
-        $.ajax({
-            url:"event/fahrerfestlegen",
-            type:"POST",
-            beforeSend: setAuthentification,
-            data: {fahrer: fahrer},
-            success: function(data){
-                console.log("fahrer hinzu")
-            }
-        })
-    })  
+    // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
+    // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
+    $.ajax({
+        url: "gruppe/mitglieder/kicken",
+        type: "DELETE",
+        data: { id: id, gruppenid: gruppenid },
+        beforeSend: setAuthentification,
+        success: function(data) {
+            var admin = data.administator
+            console.log("Mitglied kicken funktioniert");
+
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Sie konnten das Mitglied nicht kicken");
+        }
+    });
 }
+
+
 
