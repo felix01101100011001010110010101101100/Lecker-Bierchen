@@ -33,6 +33,18 @@ class EventDao{
         this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)",[id, eventname]);
     }
 
+    getTeilnehmer(eventid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.all("SELECT personid FROM BeziehungPersonEvent WHERE eventid=?", [eventid], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    }
+
     
 }
 
