@@ -56,6 +56,20 @@ router.post('/gruppe/beitreten', verifyToken, async (req, res) => {
     res.status(200).json({ message: 'Gruppe erfolgreich beigetreten' });
 });
 
+router.get('/gruppe/gruppenadmin', verifyToken, async (req, res) => { //hier bitte die gruppenid übergeben, die ist im local storage gespeichert
+    const gruppenid = req.query.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    const gruppenadmin = await gruppenDao.getGruppenadmin(gruppenid);
+    res.json(gruppenadmin);
+});
+
+router.post('gruppe/loeschen', verifyToken, async (req, res) => {
+    const gruppenid = req.body.gruppenid;
+    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+    gruppenDao.deleteGruppe(gruppenid);
+    res.status(200).json({ message: 'Gruppe erfolgreich gelöscht' });
+});
+
 
 
 module.exports = router;

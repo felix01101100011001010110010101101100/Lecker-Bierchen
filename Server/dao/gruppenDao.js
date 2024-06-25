@@ -107,6 +107,22 @@ class GruppenDao{
             });
         });
     }
+
+    getGruppenadmin(gruppenid){
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT administrator FROM Gruppe WHERE id=?", [gruppenid], (err, row) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(row.administrator);
+                }
+            });
+        });
+    }
+
+    deleteGruppe(gruppenid){
+        this.dbconnection.run("DELETE FROM Gruppe WHERE id=?", [gruppenid]);
+    }
 }
 
 module.exports = GruppenDao;
