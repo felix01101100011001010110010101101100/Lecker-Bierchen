@@ -188,3 +188,20 @@ function fahrerSuche(){
     })  
 }
 
+function keyAnzeigen(){
+    $.ajax({
+        url:"gruppe/getKey",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gruppenid')},
+        success: function(data){
+            console.log(data)
+            $("#schluessel").val(data.key)
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Der Schlüssel konnte nicht angezeigt werden!");
+        }
+    })
+}
+
