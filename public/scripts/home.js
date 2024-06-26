@@ -32,6 +32,7 @@ function keyGruppe(){
       data: {key: key, personid: sessionStorage.getItem('id')},
       success: function(data){
         console.log("erfolgreich beigetreten")
+        $("#key_buttons").val("");
       },
       error: function(error){
         console.error("Error: ", error) 
