@@ -145,7 +145,9 @@ function fahrerSuche(){
         url:"/gruppe/gruppenadmin",
         type:"GET",
         beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppe_id')},
         success: function(data){
+            console.log(data)
             var admin = data.administrator
             if (sessionStorage.getItem('id') === admin){
                 pruefung = 1 
@@ -156,7 +158,7 @@ function fahrerSuche(){
         },
         error: function(error){
             console.error("Error: ", error)
-            alert("Event konnte nicht gelöscht werden")
+            alert("Keine Fahrersuche möglich")
         },
         
     })
@@ -193,7 +195,7 @@ function keyAnzeigen(){
         url:"gruppe/getKey",
         type:"GET",
         beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gruppenid')},
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppe_id')},
         success: function(data){
             console.log(data)
             $("#schluessel").val(data.key)
