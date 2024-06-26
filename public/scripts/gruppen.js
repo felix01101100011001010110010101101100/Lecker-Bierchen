@@ -27,9 +27,9 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' onclick='eventDabei()'>Bin dabei!</button>"+
-                "<button type='submit' class='erstellen' id='remove'> Löschen</button>"+
-                "<button type='submit' class='erstellen' id='fahrer'>Fahrer suchen!</button></p> </section>";  
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei()'>Bin dabei!</button>"+
+                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen()'> Löschen</button>"+
+                "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche()'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
                 $("#events").html(inhalt);
             })
@@ -137,4 +137,54 @@ function mitgliederKicken() {
 }
 
 
+function fahrerSuche(){
+    var pruefung = 0
+    var listeTeilnehmer = []
+    var fahrer = ""
+    $.ajax({
+        url:"/gruppe/gruppenadmin",
+        type:"GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            var admin = data.administrator
+            if (sessionStorage.getItem('id') === admin){
+                pruefung = 1 
+            }
+            else{
+                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
+            }
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Event konnte nicht gelöscht werden")
+        },
+        
+    })
+    
+    .then(function(data1){
+        $.ajax({
+            url:"/event/TeilnehmerIdListe",
+            type:"GET",
+            beforeSend: setAuthentification,
+            success: function(data){
+                if (pruefung == 1){
+                    listeTeilnehmer.push(data)
+                    zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
+                    fahrer = listeTeilnehmer[zufallszahl]
+                }
+            }
+        })
+    })
+    .then(function(data2){
+        $.ajax({
+            url:"event/fahrerfestlegen",
+            type:"POST",
+            beforeSend: setAuthentification,
+            data: {fahrer: fahrer},
+            success: function(data){
+                console.log("fahrer hinzu")
+            }
+        })
+    })  
+}
 

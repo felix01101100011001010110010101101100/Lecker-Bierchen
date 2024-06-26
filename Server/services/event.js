@@ -15,6 +15,7 @@ router.get("/eventUebersicht/:id", verifyToken, async (req, res)=>{
 router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
     const {eventname, ort, zeit, bemerkung, gruppenid} = req.body;
     const eventDao = new EventDao(req.app.locals.dbConnection);
+    console.log(eventname, ort, zeit, bemerkung, gruppenid);
     eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid);
     res.status(200).json({message: 'Event erfolgreich angelegt'});
 })

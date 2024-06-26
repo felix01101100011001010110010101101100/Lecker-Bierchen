@@ -11,6 +11,7 @@ function dynamischEventUebersicht(){
             var inhalt = ""
             console.log(data)
             
+            
             data.forEach(function(event){
                 console.log(event);
                 
