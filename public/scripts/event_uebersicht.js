@@ -14,7 +14,7 @@ function dynamischEventUebersicht(){
                 console.log(event);
                 
                 inhalt += "<section id='uebersichtSection'><table id='eventnameUebersicht'><tr><td> <b>Eventname:</b>"+ event.eventname+" </td> <td> <b>Ort:</b> " + event.ort + "</td> <td> <b>Zeit:</b> " + event.zeit 
-                + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> "+event.fahrer+"</td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td><td></td><td><i id='eventEntfernen' class='fa-solid fa-xmark'></td> <tr><td colspan='10' id='beschreibung'>Beschreibung: "+ 
+                + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> "+event.fahrer+"</td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td><td></td><td><i id='eventEntfernen' onclick='eventEntfernen("+event.eventid+")' class='fa-solid fa-xmark'></td> <tr><td colspan='10' id='beschreibung'>Beschreibung: "+ 
                 event.bemerkung + "</td></tr></table> </section>";
             })
             $("#uebersichtMain").html(inhalt)
@@ -26,11 +26,12 @@ function dynamischEventUebersicht(){
     })
 }
 
-function eventEntfernen(){
+function eventEntfernen(eventid){
     $.ajax({
-        url:"event/loeschen",
+        url:"/event/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
+        data: {eventid:eventid},
         success:function(data){
             console.log("Event gelöscht")
         },
@@ -39,5 +40,17 @@ function eventEntfernen(){
             alert("Event konnte nicht entfernt werden")
         },
     })
+    .then($.ajax({
+        url: "/event_uebersicht.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
+    }))
 }
 
