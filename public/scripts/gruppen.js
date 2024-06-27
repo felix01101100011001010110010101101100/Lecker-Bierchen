@@ -89,8 +89,8 @@ function gruppeVerlassen(){
 }
 
 function mitgliederAnzeigen(){
-    inhalt = "";
-    gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    var inhalt = "<p id='mitglieder'>Mitglieder<i id='schluessel' onclick='keyAnzeigen()' class='fa-solid fa-key'></i><i class='fa-solid fa-trash' onclick='gruppeLoeschen()' id='trash'></i> <i class='fa-solid fa-person-walking-arrow-right' onclick='gruppeVerlassen()' id='leave'></i></p>"
+    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     console.log("hier"+gruppenid); 
     $.ajax({
         url: "/gruppe/mitglieder",
@@ -101,13 +101,13 @@ function mitgliederAnzeigen(){
             console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername"> Benutzername:'+ event.benutzername +' <br> Alter:'+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
-                '</div>';
+                '<p id="benutzername"> Benutzername:'+ event.benutzername +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i> <br> Alter:'+ event.jahr +
+                '</p></div>';
                 
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            $("#Mitglieder").html(inhalt);
+            $("#asideGroup").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
