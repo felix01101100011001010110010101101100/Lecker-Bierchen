@@ -212,7 +212,7 @@ function keyAnzeigen(){
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
             console.log(data)
-            $("#schluessel").val(data)
+            alert(data)
         },
         error: function(error) {
             console.error("Error: ", error);
