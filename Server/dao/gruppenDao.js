@@ -69,7 +69,7 @@ class GruppenDao{
 
     getGruppenmitglieder(gruppenid){
         return new Promise((resolve, reject) => {
-            this.dbconnection.all("SELECT Person.id, Person.jahr, Person.benutzername FROM Person INNER JOIN BeziehungPersonGruppe ON BeziehungPersonGruppe.personid = Person.id WHERE gruppenid=?", [gruppenid], (err, rows) => {
+            this.dbconnection.all("SELECT id, jahr, benutzername FROM Person INNER JOIN BeziehungPersonGruppe ON BeziehungPersonGruppe.personid = Person.id WHERE gruppenid=?", [gruppenid], (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {

@@ -10,8 +10,6 @@ function dynamischEventUebersicht(){
             //hier muss die Berechnung der Fahrersuche hin
             var inhalt = ""
             console.log(data)
-            
-            
             data.forEach(function(event){
                 console.log(event);
                 
@@ -20,11 +18,6 @@ function dynamischEventUebersicht(){
                 event.bemerkung + "</td></tr></table> </section>";
             })
             $("#uebersichtMain").html(inhalt)
-            
-
-            //Fahrersuche: alle Namen in der Datenbank ausgegeben, die an dem Event teilnehmen (count(*) benutzen, aber wir ruft man 
-            //die auf???)und dann in eine Liste packen und dann
-            //einen Zufallszahlengenerator anwenden und die Person, die an dieser Stelle steht muss fahren
         },
         error: function(error){
             console.error("Error: ", error) 

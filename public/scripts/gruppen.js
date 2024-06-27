@@ -91,19 +91,23 @@ function gruppeVerlassen(){
 function mitgliederAnzeigen(){
     inhalt = "";
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    console.log(gruppenid); 
     $.ajax({
-        url: "gruppen/mitglieder/:gruppenid" + gruppenid,
+        url: "gruppe/mitglieder",
         type:"GET",
         beforeSend: setAuthentification,
+        data:{gruppenid: gruppenid},
         success: function(data){
+            console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
                 '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
+                
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            
+            $("#asideGroup").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
@@ -120,13 +124,13 @@ function mitgliederKicken() {
     // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
     // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
-        url: "gruppe/mitglieder/kicken",
+        url: "gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
             var admin = data.administator
-            console.log("Mitglied kicken funktioniert");
+            console.log("Mitglied entfernen funktioniert");
 
         },
         error: function(error) {
@@ -141,13 +145,15 @@ function fahrerSuche(){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
+    
     $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
         beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            var admin = data.administrator
-            if (sessionStorage.getItem('id') === admin){
+            console.log(data)
+            if (sessionStorage.getItem('id') == data){
                 pruefung = 1 
             }
             else{
@@ -156,7 +162,7 @@ function fahrerSuche(){
         },
         error: function(error){
             console.error("Error: ", error)
-            alert("Event konnte nicht gelöscht werden")
+            alert("Keine Fahrersuche möglich")
         },
         
     })
@@ -168,9 +174,11 @@ function fahrerSuche(){
             beforeSend: setAuthentification,
             success: function(data){
                 if (pruefung == 1){
+                    console.log("hier")
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
+                    console.log()
                 }
             }
         })
@@ -180,11 +188,28 @@ function fahrerSuche(){
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            data: {fahrer: fahrer},
+            //data: {fahrer: fahrer, eventid: , personenid: sessionStorage.getItem('id')},
             success: function(data){
                 console.log("fahrer hinzu")
             }
         })
     })  
+}
+
+function keyAnzeigen(){
+    $.ajax({
+        url:"gruppe/getKey",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            console.log(data)
+            $("#schluessel").val(data)
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Der Schlüssel konnte nicht angezeigt werden!");
+        }
+    })
 }
 

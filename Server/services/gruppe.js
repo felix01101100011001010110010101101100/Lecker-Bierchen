@@ -102,7 +102,7 @@ router.delete("gruppe/mitglied/entfernen", verifyToken, async (req, res) => {
     res.status(200).json({message: 'Mitglied erfolgreich entfernt'});
 });
 
-router.get("gruppe/Mitglieder", verifyToken, async (req, res) => {
+router.get("gruppe/mitglieder", verifyToken, async (req, res) => {
     const gruppenid = req.query.gruppenid;
     const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
     const Mitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
