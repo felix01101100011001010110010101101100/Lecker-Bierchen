@@ -28,11 +28,12 @@ class EventDao{
         });
     }
 
-    eventAnlegen(eventname, ort, zeit, bemerkung, gruppeid){
+    eventAnlegen(eventname, ort, zeit, bemerkung, gruppeid) {
         return new Promise((resolve, reject) => {
             this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid) VALUES(?,?,?,?,?)", [eventname, ort, zeit, bemerkung, gruppeid], function(error) {
                 if (error) {
                     console.error("Error in eventAnlegen:", error);
+                    reject(error);
                 } else {
                     resolve(this.lastID);
                 }
@@ -55,6 +56,7 @@ class EventDao{
                 console.error("Error in dabei:", error);
             }
         });
+        console.log("Person ist dabei")
     }
 
     getTeilnehmer(eventid){
