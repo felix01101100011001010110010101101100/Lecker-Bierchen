@@ -243,7 +243,7 @@ function fahrerSuche(eventid){
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            data: {fahrer: fahrer, eventid: eventid, personenid: sessionStorage.getItem('id')},
+            data: {fahrer: fahrer, eventid: eventid, personid: sessionStorage.getItem('id')},
             success: function(data){
                 console.log("fahrer hinzu")
             }
