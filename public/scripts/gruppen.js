@@ -25,7 +25,6 @@ function dynamischEventInGruppe(gruppenid){
         data: {gruppenid: gruppenid},
         success: function(data){
             data.forEach(function(event){
-                console.log(event.eventid)
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
                 "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventName)'>Bin dabei!</button>"+
@@ -102,13 +101,13 @@ function mitgliederAnzeigen(){
             console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
+                '<p id="benutzername"> Benutzername:'+ event.benutzername +' <br> Alter:'+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
                 
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            $("#asideGroup").html(inhalt);
+            $("#Mitglieder").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
@@ -169,18 +168,21 @@ function fahrerSuche(eventid){
     })
     
     .then(function(data1){
+        console.log(eventid)
         $.ajax({
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
+                console.log(data)
                 if (pruefung == 1){
                     console.log("hier")
+                    
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    console.log(fahrer)
+                    //console.log(fahrer)
                 }
             },
             error: function(error){

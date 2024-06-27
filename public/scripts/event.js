@@ -28,12 +28,17 @@ function eventDabei(eventid){
     }))
 }
 
-function eventLoeschen(){
+function eventLoeschen(eventId){
     $.ajax({
         url:"/event/loeschen",
         type:"DELETE",
+        data: {eventId:eventId},
         beforeSend: setAuthentification,
-        data: {}
+        success: function(data){
+
+        }
+        
+        
 
     })
 }
