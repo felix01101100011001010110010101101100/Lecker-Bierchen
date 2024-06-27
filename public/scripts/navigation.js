@@ -49,7 +49,7 @@ function get_profil_html(){
 //das aside element sichtbar machen
 function aside_anzeigen() {
     let element = document.getElementById("alle_Gruppen");
-    element.style.display = "block";
+    element.style.display = "none";
 
     id = sessionStorage.getItem('id');
 
