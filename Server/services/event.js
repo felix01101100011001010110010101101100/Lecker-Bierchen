@@ -56,8 +56,10 @@ router.post("/event/dabei", verifyToken, (req, res)=>{
 router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte eventid übergeben
     const eventid = req.query.eventid;
     const eventDao = new EventDao(req.app.locals.dbConnection);
+    
     try {
         const TeilnehmerIdListe = await eventDao.getTeilnehmer(eventid);
+        console.log(TeilnehmerIdListe);
         res.json(TeilnehmerIdListe);
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Abrufen der Teilnehmerliste', error: error.message });
