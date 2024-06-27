@@ -213,3 +213,18 @@ function keyAnzeigen(){
     })
 }
 
+function gruppeLoeschen(){
+    $.ajax({
+        url:"gruppe/loeschen",
+        type:"DELETE",
+        beforeSend: setAuthentification,
+        success: function(data){
+
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Gruppe konnte nicht gelöscht werden!");
+        }
+    })
+}
+
