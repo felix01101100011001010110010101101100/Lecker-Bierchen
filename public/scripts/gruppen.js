@@ -154,6 +154,19 @@ function mitgliederKicken() {
             console.error("Error: ", error);
             alert("Sie konnten das Mitglied nicht kicken");
         }
+    }))
+    .then($.ajax({
+        url: "/gruppen.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+            dynamischEventInGruppe(gruppenid)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
     }));
     
 }
@@ -185,14 +198,13 @@ function fahrerSuche(eventid){
     })
     
     .then(function(data1){
-        console.log(eventid)
         $.ajax({
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                console.log(data)
+                console.log(data.id)
                 if (pruefung == 1){
               
                     

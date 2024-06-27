@@ -68,4 +68,17 @@ function eventLoeschen(eventId){
         
 
     }))
+    .then($.ajax({
+        url: "/gruppen.html",
+        type: "GET",
+        beforeSend: setAuthentification,
+        success: function(data){
+            $("body").html(data)
+            dynamischEventInGruppe(gruppenid)
+        },
+        error: function(error){
+            console.error("Error ", error);
+            alert("Seite konnte nicht geladen werden");
+        },
+    }));
 }
