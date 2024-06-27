@@ -147,7 +147,6 @@ function mitgliederKicken() {
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
-            var admin = data.administator
             console.log("Mitglied entfernen funktioniert");
 
         },
