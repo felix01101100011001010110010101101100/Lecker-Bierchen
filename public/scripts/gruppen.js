@@ -211,8 +211,7 @@ function keyAnzeigen(){
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            console.log(data)
-            alert(data)
+            alert("Key:" + data)
         },
         error: function(error) {
             console.error("Error: ", error);
