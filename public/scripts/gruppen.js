@@ -245,7 +245,6 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {fahrer: fahrer, eventid: eventid, personenid: sessionStorage.getItem('id')},
             success: function(data){
-                console.log(data2)
                 console.log("fahrer hinzu")
             }
         })

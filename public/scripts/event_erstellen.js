@@ -1,5 +1,5 @@
 function eventErstellen(){
-    var eventname = $("#eventname").val();
+    var eventname = $("#eventnameEv").val();
     var ort = $("#ort").val();
     var zeit = $("#zeit").val();
     var bemerkung = $("#bemerkung").val();
