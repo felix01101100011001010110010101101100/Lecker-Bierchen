@@ -145,15 +145,15 @@ function fahrerSuche(){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
+    
     $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
         beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppe_id')},
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
             console.log(data)
-            var admin = data.administrator
-            if (sessionStorage.getItem('id') === admin){
+            if (sessionStorage.getItem('id') == data){
                 pruefung = 1 
             }
             else{
@@ -172,13 +172,20 @@ function fahrerSuche(){
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
+            data: {eventid: eventid},
             success: function(data){
                 if (pruefung == 1){
+                    console.log("hier")
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
+                    console.log()
                 }
-            }
+            },
+            error: function(error){
+                console.error("Error: ", error)
+                alert("Keine Mitglieder geholt")
+            },
         })
     })
     .then(function(data2){
@@ -186,7 +193,7 @@ function fahrerSuche(){
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            data: {fahrer: fahrer},
+            //data: {fahrer: fahrer, eventid: , personenid: sessionStorage.getItem('id')},
             success: function(data){
                 console.log("fahrer hinzu")
             }
@@ -199,10 +206,10 @@ function keyAnzeigen(){
         url:"gruppe/getKey",
         type:"GET",
         beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppe_id')},
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
             console.log(data)
-            $("#schluessel").val(data.key)
+            $("#schluessel").val(data)
         },
         error: function(error) {
             console.error("Error: ", error);
@@ -211,4 +218,42 @@ function keyAnzeigen(){
     })
 }
 
+function gruppeLoeschen(){
+    var pruefung = 0
+    $.ajax({
+        url:"/gruppe/gruppenadmin",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            console.log(data)
+            if (sessionStorage.getItem('id') == data){
+                pruefung = 1 
+            }
+            else{
+                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
+            }
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Keine Fahrersuche möglich")
+        },
+        
+    })
+    .then(function(data1){
+    $.ajax({
+        url:"gruppe/loeschen",
+        type:"DELETE",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            alert("Die Gruppe wurde erfolgreich gelöscht!")
+        },
+        error: function(error) {
+            console.error("Error: ", error);
+            alert("Gruppe konnte nicht gelöscht werden!");
+        }
+    })
+}) 
+}
 

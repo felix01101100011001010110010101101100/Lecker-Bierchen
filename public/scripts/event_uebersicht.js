@@ -10,8 +10,6 @@ function dynamischEventUebersicht(){
             //hier muss die Berechnung der Fahrersuche hin
             var inhalt = ""
             console.log(data)
-            
-            
             data.forEach(function(event){
                 console.log(event);
                 
