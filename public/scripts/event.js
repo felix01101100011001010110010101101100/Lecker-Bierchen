@@ -1,10 +1,10 @@
-function eventDabei(eventName){
+function eventDabei(eventid){
     var personid = sessionStorage.getItem("id");
     $.ajax({
         url:"/event/dabei",
         type:"POST",
         beforeSend: setAuthentification,
-        data: {personid:personid, eventName:eventName},
+        data: {personid:personid, eventid:eventid},
         success:function(){
             console.log("funktioniert");
         },
