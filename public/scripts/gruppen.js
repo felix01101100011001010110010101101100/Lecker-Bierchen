@@ -92,9 +92,9 @@ function gruppeVerlassen(){
 function mitgliederAnzeigen(){
     inhalt = "";
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
-    console.log(gruppenid); 
+    console.log("hier"+gruppenid); 
     $.ajax({
-        url: "gruppe/mitglieder",
+        url: "/gruppe/mitglieder",
         type:"GET",
         beforeSend: setAuthentification,
         data:{gruppenid: gruppenid},
