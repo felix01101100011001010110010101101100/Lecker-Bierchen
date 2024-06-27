@@ -6,12 +6,12 @@ class EventDao{
     loadById(id) {  //alle daten für die übersicht laden
         return new Promise((resolve, reject) => {
             console.log(id)
-            this.dbconnection.all("SELECT Event.id, eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, rows) => {
+            this.dbconnection.all("SELECT Event.id, eventname,ort,zeit,bemerkung,gruppenname,fahrer from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
                     const formatierteDaten = rows.map(row => {
-                        return { eventid:row.id, eventname: row.eventname, ort: row.ort, zeit: row.zeit, bemerkung: row.bemerkung, gruppenname: row.gruppenname};
+                        return { eventid:row.id, eventname: row.eventname, ort: row.ort, zeit: row.zeit, bemerkung: row.bemerkung, gruppenname: row.gruppenname, fahrer: row.fahrer};
                     });
                     resolve(formatierteDaten);
                 }
@@ -49,8 +49,8 @@ class EventDao{
     }
 
 
-    dabei(id, eventid){
-        this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)", [id, eventid], (error) => {
+    dabei(personid, eventid){
+        this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)", [personid, eventid], (error) => {
             if (error) {
                 console.error("Error in dabei:", error);
             }

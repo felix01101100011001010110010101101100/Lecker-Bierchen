@@ -27,7 +27,7 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei("+event.eventName+")'>Bin dabei!</button>"+
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei("+event.eventid+")'>Bin dabei!</button>"+
                 "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen("+event.eventid+")'> Löschen</button>"+
                 "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche("+event.eventid+")'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
@@ -124,7 +124,7 @@ function mitgliederKicken() {
     /*console.log("vorher")
     console.log(id)
     console.log(gruppenid)*/
-    var personid = sessionStorage.getItem("id");
+    var id = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
 
@@ -157,7 +157,7 @@ function mitgliederKicken() {
     .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
-        data: { personid: personid , gruppenid: gruppenid },
+        data: { personid: id , gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
             console.log("Mitglied entfernen funktioniert");
@@ -243,9 +243,8 @@ function fahrerSuche(eventid){
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            data: {fahrer: fahrer, eventid: eventid, personenid: sessionStorage.getItem('id')},
+            data: {fahrer: fahrer, eventid: eventid, personid: sessionStorage.getItem('id')},
             success: function(data){
-                console.log(data2)
                 console.log("fahrer hinzu")
             }
         })
