@@ -25,7 +25,6 @@ function dynamischEventInGruppe(gruppenid){
         data: {gruppenid: gruppenid},
         success: function(data){
             data.forEach(function(event){
-                console.log(event.eventid)
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
                 "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventName)'>Bin dabei!</button>"+
@@ -62,7 +61,7 @@ function gruppeVerlassen(){
     id = sessionStorage.getItem("id");
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     $.ajax({
-        url: "gruppe/verlassen",
+        url: "/gruppe/verlassen",
         type: "DELETE",
         data: {id, gruppenid},
         beforeSend: setAuthentification,
@@ -125,7 +124,7 @@ function mitgliederKicken() {
     // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
     // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
-        url: "gruppe/mitglied/entfernen",
+        url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
@@ -169,18 +168,21 @@ function fahrerSuche(eventid){
     })
     
     .then(function(data1){
+        console.log(eventid)
         $.ajax({
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
+                console.log(data)
                 if (pruefung == 1){
                     console.log("hier")
+                    
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    console.log(fahrer)
+                    //console.log(fahrer)
                 }
             },
             error: function(error){
@@ -204,7 +206,7 @@ function fahrerSuche(eventid){
 
 function keyAnzeigen(){
     $.ajax({
-        url:"gruppe/getKey",
+        url:"/gruppe/getKey",
         type:"GET",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
@@ -243,7 +245,7 @@ function gruppeLoeschen(){
     })
     .then(function(data1){
     $.ajax({
-        url:"gruppe/loeschen",
+        url:"/gruppe/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
