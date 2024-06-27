@@ -211,15 +211,14 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                
                 if (pruefung == 1){
                     console.log("hier")
-                    console.log(data)
+                    
                     listeTeilnehmer.push(data)
-
+                    console.log(listeTeilnehmer[0])
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    //console.log(fahrer)
+                    console.log(fahrer)
                 }
             },
             error: function(error){
@@ -228,7 +227,7 @@ function fahrerSuche(eventid){
             },
         })
     })
-    /*
+    
     .then(function(){
         $.ajax({
             url:"event/fahrerfestlegen",
@@ -239,7 +238,7 @@ function fahrerSuche(eventid){
                 console.log("fahrer hinzu")
             }
         })
-    })*/  
+    }) 
 }
 
 function keyAnzeigen(){
