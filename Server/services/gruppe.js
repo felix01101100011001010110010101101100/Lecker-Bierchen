@@ -96,26 +96,37 @@ router.delete('gruppe/loeschen', verifyToken, async (req, res) => {
 
 
 router.get("gruppe/getKey", verifyToken, async (req, res) => {
-    const gruppenid = req.query.gruppenid;
-    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    const key = await gruppenDao.getKey(gruppenid);
-    res.json(key);
+    try {
+        const gruppenid = req.query.gruppenid;
+        const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+        const key = await gruppenDao.getKey(gruppenid);
+        res.json(key);
+    } catch (error) {
+        res.status(500).json({ message: 'Fehler beim Abrufen des Gruppenschlüssels', error: error.message });
+    }
 });
 
 router.delete("gruppe/mitglied/entfernen", verifyToken, async (req, res) => {
-    const personid = req.body.personid;
-    const gruppenid = req.body.gruppenid;
-    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    gruppenDao.mitgliedEntfernen(personid, gruppenid);
-    res.status(200).json({message: 'Mitglied erfolgreich entfernt'});
+    try {
+        const personid = req.body.personid;
+        const gruppenid = req.body.gruppenid;
+        const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+        gruppenDao.mitgliedEntfernen(personid, gruppenid);
+        res.status(200).json({ message: 'Mitglied erfolgreich entfernt' });
+    } catch (error) {
+        res.status(500).json({ message: 'Fehler beim Entfernen des Mitglieds', error: error.message });
+    }
 });
 
 router.get("gruppe/mitglieder", verifyToken, async (req, res) => {
-    const gruppenid = req.query.gruppenid;
-    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    const Mitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
-    // von jedem mitglied werden id benutzername und alter zurückgegeben
-    res.json(Mitglieder);
+    try {
+        const gruppenid = req.query.gruppenid;
+        const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+        const Mitglieder = await gruppenDao.getGruppenmitglieder(gruppenid);
+        res.json(Mitglieder);
+    } catch (error) {
+        res.status(500).json({ message: 'Fehler beim Abrufen der Mitgliederliste', error: error.message });
+    }
 });
 
 
