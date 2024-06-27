@@ -30,8 +30,6 @@ function eventDabei(eventid){
 
 function eventLoeschen(eventId){
     var pruefung = 0
-    var listeTeilnehmer = []
-    var fahrer = ""
     console.log(eventid)
     
     $.ajax({
