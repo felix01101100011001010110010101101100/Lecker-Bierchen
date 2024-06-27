@@ -54,12 +54,12 @@ class GruppenDao{
 
     getEvents(gruppenid){
         return new Promise((resolve, reject) => {
-            this.dbconnection.all("SELECT eventname, ort, zeit, bemerkung FROM Event WHERE gruppeid=?", [gruppenid], (err, rows) => {
+            this.dbconnection.all("SELECT id eventname, ort, zeit, bemerkung FROM Event WHERE gruppeid=?", [gruppenid], (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
                     const formatierteDaten = rows.map(row => {
-                        return { eventname: row.eventname, ort: row.ort, zeit: row.zeit, bemerkung: row.bemerkung};
+                        return { eventid:row.id, eventname: row.eventname, ort: row.ort, zeit: row.zeit, bemerkung: row.bemerkung};
                     });
                     resolve(formatierteDaten);
                 }

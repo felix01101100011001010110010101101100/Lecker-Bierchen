@@ -73,17 +73,25 @@ router.post('/gruppe/beitreten', verifyToken, async (req, res) => {
 });
 
 router.get('/gruppe/gruppenadmin', verifyToken, async (req, res) => { //hier bitte die gruppenid übergeben, die ist im local storage gespeichert
-    const gruppenid = req.query.gruppenid;
-    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    const gruppenadmin = await gruppenDao.getGruppenadmin(gruppenid);
-    res.json(gruppenadmin);
+    try {
+        const gruppenid = req.query.gruppenid;
+        const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+        const gruppenadmin = await gruppenDao.getGruppenadmin(gruppenid);
+        res.json(gruppenadmin);
+    } catch (error) {
+        res.status(500).json({ message: 'Fehler beim Abrufen des Gruppenadmins', error: error.message });
+    }
 });
 
 router.delete('gruppe/loeschen', verifyToken, async (req, res) => {
-    const gruppenid = req.body.gruppenid;
-    const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
-    gruppenDao.deleteGruppe(gruppenid);
-    res.status(200).json({ message: 'Gruppe erfolgreich gelöscht' });
+    try {
+        const gruppenid = req.body.gruppenid;
+        const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
+        gruppenDao.deleteGruppe(gruppenid);
+        res.status(200).json({ message: 'Gruppe erfolgreich gelöscht' });
+    } catch (error) {
+        res.status(500).json({ message: 'Fehler beim Löschen der Gruppe', error: error.message });
+    }
 });
 
 
