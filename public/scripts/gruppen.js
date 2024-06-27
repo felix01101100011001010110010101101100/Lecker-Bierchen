@@ -124,7 +124,7 @@ function mitgliederKicken() {
     /*console.log("vorher")
     console.log(id)
     console.log(gruppenid)*/
-    var id = sessionStorage.getItem("id");
+    var personid = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
 
@@ -157,7 +157,7 @@ function mitgliederKicken() {
     .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
-        data: { id: id, gruppenid: gruppenid },
+        data: { personid: personid , gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
             console.log("Mitglied entfernen funktioniert");
