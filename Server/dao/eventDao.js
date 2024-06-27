@@ -69,7 +69,13 @@ class EventDao{
         });
     }
 
-    
+    fahrerFestlegen(eventid, personid){
+        this.dbconnection.run("UPDATE Event SET fahrerid=? WHERE id=?", [personid, eventid], (error) => {
+            if (error) {
+                console.error("Error in fahrerFestlegen:", error);
+            }
+        });
+    }
 }
 
 module.exports = EventDao;

@@ -69,6 +69,7 @@ router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte 
 router.post("/event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte eventid und personid übergeben 
     const eventid = req.body.eventid;
     const personid = req.body.personid;
+    const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
         eventDao.fahrerFestlegen(eventid, personid);
         res.status(200).json({ message: 'Fahrer erfolgreich festgelegt' });
