@@ -118,7 +118,8 @@ function mitgliederAnzeigen(){
 
 function mitgliederKicken() {
     var pruefung = 0;
-    console.log(eventid)
+    var id = sessionStorage.getItem("id");
+    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
@@ -139,7 +140,7 @@ function mitgliederKicken() {
         },
         
     })
-
+    
     .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
