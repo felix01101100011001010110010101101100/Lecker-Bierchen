@@ -163,7 +163,6 @@ function fahrerSuche(eventid){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
-    console.log("hier22"+eventid)
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
