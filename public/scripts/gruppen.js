@@ -117,7 +117,7 @@ function mitgliederAnzeigen(){
 }
 
 function mitgliederKicken() {
-    var pruefung = 0
+    var pruefung = 0;
     console.log(eventid)
     
     $.ajax({
