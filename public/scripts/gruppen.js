@@ -91,19 +91,23 @@ function gruppeVerlassen(){
 function mitgliederAnzeigen(){
     inhalt = "";
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    console.log(gruppenid); 
     $.ajax({
-        url: "gruppen/mitglieder/:gruppenid" + gruppenid,
+        url: "gruppe/mitglieder",
         type:"GET",
         beforeSend: setAuthentification,
+        data:{gruppenid: gruppenid},
         success: function(data){
+            console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
                 '<p id="benutzername">'+ event.benutzername +''+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
+                
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            
+            $("#asideGroup").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
@@ -120,13 +124,13 @@ function mitgliederKicken() {
     // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
     // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
-        url: "gruppe/mitglieder/kicken",
+        url: "gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
             var admin = data.administator
-            console.log("Mitglied kicken funktioniert");
+            console.log("Mitglied entfernen funktioniert");
 
         },
         error: function(error) {
