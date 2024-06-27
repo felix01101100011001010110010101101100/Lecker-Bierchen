@@ -1,5 +1,6 @@
 function eventDabei(eventid){
     var personid = sessionStorage.getItem("id");
+    //damit das in event übersicht angezeigt wird
     $.ajax({
         url:"/event/dabei",
         type:"POST",
@@ -14,6 +15,7 @@ function eventDabei(eventid){
         }
 
     })
+    //in Eventübersicht switchen
     .then($.ajax({
         url: "/events_uebersicht.html",
         type: "GET",
@@ -32,6 +34,7 @@ function eventLoeschen(eventId){
     var pruefung = 0
     console.log(eventid)
     
+    //Admin überprüfen
     $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
@@ -51,7 +54,7 @@ function eventLoeschen(eventId){
         },
         
     })
-
+    //Event löschen
     .then($.ajax({
         url:"/event/loeschen",
         type:"DELETE",
@@ -68,6 +71,7 @@ function eventLoeschen(eventId){
         
 
     }))
+    //Seite neu laden nach dem löschen
     .then($.ajax({
         url: "/gruppen.html",
         type: "GET",
