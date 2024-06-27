@@ -43,6 +43,7 @@ function dynamischEventInGruppe(gruppenid){
 }
 
 function eventErstellenButton(){
+    //Event erstellen
     $.ajax({
         url: "/events_erstellen.html",
         type: "GET",
@@ -74,6 +75,7 @@ function gruppeVerlassen(){
         },
         
     })
+    //wenn man Gruppen verläasst auf home landen
     .then($.ajax({
         url: "/home.html",
         type: "GET",
@@ -88,6 +90,7 @@ function gruppeVerlassen(){
     }))
 }
 
+//Mitglieder anzeigen lassen
 function mitgliederAnzeigen(){
     var inhalt = "<p id='mitglieder'>Mitglieder<i id='schluessel' onclick='keyAnzeigen()' class='fa-solid fa-key'></i><i class='fa-solid fa-trash' onclick='gruppeLoeschen()' id='trash'></i> <i class='fa-solid fa-person-walking-arrow-right' onclick='gruppeVerlassen()' id='leave'></i></p>"
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
@@ -121,6 +124,7 @@ function mitgliederKicken() {
     var id = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
+    // prüfen ob Admin oder nicht
     $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
@@ -141,6 +145,7 @@ function mitgliederKicken() {
         
     })
     
+    //Mitglied kicken
     .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
@@ -155,6 +160,7 @@ function mitgliederKicken() {
             alert("Sie konnten das Mitglied nicht kicken");
         }
     }))
+    //Seite neu laden
     .then($.ajax({
         url: "/gruppen.html",
         type: "GET",
@@ -185,6 +191,7 @@ function fahrerSuche(eventid){
         success: function(data){
             if (sessionStorage.getItem('id') == data){
                 pruefung = 1
+                console.log("Admin überprüft")
             }
             else{
                 alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
@@ -204,11 +211,12 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                console.log(data.id)
+                
                 if (pruefung == 1){
-              
-                    
+                    console.log("hier")
+                    console.log(data)
                     listeTeilnehmer.push(data)
+
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
                     //console.log(fahrer)
@@ -220,6 +228,7 @@ function fahrerSuche(eventid){
             },
         })
     })
+    /*
     .then(function(){
         $.ajax({
             url:"event/fahrerfestlegen",
@@ -230,7 +239,7 @@ function fahrerSuche(eventid){
                 console.log("fahrer hinzu")
             }
         })
-    })  
+    })*/  
 }
 
 function keyAnzeigen(){
