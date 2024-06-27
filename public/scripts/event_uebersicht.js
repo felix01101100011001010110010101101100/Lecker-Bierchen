@@ -27,8 +27,9 @@ function dynamischEventUebersicht(){
 }
 
 function eventEntfernen(eventid){
-    console.log(eventid)
+    console.log("eventid: ", eventid)
     $.ajax({
+        
         url:"/event/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
