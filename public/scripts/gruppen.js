@@ -62,7 +62,7 @@ function gruppeVerlassen(){
     id = sessionStorage.getItem("id");
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     $.ajax({
-        url: "gruppe/verlassen",
+        url: "/gruppe/verlassen",
         type: "DELETE",
         data: {id, gruppenid},
         beforeSend: setAuthentification,
@@ -125,7 +125,7 @@ function mitgliederKicken() {
     // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
     // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
-        url: "gruppe/mitglied/entfernen",
+        url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
@@ -204,7 +204,7 @@ function fahrerSuche(eventid){
 
 function keyAnzeigen(){
     $.ajax({
-        url:"gruppe/getKey",
+        url:"/gruppe/getKey",
         type:"GET",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
@@ -243,7 +243,7 @@ function gruppeLoeschen(){
     })
     .then(function(data1){
     $.ajax({
-        url:"gruppe/loeschen",
+        url:"/gruppe/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
