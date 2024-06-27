@@ -27,6 +27,7 @@ function dynamischEventUebersicht(){
 }
 
 function eventEntfernen(eventid){
+    console.log(eventid)
     $.ajax({
         url:"/event/loeschen",
         type:"DELETE",
