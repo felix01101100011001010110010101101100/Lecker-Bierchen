@@ -186,14 +186,13 @@ function fahrerSuche(eventid){
     })
     
     .then(function(data1){
-        console.log(eventid)
         $.ajax({
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                console.log(data)
+                console.log(data.id)
                 if (pruefung == 1){
                     console.log("hier")
                     
