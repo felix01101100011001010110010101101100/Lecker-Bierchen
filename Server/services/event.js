@@ -41,10 +41,10 @@ router.delete("/event/loeschen", verifyToken, (req, res)=>{
 })
 
 router.post("/event/dabei", verifyToken, (req, res)=>{
-    const {id , eventid} = req.body;
+    const {personid , eventid} = req.body;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
-        eventDao.dabei(id, eventid);
+        eventDao.dabei(personid, eventid);
         res.status(200).json({ message: 'Beim Event erfolgreich beigetreten' });
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Beitritt zum Event', error: error.message });

@@ -1,5 +1,6 @@
 function eventDabei(eventid){
     var personid = sessionStorage.getItem("id");
+    console.log(personid)
     //damit das in event übersicht angezeigt wird
     $.ajax({
         url:"/event/dabei",
@@ -17,7 +18,7 @@ function eventDabei(eventid){
     })
     //in Eventübersicht switchen
     .then($.ajax({
-        url: "/events_uebersicht.html",
+        url: "/event_uebersicht.html",
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){

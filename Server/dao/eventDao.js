@@ -49,8 +49,8 @@ class EventDao{
     }
 
 
-    dabei(id, eventid){
-        this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)", [id, eventid], (error) => {
+    dabei(personid, eventid){
+        this.dbconnection.run("INSERT INTO BeziehungPersonEvent(personid, eventid) VALUES(?,?)", [personid, eventid], (error) => {
             if (error) {
                 console.error("Error in dabei:", error);
             }
