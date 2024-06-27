@@ -93,8 +93,13 @@ class GruppenDao{
 
     gruppeVerlassen(personid, gruppenid){
         console.log(personid, gruppenid);
-        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
+        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid], (err) => {
+            if (err) {
+                console.error("Error in gruppeVerlassen:", err);
+            }
+        });
     }
+    
 
     getGruppenIdViaKey(key){
         return new Promise((resolve, reject) => {
@@ -121,7 +126,11 @@ class GruppenDao{
     }
 
     deleteGruppe(gruppenid){
-        this.dbconnection.run("DELETE FROM Gruppe WHERE id=?", [gruppenid]);
+        this.dbconnection.run("DELETE FROM Gruppe WHERE id=?", [gruppenid], (err) => {
+            if (err) {
+                console.error("Error in deleteGruppe:", err);
+            }
+        });
     }
 
     getKey(gruppenid){
@@ -137,7 +146,11 @@ class GruppenDao{
     }
 
     mitgliedEntfernen(personid, gruppenid){
-        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid]);
+        this.dbconnection.run("DELETE FROM BeziehungPersonGruppe WHERE personid=? AND gruppenid=?", [personid, gruppenid], (err) => {
+            if (err) {
+                console.error("Error in mitgliedEntfernen:", err);
+            }
+        });
     }
 
 
