@@ -10,28 +10,30 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/person/eindeutig', async function(req, res) {
-    const {bn} = req.query;
-    const personDao = new PersonDao(req.app.locals.dbConnection);
-    var exists = true;
-    if (await personDao.personenDatenAbrufen(bn)) {
-        exists = true;
-    } else {
-        exists = false;
+    try {
+        const {bn} = req.query;
+        const personDao = new PersonDao(req.app.locals.dbConnection);
+        const exists = await personDao.personenDatenAbrufen(bn) ? true : false;
+        res.status(200).json(exists);
+    } catch (error) {
+        console.error('Fehler bei /person/eindeutig:', error);
+        res.status(500).json({ message: 'Interner Serverfehler' });
     }
-    res.status(200).json(exists);
-
 });
 
 
 router.post('/person/register', async (req, res) => {
-    const {vn, nn, age, bn, psw, lk, führerschein} = req.body;
-
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hash = bcrypt.hashSync(psw, salt);
-
-    const personDao = new PersonDao(req.app.locals.dbConnection);
-    personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein)
-    res.status(200).json({message: 'Person erfolgreich angelegt'});
+    try {
+        const {vn, nn, age, bn, psw, lk, führerschein} = req.body;
+        const salt = bcrypt.genSaltSync(saltRounds);
+        const hash = bcrypt.hashSync(psw, salt);
+        const personDao = new PersonDao(req.app.locals.dbConnection);
+        personDao.personenAnlegen(vn, nn, age, bn, hash, lk, führerschein);
+        res.status(200).json({message: 'Person erfolgreich angelegt'});
+    } catch (error) {
+        console.error('Fehler bei /person/register:', error);
+        res.status(500).json({ message: 'Fehler bei der Registrierung der Person' });
+    }
 
 });
     
@@ -72,10 +74,19 @@ router.get("/profil", verifyToken, async (req,res)=>{
 
 
 router.get("/person/id", verifyToken, async (req, res)=>{
-    const personDao = new PersonDao(req.app.locals.dbConnection);
-    const username = req.user.bne;
-    const id = await personDao.personId(username);
-    res.json(id);
+    try {
+        const personDao = new PersonDao(req.app.locals.dbConnection);
+        const username = req.user.bne;
+        const id = await personDao.personId(username);
+        if (id) {
+            res.json(id);
+        } else {
+            res.status(404).json({ message: 'Person nicht gefunden' });
+        }
+    } catch (error) {
+        console.error('Fehler bei /person/id:', error);
+        res.status(500).json({ message: 'Interner Serverfehler bei der Abfrage der Person ID' });
+    }
 })
 
 module.exports = router;
