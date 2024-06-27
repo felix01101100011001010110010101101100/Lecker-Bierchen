@@ -124,7 +124,7 @@ function mitgliederKicken() {
     /*console.log("vorher")
     console.log(id)
     console.log(gruppenid)*/
-    var id = sessionStorage.getItem("id");
+    var personid = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
 
@@ -157,7 +157,7 @@ function mitgliederKicken() {
     .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
-        data: { id: id, gruppenid: gruppenid },
+        data: { personid: personid , gruppenid: gruppenid },
         beforeSend: setAuthentification,
         success: function(data) {
             console.log("Mitglied entfernen funktioniert");
@@ -219,13 +219,15 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
+                console.log(data1)
+
+                
                 if (pruefung == 1){
                     console.log("hier")
                     
                     listeTeilnehmer.push(data)
-                    console.log(listeTeilnehmer[0])
-                    zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
-                    fahrer = listeTeilnehmer[zufallszahl]
+                    zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length))
+                    fahrer = listeTeilnehmer[0][zufallszahl]
                     console.log(fahrer)
                 }
             },
@@ -236,13 +238,14 @@ function fahrerSuche(eventid){
         })
     })
     
-    .then(function(){
+    .then(function(data2){
         $.ajax({
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
             data: {fahrer: fahrer, eventid: eventid, personenid: sessionStorage.getItem('id')},
             success: function(data){
+                console.log(data2)
                 console.log("fahrer hinzu")
             }
         })
