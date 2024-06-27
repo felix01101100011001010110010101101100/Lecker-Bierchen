@@ -61,7 +61,7 @@ router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte 
     }
 })
 
-router.post("event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte eventid und personid übergeben 
+router.post("/event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte eventid und personid übergeben 
     const eventid = req.body.eventid;
     const personid = req.body.personid;
     try {

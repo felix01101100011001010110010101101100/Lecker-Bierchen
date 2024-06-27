@@ -27,7 +27,7 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventid)'>Bin dabei!</button>"+
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventName)'>Bin dabei!</button>"+
                 "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen(event.eventid)'> Löschen</button>"+
                 "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
@@ -61,7 +61,7 @@ function gruppeVerlassen(){
     id = sessionStorage.getItem("id");
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     $.ajax({
-        url: "gruppe/verlassen",
+        url: "/gruppe/verlassen",
         type: "DELETE",
         data: {id, gruppenid},
         beforeSend: setAuthentification,
@@ -91,9 +91,9 @@ function gruppeVerlassen(){
 function mitgliederAnzeigen(){
     inhalt = "";
     gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
-    console.log(gruppenid); 
+    console.log("hier"+gruppenid); 
     $.ajax({
-        url: "gruppe/mitglieder",
+        url: "/gruppe/mitglieder",
         type:"GET",
         beforeSend: setAuthentification,
         data:{gruppenid: gruppenid},
@@ -124,7 +124,7 @@ function mitgliederKicken() {
     // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
     // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
-        url: "gruppe/mitglied/entfernen",
+        url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
         beforeSend: setAuthentification,
@@ -206,7 +206,7 @@ function fahrerSuche(eventid){
 
 function keyAnzeigen(){
     $.ajax({
-        url:"gruppe/getKey",
+        url:"/gruppe/getKey",
         type:"GET",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
@@ -245,7 +245,7 @@ function gruppeLoeschen(){
     })
     .then(function(data1){
     $.ajax({
-        url:"gruppe/loeschen",
+        url:"/gruppe/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},

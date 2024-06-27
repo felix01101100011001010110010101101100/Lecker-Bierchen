@@ -91,6 +91,10 @@ app.get('/events_erstellen.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/events_erstellen.html'));
 });
 
+app.get('/scripts/event.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/scripts/event.js'));
+});
+
 //gruppen
 app.get('/gruppen.html', verifyToken, (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/gruppen.html'));
@@ -117,6 +121,8 @@ app.get('/scripts/authentification.js', (req, res) => {
 app.get('/scripts/navigation.js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/scripts/navigation.js'));
 });
+
+
 
 
 app.locals.dbConnection = dbConnection;
