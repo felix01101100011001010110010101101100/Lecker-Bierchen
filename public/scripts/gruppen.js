@@ -27,8 +27,8 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventName)'>Bin dabei!</button>"+
-                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen(event.eventid)'> Löschen</button>"+
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei("+event.eventName+")'>Bin dabei!</button>"+
+                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen("+event.eventid+")'> Löschen</button>"+
                 "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
                 $("#events").html(inhalt);
@@ -211,8 +211,7 @@ function keyAnzeigen(){
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            console.log(data)
-            alert(data)
+            alert("Key:" + data)
         },
         error: function(error) {
             console.error("Error: ", error);
