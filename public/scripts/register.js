@@ -59,7 +59,7 @@ window.onload = function() {
                             data: {vn, nn, age, bn, psw, lk, führerschein},
 
                             success: function(res) {
-                                
+                                alert("Es wurde ein Profil angelegt");
                             },
                             error: function(xhr, status, error) {
                                     console.error('Fehler bei der Registrierung:', error);
@@ -73,5 +73,6 @@ window.onload = function() {
                     }); 
                 }
         });
+    
     }         
 
