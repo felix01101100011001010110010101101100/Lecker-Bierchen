@@ -25,11 +25,12 @@ function dynamischEventInGruppe(gruppenid){
         data: {gruppenid: gruppenid},
         success: function(data){
             data.forEach(function(event){
+                console.log(event.eventid)
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei()'>Bin dabei!</button>"+
-                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen()'> Löschen</button>"+
-                "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(eventid)'>Fahrer suchen!</button></p> </section>";  
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventid)'>Bin dabei!</button>"+
+                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen(event.eventid)'> Löschen</button>"+
+                "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
                 $("#events").html(inhalt);
             })
@@ -141,10 +142,11 @@ function mitgliederKicken() {
 }
 
 
-function fahrerSuche(){
+function fahrerSuche(eventid){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
+    console.log(eventid)
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
@@ -152,9 +154,8 @@ function fahrerSuche(){
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            console.log(data)
             if (sessionStorage.getItem('id') == data){
-                pruefung = 1 
+                pruefung = 1
             }
             else{
                 alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
@@ -179,7 +180,7 @@ function fahrerSuche(){
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    console.log()
+                    console.log(fahrer)
                 }
             },
             error: function(error){
@@ -188,12 +189,12 @@ function fahrerSuche(){
             },
         })
     })
-    .then(function(data2){
+    .then(function(){
         $.ajax({
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            //data: {fahrer: fahrer, eventid: , personenid: sessionStorage.getItem('id')},
+            data: {fahrer: fahrer, eventid: eventid, personenid: sessionStorage.getItem('id')},
             success: function(data){
                 console.log("fahrer hinzu")
             }
