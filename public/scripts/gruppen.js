@@ -29,8 +29,7 @@ function dynamischEventInGruppe(gruppenid){
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
                 "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei("+event.eventName+")'>Bin dabei!</button>"+
                 "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen("+event.eventid+")'> Löschen</button>"+
-                "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>";  
-                console.log(event);
+                "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>"; 
                 $("#events").html(inhalt);
             })
             
@@ -164,7 +163,7 @@ function fahrerSuche(eventid){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
-    console.log(eventid)
+    console.log("hier22"+eventid)
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
