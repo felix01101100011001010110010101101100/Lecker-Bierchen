@@ -6,13 +6,15 @@ class EventDao{
     loadById(id) {  //alle daten für die übersicht laden
         return new Promise((resolve, reject) => {
             console.log(id)
-            this.dbconnection.all("SELECT eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, row) => {
+            this.dbconnection.all("SELECT id, eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, row) => {
                 if (err) {
                     reject(err);
                 } else {
-                    console.log("hier")
-                    console.log(row);
-                    resolve(row);
+                
+                    const formatierteDaten = rows.map(row => {
+                        return { eventid:row.id, eventname: row.eventname, ort: row.ort, zeit: row.zeit, bemerkung: row.bemerkung, gruppenname: row.gruppenname};
+                    });
+                    resolve(formatierteDaten);
                 }
             });
         });
