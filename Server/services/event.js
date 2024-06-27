@@ -23,6 +23,7 @@ router.post("/event/in/gruppe/erstellen", verifyToken, async (req, res)=>{
     try {
         const eventid = await eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid);
         eventDao.dabei(personid, eventid);
+        res.status(200).json({ message: 'Event erfolgreich angelegt' });
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Anlegen des Events', error: error.message });
     }
