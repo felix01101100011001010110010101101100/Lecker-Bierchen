@@ -199,6 +199,7 @@ function fahrerSuche(eventid){
         success: function(data){
             if (sessionStorage.getItem('id') == data){
                 pruefung = 1
+                console.log("Admin überprüft")
             }
             else{
                 alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
@@ -218,14 +219,14 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                console.log(data.id)
                 if (pruefung == 1){
-              
+                    console.log("hier")
                     
                     listeTeilnehmer.push(data)
+                    console.log(listeTeilnehmer[0])
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    //console.log(fahrer)
+                    console.log(fahrer)
                 }
             },
             error: function(error){
@@ -234,6 +235,7 @@ function fahrerSuche(eventid){
             },
         })
     })
+    
     .then(function(){
         $.ajax({
             url:"event/fahrerfestlegen",
@@ -244,7 +246,7 @@ function fahrerSuche(eventid){
                 console.log("fahrer hinzu")
             }
         })
-    })  
+    }) 
 }
 
 function keyAnzeigen(){
