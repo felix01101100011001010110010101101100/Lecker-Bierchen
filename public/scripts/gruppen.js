@@ -117,13 +117,30 @@ function mitgliederAnzeigen(){
 }
 
 function mitgliederKicken() {
-    var id = sessionStorage.getItem("id");
-    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
-    var pruefung = 0
+    var pruefung = 0;
+    console.log(eventid)
     
-    // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
-    // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
+        url:"/gruppe/gruppenadmin",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            if (sessionStorage.getItem('id') == data){
+                pruefung = 1
+            }
+            else{
+                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
+            }
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Keine Fahrersuche möglich")
+        },
+        
+    })
+
+    .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
@@ -137,7 +154,8 @@ function mitgliederKicken() {
             console.error("Error: ", error);
             alert("Sie konnten das Mitglied nicht kicken");
         }
-    });
+    }));
+    
 }
 
 
