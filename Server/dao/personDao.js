@@ -48,20 +48,39 @@ class PersonDao{
         });
     }
 
-
     personenAnlegen(vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex){
         this.dbconnection.run('INSERT INTO person (id, vorname, nachname, jahr, benutzername, passwort, fuehrerschein, landkreisid) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)',
-                    [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex]);
+            [vn, nn, parsedAge, bn, hash, parsedFührerschein, lkIndex], function(err) {
+                if (err) {
+                    console.error("Fehler beim Anlegen der Person: ", err.message);
+                } else {
+                    console.log("Person erfolgreich angelegt");
+                }
+            });
     }
-
   
     passwortAbrufen(benutzername){
-        this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?", [benutzername])
+        this.dbconnection.get("SELECT passwort FROM Person WHERE benutzername=?", [benutzername], function(err, row) {
+            if (err) {
+                console.error("Fehler beim Abrufen des Passworts: ", err.message);
+            } else if (row) {
+                console.log("Passwort erfolgreich abgerufen");
+            } else {
+                console.log("Kein Eintrag gefunden");
+            }
+        });
     }
 
     landkreisAufrufen(landkreisname){
-        var ret = this.dbconnection.get("SELECT id FROM Lankreis WHERE name=?", [landkreisname]);
-        return ret;
+        this.dbconnection.get("SELECT id FROM Landkreis WHERE name=?", [landkreisname], function(err, row) {
+            if (err) {
+                console.error("Fehler beim Aufrufen des Landkreises: ", err.message);
+            } else if (row) {
+                console.log("Landkreis erfolgreich abgerufen");
+            } else {
+                console.log("Kein Landkreis gefunden");
+            }
+        });
     }
 
     loadAll() {
@@ -71,27 +90,31 @@ class PersonDao{
 
         var sql = 'SELECT * FROM Person';
         var statement = this._conn.prepare(sql);
-        var result = statement.all(); 
+        try {
+            var result = statement.all(); 
 
-        if (helper.isArrayEmpty(result)) 
+            if (helper.isArrayEmpty(result)) 
+                return [];
+
+            for (var i = 0; i < result.length; i++) {
+                if (result[i].fuehrerschein == 0) 
+                    result[i].fuehrerschein = false;
+                else 
+                    result[i].fuehrerschein = true;
+        
+                result[i].landkreis = landkreisDao.loadById(result[i].landkreisid);
+                delete result[i].landkreisid;
+
+                result[i].gruppen = gruppeDao.loadForPerson(result[i].id);
+                result[i].events = eventDao.loadForPerson(result[i].id);
+            }
+
+            return result;
+        } catch (err) {
+            console.error("Fehler beim Laden aller Personen: ", err.message);
             return [];
-
-        for (var i = 0; i < result.length; i++) {
-            if (result[i].fuehrerschein == 0) 
-                result[i].fuehrerschein = false;
-            else 
-                result[i].fuehrerschein = true;
-    
-            result[i].landkreis = landkreisDao.loadById(result[i].landkreisid);
-            delete result[i].landkreisid;
-
-            result[i].gruppen = gruppeDao.loadForPerson(result[i].id);
-            result[i].events = eventDao.loadForPerson(result[i].id);
         }
-
-        return result;
     }
-
     personId(benutzername){
         return new Promise((resolve, reject)=>{
             this.dbconnection.get("SELECT id FROM Person WHERE benutzername=?", [benutzername], (err,row)=>{
