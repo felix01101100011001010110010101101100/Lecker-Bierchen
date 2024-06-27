@@ -56,8 +56,10 @@ router.post("/event/dabei", verifyToken, (req, res)=>{
 router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte eventid übergeben
     const eventid = req.query.eventid;
     const eventDao = new EventDao(req.app.locals.dbConnection);
+    
     try {
         const TeilnehmerIdListe = await eventDao.getTeilnehmer(eventid);
+        console.log(TeilnehmerIdListe);
         res.json(TeilnehmerIdListe);
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Abrufen der Teilnehmerliste', error: error.message });
@@ -67,6 +69,7 @@ router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte 
 router.post("/event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte eventid und personid übergeben 
     const eventid = req.body.eventid;
     const personid = req.body.personid;
+    const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
         eventDao.fahrerFestlegen(eventid, personid);
         res.status(200).json({ message: 'Fahrer erfolgreich festgelegt' });
