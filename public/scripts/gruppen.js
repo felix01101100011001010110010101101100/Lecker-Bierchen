@@ -27,8 +27,8 @@ function dynamischEventInGruppe(gruppenid){
             data.forEach(function(event){
                 inhalt += "<section><p id='eventname'><b>" + event.eventname + "</b> <b>" + event.ort +"</b> <b>"+event.zeit+"</b> </p>"+
                 "<p id='beschreibung'>Beschreibung: "+ event.bemerkung+ "</p><p id='fahrername'> </p>"+
-                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei(event.eventName)'>Bin dabei!</button>"+
-                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen(event.eventid)'> Löschen</button>"+
+                "<p><button type='submit' class='erstellen' id='dabei' value='1' onclick='eventDabei("+event.eventName+")'>Bin dabei!</button>"+
+                "<button type='submit' class='erstellen' id='remove' onclick='eventLoeschen("+event.eventid+")'> Löschen</button>"+
                 "<button type='submit' class='erstellen' id='fahrer' onclick='fahrerSuche(event.eventid)'>Fahrer suchen!</button></p> </section>";  
                 console.log(event);
                 $("#events").html(inhalt);
@@ -89,8 +89,8 @@ function gruppeVerlassen(){
 }
 
 function mitgliederAnzeigen(){
-    inhalt = "";
-    gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
+    var inhalt = "<p id='mitglieder'>Mitglieder<i id='schluessel' onclick='keyAnzeigen()' class='fa-solid fa-key'></i><i class='fa-solid fa-trash' onclick='gruppeLoeschen()' id='trash'></i> <i class='fa-solid fa-person-walking-arrow-right' onclick='gruppeVerlassen()' id='leave'></i></p>"
+    var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     console.log("hier"+gruppenid); 
     $.ajax({
         url: "/gruppe/mitglieder",
@@ -101,13 +101,13 @@ function mitgliederAnzeigen(){
             console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername"> Benutzername:'+ event.benutzername +' <br> Alter:'+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
-                '</div>';
+                '<p id="benutzername"> Benutzername:'+ event.benutzername +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i> <br> Alter:'+ event.jahr +
+                '</p></div>';
                 
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            $("#Mitglieder").html(inhalt);
+            $("#asideGroup").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
@@ -117,13 +117,31 @@ function mitgliederAnzeigen(){
 }
 
 function mitgliederKicken() {
+    var pruefung = 0;
     var id = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
-    var pruefung = 0
     
-    // was hier fehlt, ist dass wenn das Mitglied gekickt wird er auf die Stratseite kommt,
-    // und die Überprunfung ob es ein Admin ist, und ein Mitglied entfernen kann
     $.ajax({
+        url:"/gruppe/gruppenadmin",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            if (sessionStorage.getItem('id') == data){
+                pruefung = 1
+            }
+            else{
+                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
+            }
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Keine Fahrersuche möglich")
+        },
+        
+    })
+    
+    .then($.ajax({
         url: "/gruppe/mitglied/entfernen",
         type: "DELETE",
         data: { id: id, gruppenid: gruppenid },
@@ -137,7 +155,8 @@ function mitgliederKicken() {
             console.error("Error: ", error);
             alert("Sie konnten das Mitglied nicht kicken");
         }
-    });
+    }));
+    
 }
 
 
@@ -211,8 +230,7 @@ function keyAnzeigen(){
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            console.log(data)
-            $("#schluessel").val(data)
+            alert("Key:" + data)
         },
         error: function(error) {
             console.error("Error: ", error);
@@ -258,5 +276,17 @@ function gruppeLoeschen(){
         }
     })
 }) 
+.then($.ajax({
+    url: "/home.html",
+    type: "GET",
+    beforeSend: setAuthentification,
+    success: function(data){
+        $("body").html(data)
+    },
+    error: function(error){
+        console.error("Error ", error);
+        alert("Seite konnte nicht geladen werden");
+    },
+}))
 }
 
