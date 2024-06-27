@@ -101,13 +101,13 @@ function mitgliederAnzeigen(){
             console.log(data),
             data.forEach(function(event){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername">'+ event.benutzername +' '+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
+                '<p id="benutzername"> Benutzername:'+ event.benutzername +' <br> Alter:'+ event.jahr +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i></p>' +
                 '</div>';
                 
                 console.log("Mitglieder anzeigen funktioniert");
             })
             
-            $("#asideGroup").html(inhalt);
+            $("#Mitglieder").html(inhalt);
         },
         error: function(error){
             console.error("Error: ", error)
