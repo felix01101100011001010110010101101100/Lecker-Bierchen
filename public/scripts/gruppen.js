@@ -94,7 +94,7 @@ function gruppeVerlassen(){
 function mitgliederAnzeigen(){
     var inhalt = "<p id='mitglieder'>Mitglieder<i id='schluessel' onclick='keyAnzeigen()' class='fa-solid fa-key'></i><i class='fa-solid fa-trash' onclick='gruppeLoeschen()' id='trash'></i> <i class='fa-solid fa-person-walking-arrow-right' onclick='gruppeVerlassen()' id='leave'></i></p>"
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
-    console.log("hier"+gruppenid); 
+
     $.ajax({
         url: "/gruppe/mitglieder",
         type:"GET",
@@ -182,7 +182,6 @@ function fahrerSuche(eventid){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
-    console.log(eventid)
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
@@ -205,16 +204,15 @@ function fahrerSuche(eventid){
     })
     
     .then(function(data1){
-        console.log(eventid)
         $.ajax({
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                console.log(data)
+                console.log(data.id)
                 if (pruefung == 1){
-                    console.log("hier")
+              
                     
                     listeTeilnehmer.push(data)
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
