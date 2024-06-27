@@ -57,9 +57,10 @@ class EventDao{
         });
     }
 
+    //hab personid zu benutzername verändert, damit man den namen in event übersicht sieht
     getTeilnehmer(eventid){
         return new Promise((resolve, reject) => {
-            this.dbconnection.all("SELECT personid FROM BeziehungPersonEvent WHERE eventid=?", [eventid], (error, rows) => {
+            this.dbconnection.all("SELECT benutzername FROM Person INNER JOIN BeziehungPersonEvent ON Person.id = BeziehungPersonEvent.personid WHERE eventid=?", [eventid], (error, rows) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -69,10 +70,18 @@ class EventDao{
         });
     }
 
-    fahrerFestlegen(eventid, personid){
-        this.dbconnection.run("UPDATE Event SET fahrer=? WHERE id=?", [personid, eventid], (error) => {
+    fahrerFestlegen(eventid, fahrer){
+        this.dbconnection.run("UPDATE Event SET fahrer=? WHERE id=?", [fahrer, eventid], (error) => {
             if (error) {
                 console.error("Error in fahrerFestlegen:", error);
+            }
+        });
+    }
+
+    fahrerName(fahrer){
+        this.dbconnection.run("", [personid, eventid], (error) => {
+            if (error) {
+                console.error("Error in fahrerNennen:", error);
             }
         });
     }

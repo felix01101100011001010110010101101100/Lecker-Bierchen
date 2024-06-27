@@ -18,10 +18,10 @@ router.get("/eventUebersicht/:id", verifyToken, async (req, res)=>{
 })
 
 router.post("/event/in/gruppe/erstellen", verifyToken, async (req, res)=>{
-    const {eventname, ort, zeit, bemerkung, gruppenid} = req.body;
+    const {eventname, ort, zeit, bemerkung, gruppenid, personid} = req.body;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
-        const eventid = await eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid);
+        const eventid = await eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid, personid);
         eventDao.dabei(personid, eventid);
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Anlegen des Events', error: error.message });
@@ -59,7 +59,6 @@ router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte 
     
     try {
         const TeilnehmerIdListe = await eventDao.getTeilnehmer(eventid);
-        console.log(TeilnehmerIdListe);
         res.json(TeilnehmerIdListe);
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Abrufen der Teilnehmerliste', error: error.message });
@@ -68,15 +67,27 @@ router.get("/event/TeilnehmerIdListe", verifyToken, async (req, res)=>{ //bitte 
 
 router.post("/event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte eventid und personid übergeben 
     const eventid = req.body.eventid;
-    const personid = req.body.personid;
+    const fahrer = req.body.fahrer;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
-        eventDao.fahrerFestlegen(eventid, personid);
+        eventDao.fahrerFestlegen(eventid, fahrer);
         res.status(200).json({ message: 'Fahrer erfolgreich festgelegt' });
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Festlegen des Fahrers', error: error.message });
     }
 });
+
+router.get("/fahrer/name"), verifyToken, (req,res)=>{
+    const eventDao = new EventDao(req.app.locals.dbConnection);
+    const fahrer = req.query.fahrer
+    try{
+        eventDao.
+        res.status(200).json({ message: 'Fahrer erfolgreich benannt' });
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Fehler beim Benennen des Fahrers', error: error.message });
+    }
+}
 
 
 

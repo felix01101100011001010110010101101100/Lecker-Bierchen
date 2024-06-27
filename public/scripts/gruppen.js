@@ -190,6 +190,7 @@ function fahrerSuche(eventid){
     var pruefung = 0
     var listeTeilnehmer = []
     var fahrer = ""
+    console.log(eventid)
     
     $.ajax({
         url:"/gruppe/gruppenadmin",
@@ -218,14 +219,14 @@ function fahrerSuche(eventid){
             type:"GET",
             beforeSend: setAuthentification,
             data: {eventid: eventid},
-            success: function(data){
-                console.log(data1)
-
-                
+            success: function(data){ 
+                console.log(eventid)  
+                console.log(data)   
                 if (pruefung == 1){
                     console.log("hier")
                     
                     listeTeilnehmer.push(data)
+                    console.log(listeTeilnehmer[0])
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length))
                     fahrer = listeTeilnehmer[0][zufallszahl]
                     console.log(fahrer)
@@ -243,7 +244,7 @@ function fahrerSuche(eventid){
             url:"event/fahrerfestlegen",
             type:"POST",
             beforeSend: setAuthentification,
-            data: {fahrer: fahrer, eventid: eventid, personid: sessionStorage.getItem('id')},
+            data: {fahrer: fahrer, eventid: eventid},
             success: function(data){
                 console.log("fahrer hinzu")
             }
