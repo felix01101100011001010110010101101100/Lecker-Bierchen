@@ -9,21 +9,24 @@ router.get("/eventUebersicht/:id", verifyToken, async (req, res)=>{
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
         const datenDieZurueckGehen = await eventDao.loadById(id);
+        console.log(datenDieZurueckGehen);
         res.json(datenDieZurueckGehen);
     } catch (error) {
+        console.error("Error: ", error);
         res.status(500).json({ message: 'Fehler beim Laden der Eventübersicht', error: error.message });
     }
 })
 
-router.post("/event/in/gruppe/erstellen", verifyToken, (req, res)=>{
-    const {eventname, ort, zeit, bemerkung, gruppenid} = req.body;
+router.post("/event/in/gruppe/erstellen", verifyToken, async (req, res)=>{
+    const {eventname, ort, zeit, bemerkung, gruppenid, personid} = req.body;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
-        eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid);
-        res.status(200).json({ message: 'Event erfolgreich angelegt' });
+        const eventid = await eventDao.eventAnlegen(eventname, ort, zeit, bemerkung, gruppenid);
+        eventDao.dabei(personid, eventid);
     } catch (error) {
         res.status(500).json({ message: 'Fehler beim Anlegen des Events', error: error.message });
     }
+    
 })
 
 router.delete("/event/loeschen", verifyToken, (req, res)=>{

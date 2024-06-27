@@ -6,7 +6,7 @@ class EventDao{
     loadById(id) {  //alle daten für die übersicht laden
         return new Promise((resolve, reject) => {
             console.log(id)
-            this.dbconnection.all("SELECT id, eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, rows) => {
+            this.dbconnection.all("SELECT Event.id, eventname,ort,zeit,bemerkung,gruppenname from Event INNER JOIN BeziehungPersonEvent ON BeziehungPersonEvent.eventid = Event.id INNER JOIN Gruppe ON Event.gruppeid = Gruppe.id wHERE personid=?", [id], (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -29,10 +29,14 @@ class EventDao{
     }
 
     eventAnlegen(eventname, ort, zeit, bemerkung, gruppeid){
-        this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid) VALUES(?,?,?,?,?)", [eventname, ort, zeit, bemerkung, gruppeid], (error) => {
-            if (error) {
-                console.error("Error in eventAnlegen:", error);
-            }
+        return new Promise((resolve, reject) => {
+            this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid) VALUES(?,?,?,?,?)", [eventname, ort, zeit, bemerkung, gruppeid], function(error) {
+                if (error) {
+                    console.error("Error in eventAnlegen:", error);
+                } else {
+                    resolve(this.lastID);
+                }
+            });
         });
     }
 
