@@ -172,6 +172,7 @@ function fahrerSuche(){
             url:"/event/TeilnehmerIdListe",
             type:"GET",
             beforeSend: setAuthentification,
+            data: {eventid: eventid},
             success: function(data){
                 if (pruefung == 1){
                     console.log("hier")
@@ -180,7 +181,11 @@ function fahrerSuche(){
                     fahrer = listeTeilnehmer[zufallszahl]
                     console.log()
                 }
-            }
+            },
+            error: function(error){
+                console.error("Error: ", error)
+                alert("Keine Mitglieder geholt")
+            },
         })
     })
     .then(function(data2){
@@ -214,17 +219,41 @@ function keyAnzeigen(){
 }
 
 function gruppeLoeschen(){
+    var pruefung = 0
+    $.ajax({
+        url:"/gruppe/gruppenadmin",
+        type:"GET",
+        beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        success: function(data){
+            console.log(data)
+            if (sessionStorage.getItem('id') == data){
+                pruefung = 1 
+            }
+            else{
+                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
+            }
+        },
+        error: function(error){
+            console.error("Error: ", error)
+            alert("Keine Fahrersuche möglich")
+        },
+        
+    })
+    .then(function(data1){
     $.ajax({
         url:"gruppe/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-
+            alert("Die Gruppe wurde erfolgreich gelöscht!")
         },
         error: function(error) {
             console.error("Error: ", error);
             alert("Gruppe konnte nicht gelöscht werden!");
         }
     })
+}) 
 }
 
