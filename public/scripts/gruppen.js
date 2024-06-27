@@ -121,18 +121,26 @@ function mitgliederAnzeigen(){
 
 function mitgliederKicken() {
     var pruefung = 0;
+    /*console.log("vorher")
+    console.log(id)
+    console.log(gruppenid)*/
     var id = sessionStorage.getItem("id");
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
+
+    console.log("nacher")
+    console.log(id)
+    console.log(gruppenid)
+
     // prüfen ob Admin oder nicht
     $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
         beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
+        data: {gruppenid: gruppenid},
         success: function(data){
             if (sessionStorage.getItem('id') == data){
-                pruefung = 1
+                pruefung = 1;
             }
             else{
                 alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
@@ -211,15 +219,14 @@ function fahrerSuche(eventid){
             beforeSend: setAuthentification,
             data: {eventid: eventid},
             success: function(data){
-                
                 if (pruefung == 1){
                     console.log("hier")
-                    console.log(data)
+                    
                     listeTeilnehmer.push(data)
-
+                    console.log(listeTeilnehmer[0])
                     zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length - 0+1))
                     fahrer = listeTeilnehmer[zufallszahl]
-                    //console.log(fahrer)
+                    console.log(fahrer)
                 }
             },
             error: function(error){
@@ -228,7 +235,7 @@ function fahrerSuche(eventid){
             },
         })
     })
-    /*
+    
     .then(function(){
         $.ajax({
             url:"event/fahrerfestlegen",
@@ -239,7 +246,7 @@ function fahrerSuche(eventid){
                 console.log("fahrer hinzu")
             }
         })
-    })*/  
+    }) 
 }
 
 function keyAnzeigen(){
