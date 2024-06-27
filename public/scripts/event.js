@@ -68,7 +68,6 @@ function eventLoeschen(eventId){
             alert("Seite konnte nicht neu geladen werden")
         },
 
-        
 
     }))
     //Seite neu laden nach dem löschen
