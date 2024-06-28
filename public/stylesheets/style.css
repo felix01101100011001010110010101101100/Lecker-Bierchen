@@ -232,8 +232,8 @@ aside{
     height: 14%;
     border-radius: 10px;
     margin:2%;
-    overflow-y: auto;
-    overflow-x:hidden;
+    /*overflow-y: auto;
+    overflow-x:hidden;*/
 }
 
 #schluessel{
