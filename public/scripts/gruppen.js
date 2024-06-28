@@ -186,71 +186,56 @@ function mitgliederKicken() {
 }
 
 
-function fahrerSuche(eventid){
-    var pruefung = 0
-    var listeTeilnehmer = []
-    var fahrer = ""
-    console.log(eventid)
-    
-    $.ajax({
-        url:"/gruppe/gruppenadmin",
-        type:"GET",
+async function fahrerSuche(eventid){    
+    try{
+    let admin = await $.ajax({
+        url: "/gruppe/gruppenadmin",
+        type: "GET",
         beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
-        success: function(data){
-            if (sessionStorage.getItem('id') == data){
-                pruefung = 1
-                console.log("Admin überprüft")
-            }
-            else{
-                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!")
-            }
-        },
-        error: function(error){
-            console.error("Error: ", error)
-            alert("Keine Fahrersuche möglich")
-        },
-        
-    })
+        data: { gruppenid: sessionStorage.getItem('gerade_in_gruppen_id') }
+    });
+
+    if (sessionStorage.getItem('id') != admin) {
+        alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!");
+        return;
+    }
+    console.log("Admin überprüft");
+
     
-    .then(function(data1){
-        $.ajax({
-            url:"/event/TeilnehmerIdListe",
-            type:"GET",
-            beforeSend: setAuthentification,
-            data: {eventid: eventid},
-            success: function(data){ 
-                console.log(eventid)  
-                console.log(data)   
-                if (pruefung == 1){
-                    console.log("hier")
-                    
-                    listeTeilnehmer.push(data)
-                    console.log(listeTeilnehmer[0])
-                    zufallszahl = Math.floor(Math.random()* (listeTeilnehmer.length))
-                    fahrer = listeTeilnehmer[0][zufallszahl]
-                    console.log(fahrer)
-                }
-            },
-            error: function(error){
-                console.error("Error: ", error)
-                alert("Keine Mitglieder geholt")
-            },
-        })
-    })
-    
-    .then(function(data2){
-        $.ajax({
-            url:"event/fahrerfestlegen",
-            type:"POST",
-            beforeSend: setAuthentification,
-            data: {fahrer: fahrer, eventid: eventid},
-            success: function(data){
-                console.log("fahrer hinzu")
-            }
-        })
-    }) 
-}
+    let teilnehmer = await $.ajax({
+        url: "/event/TeilnehmerIdListe",
+        type: "GET",
+        beforeSend: setAuthentification,
+        data: { eventid: eventid }
+    });
+
+    console.log(eventid);
+    console.log(teilnehmer);
+
+    if (teilnehmer.length === 0) {
+        alert("Keine Mitglieder gefunden.");
+        return;
+    }
+
+    let zufallszahl = Math.floor(Math.random() * teilnehmer.length);
+    let fahrer = teilnehmer[zufallszahl].benutzername;  // Stelle sicher, dass benutzername verwendet wird
+    console.log(fahrer);
+
+    // Setze den Fahrer
+    await $.ajax({
+        url: "/event/fahrerfestlegen",
+        type: "POST",
+        beforeSend: setAuthentification,
+        data: { fahrer: fahrer, eventid: eventid }
+    });
+
+    console.log("Fahrer hinzugefügt");
+    }
+    catch (error) {
+        console.error("Error: ", error);
+        alert("Ein Fehler ist aufgetreten. Operation abgebrochen.");
+    }
+    } 
 
 function keyAnzeigen(){
     $.ajax({

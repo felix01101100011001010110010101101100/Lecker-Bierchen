@@ -9,7 +9,7 @@ function eventErstellen(){
         url:"/event/in/gruppe/erstellen",
         type:"POST",
         beforeSend: setAuthentification,
-        data: {eventname, ort, zeit, bemerkung, gruppenid, personid},
+        data: {eventname, ort, zeit, bemerkung, gruppenid, personid, fahrer: "noch keiner"},
         success: function(data){
             console.log(data)
             $("#eventnameEv").val("");

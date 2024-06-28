@@ -24,19 +24,6 @@ function dynamischEventUebersicht(){
             alert("Events können nicht angezeigt werden")
         },
     })
-    .then($.ajax({
-            url:"/fahrer/name",
-            type:"GET",
-            beforeSend: setAuthentification,
-            data: {fahrer: fahrer},
-            success: function(data){
-
-            },
-            error: function(error){
-                console.error("Error: ", error) 
-                alert("Fahrername konnte nicht ausgegeben werden")
-            },
-        }))
     }
 
 function eventEntfernen(eventid){

@@ -30,7 +30,7 @@ class EventDao{
 
     eventAnlegen(eventname, ort, zeit, bemerkung, gruppeid) {
         return new Promise((resolve, reject) => {
-            this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid) VALUES(?,?,?,?,?)", [eventname, ort, zeit, bemerkung, gruppeid], function(error) {
+            this.dbconnection.run("INSERT INTO Event(eventname, ort, zeit, bemerkung, gruppeid, fahrer) VALUES(?,?,?,?,?)", [eventname, ort, zeit, bemerkung, gruppeid, fahrer], function(error) {
                 if (error) {
                     console.error("Error in eventAnlegen:", error);
                     reject(error);
@@ -76,14 +76,6 @@ class EventDao{
         this.dbconnection.run("UPDATE Event SET fahrer=? WHERE id=?", [fahrer, eventid], (error) => {
             if (error) {
                 console.error("Error in fahrerFestlegen:", error);
-            }
-        });
-    }
-
-    fahrerName(fahrer){
-        this.dbconnection.run("", [personid, eventid], (error) => {
-            if (error) {
-                console.error("Error in fahrerNennen:", error);
             }
         });
     }
