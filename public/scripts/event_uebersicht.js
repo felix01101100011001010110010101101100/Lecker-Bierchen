@@ -29,13 +29,14 @@ function dynamischEventUebersicht(){
 
 function eventEntfernen(eventid){
     console.log("eventid: ", eventid)
+
     $.ajax({
-        url:"/event/loeschen",
+        url:"/event/uebersicht/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
-        data: {eventid:eventid},
+        data: {eventid:eventid, personid: sessionStorage.getItem('id')},
         success:function(data){
-            console.log(data)
+            console.log("eventid danach: "+eventid)
             console.log("Event gelöscht")
         },
         error: function(error){
@@ -43,6 +44,7 @@ function eventEntfernen(eventid){
             alert("Event konnte nicht entfernt werden")
         },
     })
+    
     .then($.ajax({
         url: "/event_uebersicht.html",
         type: "GET",

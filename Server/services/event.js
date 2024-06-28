@@ -32,9 +32,9 @@ router.post("/event/in/gruppe/erstellen", verifyToken, async (req, res)=>{
 })
 
 router.delete("/event/loeschen", verifyToken, (req, res)=>{
+    const eventid = req.query.eventid;
     const eventDao = new EventDao(req.app.locals.dbConnection);
     try {
-        const eventid = req.query.eventid;
         eventDao.deleteEvent(eventid);
         res.status(200).json({ message: 'Event erfolgreich gelöscht' });
     } catch (error) {
@@ -79,18 +79,17 @@ router.post("/event/fahrerfestlegen", verifyToken, (req, res)=>{ // hier bitte e
     }
 });
 
-router.get("/fahrer/name"), verifyToken, (req,res)=>{
+router.delete("/event/uebersicht/loeschen",verifyToken,(req,res)=>{
+    const eventid = req.body.eventid;
+    const personid = req.body.personid;
     const eventDao = new EventDao(req.app.locals.dbConnection);
-    const fahrer = req.query.fahrer
     try{
-        eventDao.
-        res.status(200).json({ message: 'Fahrer erfolgreich benannt' });
+        eventDao.deletePersonInEvent(eventid, personid);
+        res.status(200).json({ message: 'Fahrer erfolgreich festgelegt' });
+    }catch(error){
+        res.status(500).json({ message: 'Fehler beim Festlegen des Fahrers', error: error.message });
     }
-    catch (error) {
-        res.status(500).json({ message: 'Fehler beim Benennen des Fahrers', error: error.message });
-    }
-}
-
+})
 
 
 
