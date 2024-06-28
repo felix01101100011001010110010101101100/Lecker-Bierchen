@@ -105,9 +105,9 @@ function mitgliederAnzeigen(){
         data:{gruppenid: gruppenid},
         success: function(data){
             console.log(data),
-            data.forEach(function(event){
+            data.forEach(function(mitglied){
                 inhalt += '<div id="benutzernameboxen">' +
-                '<p id="benutzername"> Benutzername:'+ event.benutzername +'<i id="bnEntfernen" onclick="mitgliederKicken()" class="fa-solid fa-xmark"></i> <br> Alter:'+ event.jahr +
+                '<p id="benutzername"> Benutzername:'+ mitglied.benutzername +'<i id="bnEntfernen" onclick="mitgliederKicken('+mitglied.id+')" class="fa-solid fa-xmark"></i> <br> Alter:'+ mitglied.jahr +
                 '</p></div>';
                 
                 console.log("Mitglieder anzeigen funktioniert");
@@ -122,12 +122,12 @@ function mitgliederAnzeigen(){
     })
 }
 
-function mitgliederKicken() {
+function mitgliederKicken(id) {
     var pruefung = 0;
     /*console.log("vorher")
     console.log(id)
-    console.log(gruppenid)*/
-    var id = sessionStorage.getItem("id");
+    console.log(gruppenid)
+    var id = sessionStorage.getItem("id");*/
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
 
