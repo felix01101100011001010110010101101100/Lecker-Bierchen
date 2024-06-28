@@ -43,9 +43,9 @@ async function eventLoeschen(eventid) {
         if (sessionStorage.getItem('id') == adminData) {
             // Event löschen
             const deleteData = await $.ajax({
-                url: "/event/loeschen",
+                url: "/event/loeschen"+eventid,
                 type: "DELETE",
-                data: {eventid: eventid},
+            
                 beforeSend: setAuthentification
             });
             console.log("Event wurde erfolgreich gelöscht");
