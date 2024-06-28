@@ -31,9 +31,10 @@ router.post("/event/in/gruppe/erstellen", verifyToken, async (req, res)=>{
     
 })
 
-router.delete("/event/loeschen", verifyToken, (req, res)=>{
-    const eventid = req.query.eventid;
+router.delete("/event/loeschen:eventid", verifyToken, (req, res)=>{
+    const eventid = req.params.eventid;
     const eventDao = new EventDao(req.app.locals.dbConnection);
+    console.log("eventid:",eventid);
     try {
         eventDao.deleteEvent(eventid);
         res.status(200).json({ message: 'Event erfolgreich gelöscht' });
