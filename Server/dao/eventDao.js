@@ -80,6 +80,14 @@ class EventDao{
         });
     }
 
+    deletePersonInEvent(eventid, personid){
+        this.dbconnection.run("DELETE FROM BeziehungPersonEvent WHERE personid=? AND eventid=?", [personid,eventid], (error)=>{
+            if(error){
+                console.error("Error in Löschen Person in Event:", error);
+            }
+        })
+    }
+
 }
 
 module.exports = EventDao;
