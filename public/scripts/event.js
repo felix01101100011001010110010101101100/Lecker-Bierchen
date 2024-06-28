@@ -31,7 +31,7 @@ function eventDabei(eventid){
     }))
 }
 
-function eventLoeschen(eventId){
+function eventLoeschen(eventid){
     var pruefung = 0
     console.log(eventid)
     
@@ -59,7 +59,7 @@ function eventLoeschen(eventId){
     .then($.ajax({
         url:"/event/loeschen",
         type:"DELETE",
-        data: {eventId:eventId},
+        data: {eventid:eventid},
         beforeSend: setAuthentification,
         success: function(data){
             console.log("Event wurde erfolgreich gelöscht");
@@ -77,8 +77,8 @@ function eventLoeschen(eventId){
         type: "GET",
         beforeSend: setAuthentification,
         success: function(data){
+            console.log("Data"+data)
             $("body").html(data)
-            dynamischEventInGruppe(gruppenid)
         },
         error: function(error){
             console.error("Error ", error);
