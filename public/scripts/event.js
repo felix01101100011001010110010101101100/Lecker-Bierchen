@@ -30,61 +30,6 @@ function eventDabei(eventid){
         },
     }))
 }
-/*
-function eventLoeschen(eventid){
-    var pruefung = 0
-    console.log("test1",eventid)
-    //Admin überprüfen
-    $.ajax({
-        url:"/gruppe/gruppenadmin",
-        type:"GET",
-        beforeSend: setAuthentification,
-        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
-        success: function(data){
-            if (sessionStorage.getItem('id') == data){
-                pruefung = 1;
-            }
-            else{
-                alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!");
-            }
-        },
-        error: function(error){
-            console.error("Error: ", error)
-            alert("Kein event löschen möglich")
-        },
-        
-    })
-    //Event löschen
-    .then(
-        $.ajax({
-        url:"/event/loeschen",
-        type:"DELETE",
-        data: { eventid: eventid },
-        beforeSend: setAuthentification,
-        success: function(data){
-            console.log("Event wurde erfolgreich gelöscht");
-        },
-        error: function(error){
-            console.error("Error ",error);
-            alert("Seite konnte nicht neu geladen werden")
-        },
-        }))
-    //Seite neu laden nach dem löschen
-    .then($.ajax({
-        url: "/gruppen.html",
-        type: "GET",
-        beforeSend: setAuthentification,
-        success: function(data){
-            console.log("Data"+data)
-            $("body").html(data)
-        },
-        error: function(error){
-            console.error("Error ", error);
-            alert("Seite konnte nicht geladen werden");
-        },
-    }));
-}
-    */
 
 function eventLoeschen(eventid){
     var pruefung = 0;
@@ -144,3 +89,41 @@ function eventLoeschen(eventid){
         }
     });
 }
+=======
+}*/
+async function eventLoeschen(eventid) {
+    try {
+        // Admin überprüfen
+        const adminData = await $.ajax({
+            url: "/gruppe/gruppenadmin",
+            type: "GET",
+            beforeSend: setAuthentification,
+            data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')}
+        });
+
+        if (sessionStorage.getItem('id') == adminData) {
+            // Event löschen
+            const deleteData = await $.ajax({
+                url: "/event/loeschen",
+                type: "DELETE",
+                data: {eventid: eventid},
+                beforeSend: setAuthentification
+            });
+            console.log("Event wurde erfolgreich gelöscht");
+
+            // Seite neu laden
+            const pageData = await $.ajax({
+                url: "/gruppen.html",
+                type: "GET",
+                beforeSend: setAuthentification
+            });
+            $("body").html(pageData);
+        } else {
+            alert("Kein Zugriff. Diese Funktion hat nur der Administrator!!!!");
+        }
+    } catch (error) {
+        console.error("Fehler: ", error.responseText);
+        alert("Ein Fehler ist aufgetreten: " + error.responseText);
+    }
+}
+>>>>>>> 9a9cca22bfa426d75c71adca1991163aed86a6ea
