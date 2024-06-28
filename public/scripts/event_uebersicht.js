@@ -17,6 +17,7 @@ function dynamischEventUebersicht(){
                 + "</td><td> <b>Gruppe:</b> "+ event.gruppenname + "</td><td> <b>Fahrer:</b> "+event.fahrer+"</td><td></td><td></td><td></td><td></td><td><td></td><td></td><td></td><td></td><td></td><td></td><td><i id='eventEntfernen' onclick='eventEntfernen("+event.eventid+")' class='fa-solid fa-xmark'></td> <tr><td colspan='10' id='beschreibung'>Beschreibung: "+ 
                 event.bemerkung + "</td></tr></table> </section>";
             })
+            
             $("#uebersichtMain").html(inhalt)
         },
         error: function(error){
@@ -29,12 +30,12 @@ function dynamischEventUebersicht(){
 function eventEntfernen(eventid){
     console.log("eventid: ", eventid)
     $.ajax({
-        
         url:"/event/loeschen",
         type:"DELETE",
         beforeSend: setAuthentification,
         data: {eventid:eventid},
         success:function(data){
+            console.log(data)
             console.log("Event gelöscht")
         },
         error: function(error){
