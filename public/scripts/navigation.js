@@ -77,7 +77,7 @@ function aside_anzeigen() {
     })
 
 }
-function einzelneGruppeGetHtml(gruppenid,gruppename){
+function einzelneGruppeGetHtml(gruppenid, gruppename){
     $.ajax({
         url:"/gruppen.html",
         type:"GET",

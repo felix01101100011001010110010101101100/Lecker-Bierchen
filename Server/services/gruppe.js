@@ -134,6 +134,7 @@ router.get("/get/gruppe", verifyToken, async (req,res)=>{
         const gruppenid = req.query.gruppenid;
         const gruppenDao = new GruppenDao(req.app.locals.dbConnection);
         const gruppeDaten = await gruppenDao.gruppenname(gruppenid);
+        const gruppenname = await gruppenDao.getGruppenname(gruppenid);
         res.json(gruppeDaten);
     }catch(error){
         res.status(500).json({ message: 'Fehler beim Abrufen der Gruppe', error: error.message });
