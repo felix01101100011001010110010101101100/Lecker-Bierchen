@@ -27,7 +27,6 @@ class GruppenDao{
                 } else {
                     // Transformiert das Ergebnis in das gewünschte Format
                     const formatierteDaten = rows.map(row => {
-                        
                         return { gruppenname: row.gruppenname , id: row.id};
                     });
                     resolve(formatierteDaten);
@@ -153,12 +152,17 @@ class GruppenDao{
         });
     }
 
-    gruppenname(gruppenid){
-        this.dbconnection.get("SELECT * FROM Gruppe WHERE id=?", [gruppenid]),(err) => {
-            if (err) {
-                console.error("Error in mitgliedEntfernen:", err);
-            }
-        };
+    gruppenname(gruppenid) {
+        return new Promise((resolve, reject) => {
+            this.dbconnection.get("SELECT * FROM Gruppe WHERE id=?", [gruppenid], (err, row) => {
+                if (err) {
+                    console.error("Error in gruppenname:", err);
+                    reject(err);
+                } else {
+                    resolve(row);
+                }
+            });
+        });
     }
 
 
