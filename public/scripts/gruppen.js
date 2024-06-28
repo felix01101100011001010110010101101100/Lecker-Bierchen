@@ -18,9 +18,10 @@ function gruppenName(){
     })
 }
 
-function dynamischEventInGruppe(gruppenid){
+function dynamischEventInGruppe(){
     var inhalt = ""
     // id aus dem Session Storage abrufen. Er wird bei der verification mit abgespeichert
+    var  gruppenid = sessionStorage.getItem("gerade_in_gruppen_id"); 
     $.ajax({
         url: "/gruppen/event",
         type: "GET",
