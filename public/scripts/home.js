@@ -40,23 +40,3 @@ function keyGruppe(){
     },
     })
 }
-
-//kann rausgelöscht werden,  wenn wir keine Zeit mehr haben
-/*
-function oeffentlicheGruppe(){
-  $.ajax({
-    url:"home/oeffentlich",
-    type:"GET",
-    beforeSend: setAuthentification,
-    success: function(data){
-      //Alle öffentliche Gruppen anzeigen nach öffentliche Gruppe suchen und den Gruppennamen ausgeben
-      var inhalt = "<option>Öffentliche gruppe suchen</option>" + "<option> " + data.gruppenname + "</option>"
-      $("#buttons").html(inhalt)
-    },
-    error: function(error){
-            console.error("Error: ", error) 
-        },
-  })
-}
-
-*/

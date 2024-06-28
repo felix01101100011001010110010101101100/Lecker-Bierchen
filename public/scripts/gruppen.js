@@ -123,10 +123,6 @@ function mitgliederAnzeigen(){
 
 function mitgliederKicken(id) {
     var pruefung = 0;
-    /*console.log("vorher")
-    console.log(id)
-    console.log(gruppenid)
-    var id = sessionStorage.getItem("id");*/
     var gruppenid = sessionStorage.getItem("gerade_in_gruppen_id");
     
 
