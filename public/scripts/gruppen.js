@@ -1,19 +1,22 @@
-/*function gruppenName(){  
-    var inhalt = ""
+function gruppenName(){  
+    console.log("Gruppenid von gruppenname: " + sessionStorage.getItem('gerade_in_gruppen_id'))
     $.ajax({
-        url: "/gruppen/name",
+        url:"/get/gruppe",
         type: "GET",
         beforeSend: setAuthentification,
+        data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            inhalt = data.gruppennname;
-            $("body").html(inhalt);
+            
+            console.log("hier")
+            console.log("Gruppenname: " +data)
+            $("gruppenname").html(data.gruppenname);
         },
         error: function(error){
             console.error("Error: ", error) 
             alert("Der Gruppenname kann leider nicht angezeigt werden")
         },
     })
-}*/
+}
 
 function dynamischEventInGruppe(gruppenid){
     var inhalt = ""

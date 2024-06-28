@@ -153,6 +153,14 @@ class GruppenDao{
         });
     }
 
+    gruppenname(gruppenid){
+        this.dbconnection.get("SELECT * FROM Gruppe WHERE id=?", [gruppenid]),(err) => {
+            if (err) {
+                console.error("Error in mitgliedEntfernen:", err);
+            }
+        };
+    }
+
 
 }
 
