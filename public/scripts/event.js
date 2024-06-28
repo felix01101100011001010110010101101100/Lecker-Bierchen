@@ -31,18 +31,18 @@ function eventDabei(eventid){
     }))
 }
 
-function eventLoeschen(eventid){
+async function eventLoeschen(eventid){
     var pruefung = 0
     console.log(eventid)
-    
     //Admin überprüfen
-    $.ajax({
+    
+    const admin = await $.ajax({
         url:"/gruppe/gruppenadmin",
         type:"GET",
         beforeSend: setAuthentification,
         data: {gruppenid: sessionStorage.getItem('gerade_in_gruppen_id')},
         success: function(data){
-            if (sessionStorage.getItem('id') == data){
+            if (sessionStorage.getItem('id') == admin){
                 pruefung = 1
             }
             else{
@@ -55,8 +55,10 @@ function eventLoeschen(eventid){
         },
         
     })
+
+    
     //Event löschen
-    .then($.ajax({
+    const loeschen = await $.ajax({
         url:"/event/loeschen",
         type:"DELETE",
         data: {eventid:eventid},
@@ -70,9 +72,9 @@ function eventLoeschen(eventid){
         },
 
 
-    }))
+    })
     //Seite neu laden nach dem löschen
-    .then($.ajax({
+    const neueSeite = await ($.ajax({
         url: "/gruppen.html",
         type: "GET",
         beforeSend: setAuthentification,
@@ -85,4 +87,5 @@ function eventLoeschen(eventid){
             alert("Seite konnte nicht geladen werden");
         },
     }));
+    
 }
